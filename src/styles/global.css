@@ -109,7 +109,11 @@ a {
   outline: 2px solid var(--accent-light);
   outline-offset: 2px;
 }
-
+.logo-image {
+  width: 180px;
+  height: auto;
+  display: block;
+}
 /* Global visible focus states — WCAG 2.1 AA */
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -121,3 +125,4 @@ a {
 :focus:not(:focus-visible) {
   outline: none;
 }
+
