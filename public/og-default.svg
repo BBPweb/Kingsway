@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Placeholder OG image for Kingsway International social sharing.
+  Replace before launch with a branded 1200x630 PNG/JPG.
+  See README.md for the og-default checklist.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Kingsway International — UK Trading & Distribution">
+  <defs>
+    <radialGradient id="glow" cx="85%" cy="100%" r="65%">
+      <stop offset="0%" stop-color="#C5873C" stop-opacity="0.22"/>
+      <stop offset="65%" stop-color="#C5873C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Dark forest background -->
+  <rect width="1200" height="630" fill="#082C22"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Saffron left bar -->
+  <rect x="0" y="0" width="12" height="630" fill="#C5873C"/>
+
+  <!-- Pre-launch eyebrow -->
+  <text x="100" y="200"
+        fill="#C5873C"
+        font-family="'Manrope Variable', 'Manrope', system-ui, sans-serif"
+        font-size="22"
+        font-weight="700"
+        letter-spacing="8">PRE-LAUNCH · 2026</text>
+
+  <!-- Wordmark -->
+  <text x="100" y="320"
+        fill="#F7EFDE"
+        font-family="'Fraunces Variable', 'Fraunces', Georgia, serif"
+        font-size="92"
+        font-weight="400"
+        letter-spacing="6">KINGSWAY INTERNATIONAL</text>
+
+  <!-- Tagline -->
+  <text x="100" y="395"
+        fill="#E5B77A"
+        font-family="'Fraunces Variable', Georgia, serif"
+        font-style="italic"
+        font-size="38"
+        font-weight="300">UK Trading &amp; Distribution</text>
+
+  <!-- Sub-line -->
+  <text x="100" y="475"
+        fill="#F7EFDE"
+        fill-opacity="0.78"
+        font-family="'Manrope Variable', sans-serif"
+        font-size="26"
+        font-weight="500">Authentic ingredients. Trusted supply.</text>
+
+  <!-- Foot tag -->
+  <text x="100" y="555"
+        fill="#F7EFDE"
+        fill-opacity="0.5"
+        font-family="'Manrope Variable', sans-serif"
+        font-size="18"
+        font-weight="600"
+        letter-spacing="4">kingswayinternational.co.uk</text>
+</svg>

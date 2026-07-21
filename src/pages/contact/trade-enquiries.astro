@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import SectionTitle from '../../components/ui/SectionTitle.astro';
+import Lede from '../../components/ui/Lede.astro';
+import CTABanner from '../../components/ui/CTABanner.astro';
+
+interface Ask {
+  number: string;
+  slug: string;
+  title: string;
+  body: string;
+}
+
+const asks: Ask[] = [
+  {
+    number: '01',
+    slug: 'sample',
+    title: 'A sample evaluation',
+    body: 'Send us your specification. We send back a product pack matched to it. You test it against your current supplier — blind, if you prefer. No commitment, no cost.',
+  },
+  {
+    number: '02',
+    slug: 'listing',
+    title: 'A listing conversation',
+    body: 'A 30-minute call or meeting to walk through category plans, volumes and pricing for specific SKUs. Quick path to a written commercial offer.',
+  },
+  {
+    number: '03',
+    slug: 'privatelabel',
+    title: 'A private-label brief',
+    body: "Tell us the brand, pack formats and volumes you have in mind. We'll come back with a costed proposal within two weeks.",
+  },
+];
+
+const afterSubmit = [
+  { when: 'Same day', what: 'Your enquiry is acknowledged and assigned to a named account owner.' },
+  { when: 'Within three business days', what: 'A substantive first response — samples dispatched, a meeting proposed, or an initial proposal drafted.' },
+  { when: 'Every subsequent step', what: 'One named person at Kingsway whose reputation sits with your account.' },
+];
+---
+
+<BaseLayout
+  title="Trade Enquiries | Kingsway International"
+  description="Three concrete ways to start a trade conversation with Kingsway International — sample evaluation, listing conversation, or a private-label brief."
+>
+  <Hero
+    eyebrow="Contact • Trade buyers"
+    title="Three concrete ways we can work together."
+    subtitle="Pick the one that fits your business. We'll take it from there."
+  />
+
+  <!-- Intro -->
+  <section class="section section--white section--narrow" aria-label="Trade enquiries introduction">
+    <div class="container container--narrow">
+      <Lede>
+        We&rsquo;re opening early trade conversations ahead of launch. There are
+        three ways to start &mdash; each is a self-contained first step, with no
+        commitment required and no cost attached.
+      </Lede>
+    </div>
+  </section>
+
+  <!-- Three asks (vertically stacked panels) -->
+  <section class="section section--tint" aria-labelledby="asks-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Three asks</Eyebrow>
+        <SectionTitle id="asks-heading">Pick the conversation that fits</SectionTitle>
+      </div>
+
+      <div class="ask-list">
+        {asks.map(ask => (
+          <article class="ask-panel" aria-labelledby={`ask-heading-${ask.slug}`}>
+            <p class="ask-number" aria-hidden="true">{ask.number}.</p>
+            <div class="ask-text">
+              <h3 id={`ask-heading-${ask.slug}`} class="ask-title">{ask.title}</h3>
+              <p class="ask-body">{ask.body}</p>
+              <a href={`/contact?subject=${ask.slug}`} class="ask-link">
+                <span>Start this conversation</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What happens after you submit -->
+  <section class="section section--white section--narrow" aria-labelledby="after-heading">
+    <div class="container container--narrow">
+      <Eyebrow>After you submit</Eyebrow>
+      <SectionTitle id="after-heading">What happens after you submit</SectionTitle>
+      <ul class="after-list" role="list">
+        {afterSubmit.map(step => (
+          <li class="after-item">
+            <p class="after-when">{step.when}</p>
+            <p class="after-what">{step.what}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Start a trade conversation"
+    caption="Pick one of the three asks. Send the form. We'll take it from there."
+    buttonLabel="Open the contact form"
+    buttonHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Section primitives ── */
+  .section { padding: 5rem 0; }
+  .section--white { background-color: #ffffff; }
+  .section--tint  { background-color: var(--light-tint); }
+  .section--narrow { padding: 4rem 0 3rem; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+
+  .section-head {
+    max-width: 880px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── Ask panel ── */
+  .ask-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .ask-panel {
+    background: #ffffff;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 2rem;
+    border-left: 4px solid var(--accent);
+    align-items: start;
+  }
+
+  .ask-number {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  .ask-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--primary);
+    margin: 0 0 1rem;
+  }
+
+  .ask-body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+    max-width: 720px;
+  }
+
+  .ask-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: gap 0.2s ease;
+  }
+
+  .ask-link:hover { gap: 0.7rem; }
+
+  /* ── After list ── */
+  .after-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+  }
+
+  .after-item {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .after-item:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .after-when {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .after-what {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .ask-panel {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 2rem 1.5rem;
+    }
+
+    .ask-number { font-size: 40px; }
+
+    .after-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .section { padding: 3.5rem 0; }
+  }
+</style>

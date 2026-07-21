@@ -1,0 +1,439 @@
+---
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { label: 'Home',         href: '/' },
+  { label: 'About',        href: '/about' },
+  { label: 'Quality',      href: '/quality' },
+  { label: 'Products',     href: '/products' },
+  { label: 'Who We Serve', href: '/who-we-serve' },
+  { label: 'Food Stories', href: '/food-stories' },
+  { label: 'Policies',     href: '/policies' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return pathname === '/';
+  return pathname.startsWith(href);
+}
+---
+
+<header class="site-header" role="banner">
+  <div class="header-inner">
+
+    <!-- Brand mark -->
+    <a href="/" class="header-wordmark" aria-label="Kingsway International — home">
+      <span class="wordmark-name">KINGSWAY</span>
+      <span class="wordmark-sub">TRADING &amp; DISTRIBUTION</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <ul class="nav-list" role="list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class={`nav-link${isActive(link.href) ? ' nav-link--active' : ''}`}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Desktop CTA -->
+    <a href="/contact" class="header-cta">
+      Start a trade conversation
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button
+      class="hamburger"
+      id="hamburger-btn"
+      aria-controls="mobile-drawer"
+      aria-expanded="false"
+      aria-label="Open navigation menu"
+    >
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- Overlay and drawer are OUTSIDE the header so backdrop-filter doesn't clip them -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+
+<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <button class="drawer-close" id="drawer-close-btn" aria-label="Close navigation menu">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M2 2L18 18M18 2L2 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <nav aria-label="Mobile navigation">
+    <ul class="drawer-nav-list" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class={`drawer-link${isActive(link.href) ? ' drawer-link--active' : ''}`}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <div class="drawer-cta-wrap">
+    <a href="/contact" class="drawer-cta">Start a trade conversation</a>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var btn      = document.getElementById('hamburger-btn');
+    var closeBtn = document.getElementById('drawer-close-btn');
+    var drawer   = document.getElementById('mobile-drawer');
+    var overlay  = document.getElementById('drawer-overlay');
+
+    if (!btn || !closeBtn || !drawer || !overlay) return;
+
+    function getFocusable() {
+      return Array.from(
+        drawer.querySelectorAll('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])')
+      ).filter(function(el) { return !el.hasAttribute('disabled'); });
+    }
+
+    function openDrawer() {
+      drawer.classList.add('drawer--open');
+      overlay.classList.add('overlay--visible');
+      btn.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('drawer-open');
+      var focusable = getFocusable();
+      if (focusable.length) focusable[0].focus();
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('drawer--open');
+      overlay.classList.remove('overlay--visible');
+      btn.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('drawer-open');
+      btn.focus();
+    }
+
+    btn.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+
+    drawer.querySelectorAll('.drawer-link, .drawer-cta').forEach(function(link) {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && drawer.classList.contains('drawer--open')) {
+        closeDrawer();
+      }
+    });
+
+    drawer.addEventListener('keydown', function(e) {
+      if (e.key !== 'Tab') return;
+      var focusable = getFocusable();
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last  = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  })();
+</script>
+
+<style>
+  /* ── Header ── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 68px;
+    gap: 2rem;
+  }
+
+  /* ── Brand ── */
+  .header-wordmark {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .wordmark-name {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--primary);
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  .wordmark-sub {
+    font-family: var(--font-sans);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  /* ── Desktop nav ── */
+  .desktop-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.35rem 0.7rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: color 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+
+  .nav-link--active {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .nav-link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0.7rem;
+    right: 0.7rem;
+    height: 2px;
+    background-color: var(--accent);
+    border-radius: 1px;
+  }
+
+  /* ── Desktop CTA ── */
+  .header-cta {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6875rem 1.375rem;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .header-cta:hover {
+    background-color: var(--primary-dark);
+  }
+
+  /* ── Hamburger ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: var(--primary);
+    border-radius: 1px;
+  }
+
+  /* ── Overlay ── */
+  .drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 44, 34, 0.55);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .drawer-overlay.overlay--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* ── Drawer ── */
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(340px, 85vw);
+    background: #ffffff;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.5rem 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.12);
+  }
+
+  .mobile-drawer.drawer--open {
+    transform: translateX(0);
+  }
+
+  /* Prevent body scroll when drawer is open */
+  :global(body.drawer-open) {
+    overflow: hidden;
+  }
+
+  .drawer-close {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    margin-bottom: 1.75rem;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+  }
+
+  .drawer-close:hover {
+    background-color: var(--light-tint);
+  }
+
+  .drawer-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .drawer-link {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    padding: 0 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.15s ease, background-color 0.15s ease, padding-left 0.15s ease;
+  }
+
+  .drawer-link:hover {
+    color: var(--primary);
+    background-color: var(--light-tint);
+    padding-left: 1.25rem;
+  }
+
+  .drawer-link--active {
+    color: var(--primary);
+    font-weight: 600;
+    border-left: 3px solid var(--accent);
+    padding-left: calc(0.75rem - 3px);
+  }
+
+  .drawer-cta-wrap {
+    padding-top: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  .drawer-cta {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+  }
+
+  .drawer-cta:hover {
+    background-color: var(--primary-dark);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 960px) {
+    .desktop-nav,
+    .header-cta {
+      display: none;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+</style>

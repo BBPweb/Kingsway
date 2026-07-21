@@ -1,0 +1,305 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+import Lede from '../components/ui/Lede.astro';
+import ImagePlaceholder from '../components/ui/ImagePlaceholder.astro';
+import CTABanner from '../components/ui/CTABanner.astro';
+import Button from '../components/ui/Button.astro';
+
+const categories = [
+  {
+    name: 'Rice',
+    body: 'Basmati, Sella, Parboiled, Sona Masoori, Jasmine and long-grain white. Available in retail, wholesale and catering pack formats.',
+  },
+  {
+    name: 'Spices — whole',
+    body: 'Cumin, coriander, black pepper, cardamom, cloves, mustard and fenugreek — among others. Sourced at origin, milled and packed to specification.',
+  },
+  {
+    name: 'Spices — ground',
+    body: 'Turmeric, chilli, garam masala, curry powder and a range of regional blends. Retail and foodservice formats.',
+  },
+  {
+    name: 'Pulses & lentils',
+    body: 'Toor dal, urad, moong, chana, masoor, kidney beans and chickpeas. Staple dals in retail and wholesale pack formats.',
+  },
+  {
+    name: 'Flours & grains',
+    body: 'Atta, chapati flour, besan (gram flour), semolina and maize meal. Retail and foodservice formats.',
+  },
+  {
+    name: 'Edible oils & ghee',
+    body: 'Sunflower, groundnut, mustard and coconut oils; ghee and clarified butter. Retail and catering pack formats.',
+  },
+  {
+    name: 'Ready-to-use',
+    body: 'Pickles, chutneys, cooking pastes, sauces, papads and shelf-stable snacks. Retail formats.',
+  },
+  {
+    name: 'Ethnic grocery',
+    body: 'Teas, beverages and canned goods. A frozen range is planned in Phase 2.',
+  },
+];
+---
+
+<BaseLayout
+  title="Products | Spices, Rice, Pulses & Ethnic Grocery | Kingsway International"
+  description="Kingsway International's launch portfolio — rice, spices, pulses, edible oils and ethnic grocery staples for UK retail, wholesale and foodservice trade."
+>
+  <Hero
+    eyebrow="Our portfolio"
+    title="A focused portfolio. Not a sprawling one."
+    subtitle="Eight core categories, chosen because they sell consistently and can be sourced well."
+  />
+
+  <!-- Intro -->
+  <section class="section section--white section--narrow" aria-label="Products introduction">
+    <div class="container container--narrow">
+      <Lede>
+        Our launch portfolio focuses on categories with deep, consistent demand
+        across the UK ethnic food market. We would rather carry a focused
+        catalogue of authentic, high-quality lines that move consistently than
+        a wide catalogue of marginal ones. The portfolio will be expanded on
+        the basis of customer demand and verified supply, not speculative listing.
+      </Lede>
+    </div>
+  </section>
+
+  <!-- 8-category grid -->
+  <section class="section section--tint" aria-labelledby="categories-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Categories</Eyebrow>
+        <SectionTitle id="categories-heading">Our launch categories</SectionTitle>
+      </div>
+
+      <div class="grid grid--4">
+        {categories.map(cat => (
+          <article class="category-card">
+            <ImagePlaceholder label={cat.name} aspect="4/3" />
+            <div class="category-card-body">
+              <h3 class="category-card-title">{cat.name}</h3>
+              <p class="category-card-text">{cat.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio philosophy -->
+  <section class="section section--white section--narrow" aria-labelledby="philosophy-heading">
+    <div class="container container--narrow">
+      <Eyebrow>Our discipline</Eyebrow>
+      <SectionTitle id="philosophy-heading">Why this range &mdash; and not a bigger one</SectionTitle>
+      <div class="prose">
+        <p>
+          Every SKU Kingsway lists has earned its place. We evaluate new lines
+          against three tests:
+          <strong>Is there confirmed customer demand?</strong>
+          <strong>Can we source the product to our quality standard?</strong>
+          <strong>Does it strengthen the range rather than dilute it?</strong>
+          Lines that fail any of the three are not listed, however commercially
+          tempting they might look in isolation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Private label -->
+  <section class="section section--tint" aria-labelledby="private-label-heading">
+    <div class="container">
+      <div class="two-col">
+        <div class="two-col-text">
+          <Eyebrow>Private label</Eyebrow>
+          <SectionTitle id="private-label-heading">Private label and own-brand programmes</SectionTitle>
+          <div class="prose">
+            <p>
+              Kingsway operates a private-label programme for retail and
+              foodservice customers who want the quality of our supply chain
+              under their own brand. Minimum order quantities, packaging options
+              and lead times are agreed case-by-case. Typical programme timeline
+              from brief to first shipment: [to be confirmed].
+            </p>
+          </div>
+          <div class="cta-row">
+            <Button href="/contact" variant="primary" size="md" withArrow>
+              Enquire about private label
+            </Button>
+          </div>
+        </div>
+        <div class="two-col-image">
+          <ImagePlaceholder label="Private label packaging" aspect="16/9" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two next-step cards -->
+  <section class="section section--white" aria-label="Next steps">
+    <div class="container">
+      <div class="grid grid--2">
+        <article class="next-card">
+          <Eyebrow>Catalogue</Eyebrow>
+          <h3 class="next-card-title">Request a product catalogue</h3>
+          <p class="next-card-body">
+            Tell us your channel and category focus &mdash; we&rsquo;ll send a
+            tailored catalogue.
+          </p>
+          <Button href="/contact" variant="primary" size="sm" withArrow>
+            Request a catalogue
+          </Button>
+        </article>
+        <article class="next-card">
+          <Eyebrow>Private label</Eyebrow>
+          <h3 class="next-card-title">Enquire about private label</h3>
+          <p class="next-card-body">
+            Brand, pack formats, volumes &mdash; we&rsquo;ll respond with a
+            costed proposal within two weeks.
+          </p>
+          <Button href="/contact" variant="primary" size="sm" withArrow>
+            Open a private-label brief
+          </Button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Start a trade conversation"
+    caption="We answer every enquiry within one business day."
+    buttonLabel="Send an enquiry"
+    buttonHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Section primitives ── */
+  .section { padding: 5rem 0; }
+  .section--white { background-color: #ffffff; }
+  .section--tint  { background-color: var(--light-tint); }
+  .section--narrow { padding: 4rem 0 3rem; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+
+  .section-head {
+    max-width: 880px;
+    margin-bottom: 3rem;
+  }
+
+  .prose p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+    max-width: 700px;
+  }
+
+  .prose strong {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .prose p:last-child { margin-bottom: 0; }
+
+  .cta-row { margin-top: 2rem; }
+
+  /* ── Two-col ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 880px) {
+    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  /* ── Grids ── */
+  .grid { display: grid; gap: 2rem; }
+  .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem; }
+  .grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  @media (max-width: 1080px) {
+    .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 560px) {
+    .grid--2,
+    .grid--4 { grid-template-columns: 1fr; }
+
+    .section { padding: 3.5rem 0; }
+  }
+
+  /* ── Category card ── */
+  .category-card {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--rule);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(8, 44, 34, 0.06);
+  }
+
+  .category-card-body {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+
+  .category-card-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.25;
+    color: var(--primary);
+    margin: 0 0 0.625rem;
+  }
+
+  .category-card-text {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--grey);
+    margin: 0;
+  }
+
+  /* ── Next-step card ── */
+  .next-card {
+    background: var(--light-tint);
+    padding: 2.5rem 2rem;
+    border-top: 3px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .next-card-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--primary);
+    margin: 0;
+  }
+
+  .next-card-body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 0.5rem;
+  }
+</style>

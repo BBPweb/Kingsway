@@ -1,0 +1,23 @@
+---
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://www.kingswayinternational.co.uk';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Kingsway International',
+  alternateName: 'Kingsway International Trading & Distribution',
+  url: site,
+  logo: `${site}/og-default.svg`,
+  description: 'A UK-based trading and distribution partner for authentic spices, rice, pulses and ethnic grocery — for retail, wholesale and foodservice trade.',
+  sameAs: [],
+  contactPoint: [{
+    '@type': 'ContactPoint',
+    email: 'info@kingswayinternational.co.uk',
+    contactType: 'customer service',
+    areaServed: 'GB',
+    availableLanguage: ['English'],
+  }],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

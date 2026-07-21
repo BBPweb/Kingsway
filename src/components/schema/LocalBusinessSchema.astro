@@ -1,0 +1,40 @@
+---
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://www.kingswayinternational.co.uk';
+
+// LocalBusiness extends Organization. Address fields stay placeholder until
+// the registered office is confirmed (see README pre-launch checklist).
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Kingsway International',
+  url: site,
+  logo: `${site}/og-default.svg`,
+  image: `${site}/og-default.svg`,
+  description: 'Routed enquiry form for trade buyers, suppliers, press and careers, plus direct email, telephone and postal contact details.',
+  email: 'info@kingswayinternational.co.uk',
+  telephone: '+44-0-000-000-0000',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '[Street address — to be confirmed]',
+    addressLocality: '[City — to be confirmed]',
+    postalCode: '[Postcode — to be confirmed]',
+    addressCountry: 'GB',
+  },
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '17:30',
+  }],
+  contactPoint: [
+    { '@type': 'ContactPoint', email: 'info@kingswayinternational.co.uk',     contactType: 'customer service',  areaServed: 'GB' },
+    { '@type': 'ContactPoint', email: 'sales@kingswayinternational.co.uk',    contactType: 'sales',             areaServed: 'GB' },
+    { '@type': 'ContactPoint', email: 'sourcing@kingswayinternational.co.uk', contactType: 'procurement',       areaServed: 'GB' },
+    { '@type': 'ContactPoint', email: 'quality@kingswayinternational.co.uk',  contactType: 'technical support', areaServed: 'GB' },
+    { '@type': 'ContactPoint', email: 'press@kingswayinternational.co.uk',    contactType: 'public relations',  areaServed: 'GB' },
+    { '@type': 'ContactPoint', email: 'careers@kingswayinternational.co.uk',  contactType: 'human resources',   areaServed: 'GB' },
+  ],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

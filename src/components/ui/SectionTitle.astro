@@ -1,0 +1,26 @@
+---
+export interface Props {
+  as?: 'h2' | 'h3';
+  id?: string;
+  class?: string;
+}
+
+const { as: Tag = 'h2', id, class: className = '' } = Astro.props;
+---
+
+<Tag id={id} class={`section-title ${className}`.trim()}>
+  <slot />
+</Tag>
+
+<style>
+  .section-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(32px, 3.6vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--primary);
+    max-width: 880px;
+    margin: 0;
+  }
+</style>

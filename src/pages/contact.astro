@@ -1,0 +1,674 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Lede from '../components/ui/Lede.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import ImagePlaceholder from '../components/ui/ImagePlaceholder.astro';
+import LocalBusinessSchema from '../components/schema/LocalBusinessSchema.astro';
+
+const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_CONTACT ?? '';
+
+const subjectOptions = [
+  { value: 'retail',      label: 'Trade enquiry — retail' },
+  { value: 'wholesale',   label: 'Trade enquiry — wholesale / cash & carry' },
+  { value: 'foodservice', label: 'Trade enquiry — foodservice' },
+  { value: 'multiples',   label: 'Trade enquiry — multiples (Phase 2 planning)' },
+  { value: 'supplier',    label: 'Become a supplier' },
+  { value: 'quality',     label: 'Quality matter or concern' },
+  { value: 'press',       label: 'Press or media enquiry' },
+  { value: 'careers',     label: 'Careers' },
+  { value: 'other',       label: 'Something else' },
+];
+
+const directContacts = [
+  { label: 'General enquiries',         email: 'info@kingswayinternational.co.uk' },
+  { label: 'Commercial and sales',      email: 'sales@kingswayinternational.co.uk' },
+  { label: 'Procurement and sourcing',  email: 'sourcing@kingswayinternational.co.uk' },
+  { label: 'Quality and compliance',    email: 'quality@kingswayinternational.co.uk' },
+  { label: 'Press and media',           email: 'press@kingswayinternational.co.uk' },
+  { label: 'Careers',                   email: 'careers@kingswayinternational.co.uk' },
+];
+---
+
+<BaseLayout
+  title="Contact Kingsway International | Trade, Supplier & Press Enquiries"
+  description="Contact Kingsway International — routed enquiry form for trade buyers, suppliers, press and careers, plus direct email, telephone and postal contact details."
+>
+  <LocalBusinessSchema slot="head" />
+
+  <Hero
+    eyebrow="Contact"
+    title="Let's start a conversation."
+    subtitle="Trade buyer, supplier, journalist or candidate — tell us what you need and we'll route you correctly."
+  />
+
+  <!-- Intro -->
+  <section class="section section--white section--narrow" aria-label="Contact introduction">
+    <div class="container container--narrow">
+      <Lede>
+        There are different conversations to have, and Kingsway is set up to
+        have each of them well. Use the form below &mdash; the routing dropdown
+        will get your enquiry to the right inbox &mdash; or contact the relevant
+        function directly. We acknowledge every enquiry within one business day,
+        and we send a substantive response within three.
+      </Lede>
+    </div>
+  </section>
+
+  <!-- Form + sidebar -->
+  <section class="section section--white" aria-labelledby="form-heading">
+    <div class="container">
+      <div class="form-layout">
+        <!-- Form column -->
+        <div class="form-col">
+          <h2 id="form-heading" class="form-heading">Enquiry form</h2>
+
+          <form
+            id="contact-form"
+            action={formspreeEndpoint}
+            method="POST"
+            novalidate
+            data-endpoint={formspreeEndpoint}
+          >
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">
+                  Your full name <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input id="name" name="name" type="text" required autocomplete="name" />
+              </div>
+
+              <div class="field">
+                <label for="email">
+                  Your email address <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input id="email" name="email" type="email" required autocomplete="email" />
+              </div>
+
+              <div class="field">
+                <label for="company">Your company</label>
+                <input id="company" name="company" type="text" autocomplete="organization" />
+              </div>
+
+              <div class="field">
+                <label for="country">
+                  Your country <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input id="country" name="country" type="text" required autocomplete="country-name" />
+              </div>
+
+              <div class="field">
+                <label for="telephone">Your telephone number</label>
+                <input id="telephone" name="telephone" type="tel" autocomplete="tel" />
+              </div>
+
+              <div class="field">
+                <label for="subject">
+                  What is this about? <span class="required" aria-hidden="true">*</span>
+                </label>
+                <select id="subject" name="subject" required>
+                  <option value="" disabled selected>Choose one&hellip;</option>
+                  {subjectOptions.map(opt => (
+                    <option value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div class="field field--full">
+                <label for="message">
+                  Your message <span class="required" aria-hidden="true">*</span>
+                </label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+              </div>
+
+              <div class="field field--full field--consent">
+                <label class="consent-label">
+                  <input type="checkbox" name="consent" required />
+                  <span>
+                    I agree to Kingsway International&rsquo;s
+                    <a href="/privacy-notice" class="inline-link">Privacy Notice</a>.
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="form-submit" id="form-submit">
+                <span class="form-submit-label">Send enquiry</span>
+              </button>
+            </div>
+
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div id="form-success" class="form-success" hidden role="status">
+            <p class="form-success-eyebrow">Thank you</p>
+            <p class="form-success-body">
+              Your enquiry has reached the right team at Kingsway. We acknowledge
+              every enquiry within one business day &mdash; you&rsquo;ll hear from
+              us shortly.
+            </p>
+          </div>
+
+          {!formspreeEndpoint && (
+            <p class="endpoint-warning">
+              <strong>Note:</strong> set <code>PUBLIC_FORMSPREE_CONTACT</code> in
+              <code>.env</code> for this form to submit (see <code>.env.example</code>).
+            </p>
+          )}
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" aria-label="Direct contact details">
+          <div class="sidebar-panel">
+            <Eyebrow>Direct contact</Eyebrow>
+
+            <h3 class="sidebar-heading">By email</h3>
+            <ul class="sidebar-list" role="list">
+              {directContacts.map(c => (
+                <li class="sidebar-item">
+                  <p class="sidebar-item-label">{c.label}</p>
+                  <a href={`mailto:${c.email}`} class="sidebar-item-value">{c.email}</a>
+                </li>
+              ))}
+            </ul>
+
+            <h3 class="sidebar-heading sidebar-heading--space">By telephone</h3>
+            <p class="sidebar-text">
+              +44 (0)[xxx xxx xxxx]<br />
+              <span class="sidebar-text-soft">Monday to Friday, 09:00 to 17:30 UK time.</span>
+            </p>
+
+            <h3 class="sidebar-heading sidebar-heading--space">By post</h3>
+            <p class="sidebar-text">
+              Kingsway International [Ltd]<br />
+              [Street address]<br />
+              [City], [Postcode]<br />
+              United Kingdom
+            </p>
+          </div>
+
+          <div class="sidebar-callout">
+            <Eyebrow>Our response commitment</Eyebrow>
+            <p class="sidebar-callout-body">
+              Every enquiry is acknowledged within one business day. A substantive
+              response follows within three business days &mdash; and if a matter
+              is going to take longer than that to resolve, we tell you so, with
+              a clear expected timescale.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map placeholder -->
+  <section class="section section--tint section--no-pad" aria-label="Office location map">
+    <div class="map-placeholder">
+      <ImagePlaceholder label="Office location map (to be embedded once head-office address is confirmed)" aspect="21/9" />
+    </div>
+  </section>
+
+  <!-- Two sub-page CTA tiles -->
+  <section class="section section--white" aria-label="More ways to get in touch">
+    <div class="container">
+      <div class="tile-grid">
+        <a href="/contact/become-a-supplier" class="cta-tile cta-tile--dark">
+          <Eyebrow>For suppliers</Eyebrow>
+          <h3 class="cta-tile-title">Become a supplier</h3>
+          <p class="cta-tile-body">
+            A dedicated path for origin producers, primary processors and
+            service providers.
+          </p>
+          <span class="cta-tile-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="/contact/trade-enquiries" class="cta-tile cta-tile--primary">
+          <Eyebrow>For trade buyers</Eyebrow>
+          <h3 class="cta-tile-title">Trade enquiries</h3>
+          <p class="cta-tile-body">
+            A dedicated path for retail, wholesale and foodservice buyers.
+          </p>
+          <span class="cta-tile-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var form    = document.getElementById('contact-form');
+    var status  = document.getElementById('form-status');
+    var submit  = document.getElementById('form-submit');
+    var success = document.getElementById('form-success');
+    var subject = document.getElementById('subject');
+
+    if (!form || !status || !submit || !success || !subject) return;
+
+    // Pre-select dropdown from URL ?subject=...
+    // Trade Enquiries panel slugs map to the same dropdown values.
+    var aliasMap = {
+      sample:       'retail',
+      listing:      'wholesale',
+      privatelabel: 'wholesale',
+      export:       'wholesale',
+    };
+
+    var raw = new URLSearchParams(window.location.search).get('subject');
+    if (raw) {
+      var target = aliasMap[raw] || raw;
+      var matched = false;
+      for (var i = 0; i < subject.options.length; i++) {
+        if (subject.options[i].value === target) {
+          subject.selectedIndex = i;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        // Fall back to "Something else" if alias unknown
+        for (var j = 0; j < subject.options.length; j++) {
+          if (subject.options[j].value === 'other') {
+            subject.selectedIndex = j;
+            break;
+          }
+        }
+      }
+    }
+
+    var endpoint = form.getAttribute('data-endpoint');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!endpoint) {
+        status.textContent = 'Form is not configured. Set PUBLIC_FORMSPREE_CONTACT in .env to enable submissions.';
+        status.className = 'form-status form-status--error';
+        return;
+      }
+
+      // Build JSON payload from form fields
+      var data = new FormData(form);
+      var payload = {};
+      data.forEach(function (value, key) { payload[key] = value; });
+
+      // Loading state
+      submit.disabled = true;
+      var labelEl = submit.querySelector('.form-submit-label');
+      var originalLabel = labelEl ? labelEl.textContent : 'Send enquiry';
+      if (labelEl) labelEl.textContent = 'Sending…';
+      status.textContent = '';
+      status.className = 'form-status';
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function (response) {
+          if (response.ok) {
+            form.hidden = true;
+            success.hidden = false;
+            success.focus && success.focus();
+          } else {
+            return response.json().then(function (err) {
+              throw new Error(err && err.error ? err.error : 'Network error');
+            }).catch(function () {
+              throw new Error('We could not send your enquiry. Please try again or email info@kingswayinternational.co.uk.');
+            });
+          }
+        })
+        .catch(function (err) {
+          status.textContent = err.message || 'Something went wrong. Please try again or email info@kingswayinternational.co.uk.';
+          status.className = 'form-status form-status--error';
+        })
+        .then(function () {
+          submit.disabled = false;
+          if (labelEl) labelEl.textContent = originalLabel;
+        });
+    });
+  })();
+</script>
+
+<style>
+  /* ── Section primitives ── */
+  .section { padding: 4.5rem 0; }
+  .section--white { background-color: #ffffff; }
+  .section--tint  { background-color: var(--light-tint); }
+  .section--narrow { padding: 4rem 0 3rem; }
+  .section--no-pad { padding: 0; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+
+  /* ── Form layout ── */
+  .form-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 960px) {
+    .form-layout { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  .form-heading {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 34px);
+    line-height: 1.2;
+    color: var(--primary);
+    margin: 0 0 2rem;
+  }
+
+  /* ── Form fields ── */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .field { display: flex; flex-direction: column; }
+  .field--full { grid-column: 1 / -1; }
+
+  .field label {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .required { color: var(--accent); margin-left: 0.15rem; }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--ink);
+    padding: 0.75rem 0.875rem;
+    background: #ffffff;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.55;
+  }
+
+  .field input:focus-visible,
+  .field select:focus-visible,
+  .field textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--accent);
+  }
+
+  /* ── Consent ── */
+  .field--consent .consent-label {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .field--consent input { margin-top: 0.2rem; flex-shrink: 0; }
+
+  .inline-link {
+    color: var(--primary);
+    border-bottom: 1px solid var(--accent);
+    text-decoration: none;
+    padding-bottom: 1px;
+  }
+
+  /* ── Submit ── */
+  .form-actions { margin-top: 2rem; }
+
+  .form-submit {
+    background-color: var(--primary);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .form-submit:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+  }
+
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* ── Status messages ── */
+  .form-status {
+    margin: 1.5rem 0 0;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 0.75rem 1rem;
+    border-radius: 2px;
+    min-height: 0;
+  }
+
+  .form-status:empty {
+    display: none;
+  }
+
+  .form-status--error {
+    background-color: rgba(176, 60, 60, 0.08);
+    color: #8a2424;
+    border-left: 3px solid #b03c3c;
+  }
+
+  .form-success {
+    margin-top: 0;
+    padding: 2rem;
+    background-color: rgba(14, 76, 58, 0.06);
+    border-left: 4px solid var(--primary);
+  }
+
+  .form-success-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .form-success-body {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .endpoint-warning {
+    margin-top: 1.5rem;
+    padding: 0.875rem 1rem;
+    background: var(--light-tint);
+    border-left: 3px solid var(--accent);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .endpoint-warning code {
+    background: rgba(197, 135, 60, 0.1);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+    font-size: 12px;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sidebar-panel {
+    background: var(--light-tint);
+    padding: 2rem 1.75rem;
+  }
+
+  .sidebar-heading {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 1rem 0 1rem;
+  }
+
+  .sidebar-heading--space { margin-top: 1.75rem; }
+
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .sidebar-item-label {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--grey);
+    margin: 0 0 0.2rem;
+  }
+
+  .sidebar-item-value {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .sidebar-item-value:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  .sidebar-text {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .sidebar-text-soft {
+    color: var(--grey);
+    font-size: 13px;
+  }
+
+  .sidebar-callout {
+    background: var(--primary);
+    color: #ffffff;
+    padding: 1.75rem;
+    border-left: 4px solid var(--accent);
+  }
+
+  .sidebar-callout :global(.eyebrow) {
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-callout-body {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--cream);
+    margin: 0;
+  }
+
+  /* ── Map ── */
+  .map-placeholder {
+    width: 100%;
+  }
+
+  /* ── CTA tiles ── */
+  .tile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .cta-tile {
+    display: block;
+    padding: 2.5rem 2rem;
+    text-decoration: none;
+    color: #ffffff;
+    border-left: 4px solid var(--accent);
+    transition: transform 0.2s ease;
+    position: relative;
+  }
+
+  .cta-tile:hover {
+    transform: translateY(-3px);
+  }
+
+  .cta-tile--dark { background-color: var(--primary-dark); }
+  .cta-tile--primary { background-color: var(--primary); }
+
+  .cta-tile :global(.eyebrow) {
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+  }
+
+  .cta-tile-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(24px, 2.6vw, 28px);
+    line-height: 1.2;
+    margin: 0 0 0.875rem;
+    color: #ffffff;
+  }
+
+  .cta-tile-body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(247, 239, 222, 0.85);
+    margin: 0 0 1.5rem;
+  }
+
+  .cta-tile-arrow {
+    font-size: 24px;
+    color: var(--accent-light);
+  }
+
+  @media (max-width: 720px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .tile-grid { grid-template-columns: 1fr; }
+    .section { padding: 3rem 0; }
+    .section--no-pad { padding: 0; }
+  }
+</style>

@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The page you're looking for doesn't exist. Find your way back to Kingsway International."
+>
+  <section class="not-found" aria-labelledby="not-found-heading">
+    <div class="not-found__inner">
+
+      <p class="not-found__code" aria-hidden="true">404</p>
+
+      <h1 id="not-found-heading" class="not-found__title">
+        We can't find that page.
+      </h1>
+
+      <p class="not-found__body">
+        The page you're looking for may have moved, been renamed, or no longer exists.
+        Try one of the links below or return to our homepage.
+      </p>
+
+      <nav class="not-found__links" aria-label="Helpful page links">
+        <ul role="list">
+          <li>
+            <a href="/" class="not-found__link">
+              <span class="link-arrow" aria-hidden="true">→</span>
+              Homepage
+            </a>
+          </li>
+          <li>
+            <a href="/products" class="not-found__link">
+              <span class="link-arrow" aria-hidden="true">→</span>
+              Our products
+            </a>
+          </li>
+          <li>
+            <a href="/quality" class="not-found__link">
+              <span class="link-arrow" aria-hidden="true">→</span>
+              Quality Charter
+            </a>
+          </li>
+          <li>
+            <a href="/contact" class="not-found__link">
+              <span class="link-arrow" aria-hidden="true">→</span>
+              Contact us
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <p class="not-found__support">
+        If you think something on our end has broken, please let us know at{' '}
+        <a href="mailto:info@kingswayinternational.co.uk" class="not-found__email">
+          info@kingswayinternational.co.uk
+        </a>.
+      </p>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    background-color: #ffffff;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+  }
+
+  .not-found__inner {
+    max-width: 560px;
+    text-align: center;
+  }
+
+  .not-found__code {
+    font-family: var(--font-serif);
+    font-size: clamp(5rem, 18vw, 10rem);
+    font-weight: 400;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    opacity: 0.15;
+    user-select: none;
+  }
+
+  .not-found__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 400;
+    color: var(--primary);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .not-found__body {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-bottom: 2.5rem;
+  }
+
+  .not-found__links {
+    margin-bottom: 2.5rem;
+  }
+
+  .not-found__links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .not-found__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 2px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .not-found__link:hover {
+    background-color: var(--light);
+    color: var(--primary-dark);
+  }
+
+  .link-arrow {
+    color: var(--accent);
+    font-size: 1rem;
+  }
+
+  .not-found__support {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--grey);
+    line-height: 1.6;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.75rem;
+  }
+
+  .not-found__email {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .not-found__email:hover {
+    color: var(--accent);
+  }
+</style>

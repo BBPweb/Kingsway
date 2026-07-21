@@ -1,0 +1,47 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": "dist",
+  "framework": "astro",
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/trade-enquiries",     "destination": "/contact/trade-enquiries",   "permanent": true },
+    { "source": "/become-a-supplier",   "destination": "/contact/become-a-supplier", "permanent": true },
+    { "source": "/suppliers",           "destination": "/contact/become-a-supplier", "permanent": true },
+    { "source": "/stories",             "destination": "/food-stories",              "permanent": true },
+    { "source": "/stories/:slug*",      "destination": "/food-stories/:slug*",       "permanent": true },
+    { "source": "/recipes",             "destination": "/food-stories",              "permanent": true },
+    { "source": "/about/team",          "destination": "/about/leadership",          "permanent": true },
+    { "source": "/quality-charter",     "destination": "/quality",                   "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(favicon\\.(ico|svg)|og-default\\.svg|robots\\.txt)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/sitemap-(.*)\\.xml",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options",        "value": "DENY" },
+        { "key": "Referrer-Policy",        "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy",     "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ]
+}

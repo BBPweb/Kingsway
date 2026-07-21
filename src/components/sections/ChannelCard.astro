@@ -1,0 +1,97 @@
+---
+type Phase = '1' | '2';
+
+interface Props {
+  title: string;
+  body: string;
+  phase: Phase;
+}
+
+const { title, body, phase } = Astro.props;
+---
+
+<article class="channel-card">
+  <div class="channel-card-icon" aria-hidden="true">
+    <slot name="icon" />
+  </div>
+
+  <h3 class="channel-card-title">{title}</h3>
+  <p class="channel-card-body">{body}</p>
+
+  <span class={`channel-card-phase channel-card-phase--${phase}`}>
+    Phase {phase}
+  </span>
+</article>
+
+<style>
+  .channel-card {
+    background: #ffffff;
+    border-top: 3px solid var(--accent);
+    padding: 2rem 1.5rem 1.75rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(8, 44, 34, 0.04);
+    height: 100%;
+  }
+
+  .channel-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--light-tint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .channel-card-icon :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+
+  .channel-card-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.3;
+    color: var(--primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .channel-card-body {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0 0 1.25rem;
+    flex: 1;
+  }
+
+  .channel-card-phase {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    line-height: 1;
+  }
+
+  .channel-card-phase--1 {
+    background-color: var(--accent);
+    color: #ffffff;
+  }
+
+  .channel-card-phase--2 {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+  }
+</style>

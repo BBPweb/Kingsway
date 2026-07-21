@@ -1,0 +1,123 @@
+---
+type Variant = 'dark' | 'light-tint';
+
+interface Props {
+  variant?: Variant;
+  eyebrow?: string;
+  quoteMark?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'dark',
+  eyebrow,
+  quoteMark = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<aside class={`callout callout--${variant} ${className}`.trim()}>
+  {eyebrow && <p class="callout-eyebrow">{eyebrow}</p>}
+
+  <div class="callout-body">
+    {quoteMark && <span class="callout-quote" aria-hidden="true">&ldquo;</span>}
+    <div class="callout-content">
+      <slot />
+    </div>
+  </div>
+
+  {Astro.slots.has('attribution') && (
+    <p class="callout-attribution">
+      <slot name="attribution" />
+    </p>
+  )}
+</aside>
+
+<style>
+  .callout {
+    position: relative;
+    padding: 2.5rem 2.5rem 2.5rem 3rem;
+    border-left: 6px solid;
+    max-width: 880px;
+  }
+
+  .callout--dark {
+    background-color: var(--primary);
+    color: #ffffff;
+    border-left-color: var(--accent);
+  }
+
+  .callout--light-tint {
+    background-color: var(--light-tint);
+    color: var(--ink);
+    border-left-color: var(--primary);
+  }
+
+  .callout-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+
+  .callout--light-tint .callout-eyebrow {
+    color: var(--primary);
+  }
+
+  .callout-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .callout-quote {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    line-height: 0.6;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.4rem;
+  }
+
+  .callout-content {
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  .callout-content :global(p) {
+    margin: 0 0 1rem;
+  }
+
+  .callout-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .callout-attribution {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 1.75rem 0 0;
+  }
+
+  .callout--light-tint .callout-attribution {
+    color: var(--primary);
+  }
+
+  @media (max-width: 640px) {
+    .callout {
+      padding: 2rem 1.5rem 2rem 1.75rem;
+    }
+
+    .callout-quote {
+      font-size: 3.5rem;
+    }
+  }
+</style>

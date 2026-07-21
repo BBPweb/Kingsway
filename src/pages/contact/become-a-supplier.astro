@@ -1,0 +1,523 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import SectionTitle from '../../components/ui/SectionTitle.astro';
+import Lede from '../../components/ui/Lede.astro';
+
+const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_CONTACT ?? '';
+
+const lookFor = [
+  'Verifiable food safety and quality systems, with certifications appropriate to the category and origin.',
+  'Traceability back to the grower, the field, or the processing lot — as applicable.',
+  'Ethical labour practices and a written policy on modern slavery and fair labour.',
+  'A track record of consistency — container-to-container, season-to-season.',
+  'A willingness to work to an agreed specification, and to have that specification checked.',
+];
+
+const assessmentSteps = [
+  'Initial conversation and exchange of capability information.',
+  'Sample evaluation against our specification.',
+  'Documentation review (certifications, policies, references).',
+  'On-site visit by a Kingsway representative, where appropriate.',
+  'Trial order against a written specification, under a short-form supply agreement.',
+  'Formal onboarding and addition to the approved supplier register.',
+];
+---
+
+<BaseLayout
+  title="Become a Supplier | Kingsway International"
+  description="Kingsway International welcomes conversations with origin producers, primary processors and service providers. Start a supplier conversation today."
+>
+  <Hero
+    eyebrow="Contact • Suppliers"
+    title="We are always looking for the right partners."
+    subtitle="Origin producers, primary processors and service providers — start a supplier conversation with Kingsway."
+  />
+
+  <!-- Intro -->
+  <section class="section section--white section--narrow" aria-label="Suppliers introduction">
+    <div class="container container--narrow">
+      <Lede>
+        Kingsway International&rsquo;s supply chain is built on direct, long-term
+        relationships with producers and primary processors in origin markets,
+        and with dependable service providers in the UK. We are always open to
+        conversations with new partners who share our standards.
+      </Lede>
+    </div>
+  </section>
+
+  <!-- What we look for (centred bulleted list) -->
+  <section class="section section--tint" aria-labelledby="look-for-heading">
+    <div class="container container--narrow centred">
+      <Eyebrow>Our standards</Eyebrow>
+      <SectionTitle id="look-for-heading">What we look for in a supplier</SectionTitle>
+      <ul class="standards-list" role="list">
+        {lookFor.map(item => (<li>{item}</li>))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Assessment process — 2-col -->
+  <section class="section section--white" aria-labelledby="process-heading">
+    <div class="container">
+      <div class="two-col">
+        <div class="two-col-text">
+          <Eyebrow>Process</Eyebrow>
+          <SectionTitle id="process-heading">How we assess new suppliers</SectionTitle>
+          <div class="prose">
+            <p>
+              Every new supplier goes through a written assessment before we
+              place a first order. The process is proportionate &mdash; we do
+              not ask for more documentation than the situation requires &mdash;
+              but it is thorough. Typical stages:
+            </p>
+          </div>
+        </div>
+        <ol class="step-list">
+          {assessmentSteps.map((step, idx) => (
+            <li class="step-item">
+              <span class="step-number" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
+              <span class="step-text">{step}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supplier enquiry form (dark section, light form panel centred) -->
+  <section class="section section--dark" aria-labelledby="supplier-form-heading">
+    <div class="container container--narrow">
+      <div class="form-intro">
+        <Eyebrow>Get in touch</Eyebrow>
+        <h2 id="supplier-form-heading" class="form-intro-heading">
+          Start a supplier conversation
+        </h2>
+      </div>
+
+      <div class="form-panel">
+        <form
+          id="supplier-form"
+          action={formspreeEndpoint}
+          method="POST"
+          novalidate
+          data-endpoint={formspreeEndpoint}
+        >
+          <!-- hidden so Formspree can route -->
+          <input type="hidden" name="subject" value="supplier" />
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="s-name">Your full name <span class="required" aria-hidden="true">*</span></label>
+              <input id="s-name" name="name" type="text" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="s-email">Your email <span class="required" aria-hidden="true">*</span></label>
+              <input id="s-email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="s-company">Your company &amp; country <span class="required" aria-hidden="true">*</span></label>
+              <input id="s-company" name="company_country" type="text" required autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="s-category">Your category / product offering <span class="required" aria-hidden="true">*</span></label>
+              <input id="s-category" name="category" type="text" required />
+            </div>
+            <div class="field field--full">
+              <label for="s-certs">Your existing certifications</label>
+              <input id="s-certs" name="certifications" type="text" placeholder="e.g. BRCGS, SALSA, organic" />
+            </div>
+            <div class="field field--full">
+              <label for="s-website">Website or short capability summary</label>
+              <input id="s-website" name="website" type="text" />
+            </div>
+            <div class="field field--full">
+              <label for="s-message">Anything else we should know?</label>
+              <textarea id="s-message" name="message" rows="5"></textarea>
+            </div>
+            <div class="field field--full field--consent">
+              <label class="consent-label">
+                <input type="checkbox" name="consent" required />
+                <span>
+                  I agree to Kingsway International&rsquo;s
+                  <a href="/privacy-notice" class="inline-link">Privacy Notice</a>.
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="form-submit" id="supplier-submit">
+              <span class="form-submit-label">Start a supplier conversation</span>
+            </button>
+          </div>
+
+          <p id="supplier-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div id="supplier-success" class="form-success" hidden role="status">
+          <p class="form-success-eyebrow">Thank you</p>
+          <p class="form-success-body">
+            Your supplier conversation has reached the right team at Kingsway.
+            We acknowledge every enquiry within one business day &mdash; you&rsquo;ll
+            hear from us shortly.
+          </p>
+        </div>
+
+        {!formspreeEndpoint && (
+          <p class="endpoint-warning">
+            <strong>Note:</strong> set <code>PUBLIC_FORMSPREE_CONTACT</code> in
+            <code>.env</code> for this form to submit.
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var form    = document.getElementById('supplier-form');
+    var status  = document.getElementById('supplier-status');
+    var submit  = document.getElementById('supplier-submit');
+    var success = document.getElementById('supplier-success');
+
+    if (!form || !status || !submit || !success) return;
+
+    var endpoint = form.getAttribute('data-endpoint');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!endpoint) {
+        status.textContent = 'Form is not configured. Set PUBLIC_FORMSPREE_CONTACT in .env to enable submissions.';
+        status.className = 'form-status form-status--error';
+        return;
+      }
+
+      var data = new FormData(form);
+      var payload = {};
+      data.forEach(function (value, key) { payload[key] = value; });
+
+      submit.disabled = true;
+      var labelEl = submit.querySelector('.form-submit-label');
+      var originalLabel = labelEl ? labelEl.textContent : 'Submit';
+      if (labelEl) labelEl.textContent = 'Sending…';
+      status.textContent = '';
+      status.className = 'form-status';
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function (response) {
+          if (response.ok) {
+            form.hidden = true;
+            success.hidden = false;
+          } else {
+            return response.json().then(function (err) {
+              throw new Error(err && err.error ? err.error : 'Network error');
+            }).catch(function () {
+              throw new Error('We could not send your enquiry. Please try again or email sourcing@kingswayinternational.co.uk.');
+            });
+          }
+        })
+        .catch(function (err) {
+          status.textContent = err.message || 'Something went wrong. Please try again or email sourcing@kingswayinternational.co.uk.';
+          status.className = 'form-status form-status--error';
+        })
+        .then(function () {
+          submit.disabled = false;
+          if (labelEl) labelEl.textContent = originalLabel;
+        });
+    });
+  })();
+</script>
+
+<style>
+  /* ── Section primitives ── */
+  .section { padding: 5rem 0; }
+  .section--white { background-color: #ffffff; }
+  .section--tint  { background-color: var(--light-tint); }
+  .section--dark  { background-color: var(--primary-dark); color: #ffffff; }
+  .section--narrow { padding: 4rem 0 3rem; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+  .centred { text-align: center; }
+
+  .prose p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 1.25rem 0 0;
+  }
+
+  .inline-link {
+    color: var(--accent-light);
+    border-bottom: 1px solid var(--accent);
+    text-decoration: none;
+    padding-bottom: 1px;
+  }
+
+  /* ── Standards list ── */
+  .standards-list {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem auto 0;
+    max-width: 720px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .standards-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .standards-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7rem;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent);
+  }
+
+  /* ── Two-col ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 880px) {
+    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+    .section { padding: 3.5rem 0; }
+  }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: step;
+  }
+
+  .step-item {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .step-item:first-child { border-top: none; padding-top: 0; }
+
+  .step-number {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--accent);
+    line-height: 1.4;
+  }
+
+  .step-text {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  /* ── Form intro ── */
+  .form-intro {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .form-intro :global(.eyebrow) {
+    color: var(--accent-light);
+  }
+
+  .form-intro-heading {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(28px, 3.4vw, 36px);
+    line-height: 1.2;
+    color: var(--cream);
+    margin: 0;
+  }
+
+  /* ── Form panel (light, sits on dark section) ── */
+  .form-panel {
+    background: #ffffff;
+    color: var(--ink);
+    padding: 2.5rem 2.25rem;
+    border-top: 4px solid var(--accent);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .field { display: flex; flex-direction: column; }
+  .field--full { grid-column: 1 / -1; }
+
+  .field label {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .required { color: var(--accent); margin-left: 0.15rem; }
+
+  .field input,
+  .field textarea {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--ink);
+    padding: 0.75rem 0.875rem;
+    background: #ffffff;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    transition: border-color 0.2s ease;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.55;
+  }
+
+  .field input:focus-visible,
+  .field textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--accent);
+  }
+
+  .field--consent .consent-label {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .field--consent .consent-label .inline-link {
+    color: var(--primary);
+    border-bottom-color: var(--accent);
+  }
+
+  .field--consent input { margin-top: 0.2rem; flex-shrink: 0; }
+
+  .form-actions { margin-top: 2rem; }
+
+  .form-submit {
+    background-color: var(--primary);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .form-submit:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+  }
+
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .form-status {
+    margin: 1.5rem 0 0;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 0.75rem 1rem;
+    border-radius: 2px;
+  }
+
+  .form-status:empty { display: none; }
+
+  .form-status--error {
+    background-color: rgba(176, 60, 60, 0.08);
+    color: #8a2424;
+    border-left: 3px solid #b03c3c;
+  }
+
+  .form-success {
+    padding: 2rem;
+    background-color: rgba(14, 76, 58, 0.06);
+    border-left: 4px solid var(--primary);
+  }
+
+  .form-success-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .form-success-body {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .endpoint-warning {
+    margin-top: 1.5rem;
+    padding: 0.875rem 1rem;
+    background: var(--light-tint);
+    border-left: 3px solid var(--accent);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .endpoint-warning code {
+    background: rgba(197, 135, 60, 0.1);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+    font-size: 12px;
+  }
+
+  @media (max-width: 720px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-panel { padding: 1.75rem 1.25rem; }
+  }
+</style>

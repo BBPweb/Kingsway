@@ -1,0 +1,103 @@
+---
+// HeroHome — homepage-only hero. Content matches the approved Website Copy
+// (HERO COPY block under section 01 HOMEPAGE). No CTAs in the hero by design;
+// the trade-enquiry CTABanner sits before the footer.
+---
+
+<section class="hero-home" aria-labelledby="hero-home-title">
+  <div class="hero-home-inner">
+    <p class="hero-home-eyebrow">Kingsway International</p>
+
+    <h1 id="hero-home-title" class="hero-home-title">
+      <span class="hero-home-line">Authentic ingredients.</span>
+      <span class="hero-home-line hero-home-line--accent">Trusted supply.</span>
+    </h1>
+
+    <p class="hero-home-subtitle">
+      A UK trading and distribution partner for spices, rice, pulses and
+      ethnic grocery &mdash; built for the British trade.
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero-home {
+    position: relative;
+    background-color: var(--primary-dark);
+    border-left: 6px solid var(--accent);
+    color: #ffffff;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero-home::after {
+    content: '';
+    position: absolute;
+    bottom: -240px;
+    right: -180px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(197, 135, 60, 0.18) 0%, transparent 65%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .hero-home-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 140px 32px 150px;
+  }
+
+  .hero-home-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 2rem;
+  }
+
+  .hero-home-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin: 0 0 2rem;
+    max-width: 980px;
+  }
+
+  .hero-home-line {
+    display: block;
+  }
+
+  .hero-home-line--accent {
+    color: var(--accent-light);
+    font-style: italic;
+  }
+
+  .hero-home-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 1.9vw, 23px);
+    line-height: 1.5;
+    color: rgba(247, 239, 222, 0.85);
+    max-width: 700px;
+    margin: 0 0 3rem;
+  }
+
+  .hero-home-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  @media (max-width: 720px) {
+    .hero-home-inner {
+      padding: 90px 1.5rem 100px;
+    }
+  }
+</style>

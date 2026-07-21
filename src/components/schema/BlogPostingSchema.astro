@@ -1,0 +1,44 @@
+---
+interface Props {
+  headline: string;
+  description: string;
+  datePublished: Date;
+  slug: string;
+  category: string;
+  imageUrl?: string;
+}
+
+const { headline, description, datePublished, slug, category, imageUrl } = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://www.kingswayinternational.co.uk';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${site}/food-stories/${slug}`,
+  },
+  headline,
+  description,
+  datePublished: datePublished.toISOString(),
+  articleSection: category,
+  inLanguage: 'en-GB',
+  author: {
+    '@type': 'Organization',
+    name: 'Kingsway International',
+    url: site,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Kingsway International',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${site}/og-default.svg`,
+    },
+  },
+  image: imageUrl ?? `${site}/og-default.svg`,
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dev/
+Disallow: /holding
+
+Sitemap: https://www.kingswayinternational.co.uk/sitemap-index.xml

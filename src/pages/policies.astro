@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+import Lede from '../components/ui/Lede.astro';
+import CTABanner from '../components/ui/CTABanner.astro';
+
+interface Policy {
+  number: string;
+  title: string;
+  summary: string;
+  href: string;
+}
+
+const policies: Policy[] = [
+  {
+    number: '01',
+    title: 'Food Safety & Quality Management',
+    summary: "A documented food safety and quality management system aligned with UK regulatory requirements and internationally recognised standards. Covers scope, controls, roles and corrective-action procedures.",
+    href: '#',
+  },
+  {
+    number: '02',
+    title: 'Ethical Sourcing & Modern Slavery Statement',
+    summary: "A commitment to sourcing from suppliers who respect human rights, fair labour practices and safe working conditions. A Modern Slavery Statement will be prepared in line with UK legislation when applicable to the company's turnover.",
+    href: '#',
+  },
+  {
+    number: '03',
+    title: 'Health & Safety',
+    summary: 'A duty of care to employees, contractors and visitors at every Kingsway site. Risk assessments, training and reporting structures are embedded in operational procedures.',
+    href: '#',
+  },
+  {
+    number: '04',
+    title: 'Environmental Responsibility',
+    summary: 'A practical, measurable approach to reducing environmental impact — including packaging optimisation, waste management, energy efficiency and responsible freight planning.',
+    href: '#',
+  },
+  {
+    number: '05',
+    title: 'Data Protection & Privacy Notice',
+    summary: 'Full compliance with UK GDPR and the Data Protection Act 2018. Our Privacy Notice sets out what personal data we collect, why we collect it, how long we keep it, and your rights in relation to it.',
+    href: '#',
+  },
+  {
+    number: '06',
+    title: 'Anti-Bribery & Business Conduct',
+    summary: 'A zero-tolerance position on bribery and corruption. All employees and agents operate under a written code of conduct.',
+    href: '#',
+  },
+  {
+    number: '07',
+    title: 'Diversity, Equity & Inclusion',
+    summary: 'A commitment to building a workforce and supplier base that reflects the diversity of the markets we serve, and to treating every stakeholder with equal dignity and respect.',
+    href: '#',
+  },
+];
+---
+
+<BaseLayout
+  title="Policies & Statements | Kingsway International"
+  description="Published policies covering food safety, ethical sourcing, modern slavery, environment, privacy, anti-bribery and DEI. Downloadable as individual PDFs or a single pack."
+>
+  <Hero
+    eyebrow="Governance"
+    title="Policies published, not filed."
+    subtitle="Food safety, ethical sourcing, environment, privacy and business conduct — in writing."
+  />
+
+  <!-- Intro -->
+  <section class="section section--white section--narrow" aria-label="Policies introduction">
+    <div class="container container--narrow">
+      <Lede>
+        Our policies are public because accountability begins with being findable.
+        Every policy below is owned by a named function within Kingsway and
+        reviewed at least annually. Full policy documents are available as
+        downloadable PDFs, individually or as a single pack.
+      </Lede>
+    </div>
+  </section>
+
+  <!-- Policy index -->
+  <section class="section section--tint" aria-labelledby="policy-index-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Policy index</Eyebrow>
+        <SectionTitle id="policy-index-heading">Our published policies</SectionTitle>
+      </div>
+
+      <ol class="policy-list" role="list">
+        {policies.map(p => (
+          <li class="policy-row">
+            <span class="policy-row-number" aria-hidden="true">{p.number}.</span>
+            <div class="policy-row-text">
+              <h3 class="policy-row-title">{p.title}</h3>
+              <p class="policy-row-summary">{p.summary}</p>
+            </div>
+            <a href={p.href} class="policy-row-download" aria-label={`Download ${p.title} PDF`}>
+              <span>Download PDF</span>
+              <span aria-hidden="true">&darr;</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Raising a concern + Review cycle (two-col white) -->
+  <section class="section section--white" aria-label="Concerns and version control">
+    <div class="container">
+      <div class="two-col">
+        <article aria-labelledby="concern-heading">
+          <Eyebrow>Speak up</Eyebrow>
+          <h3 id="concern-heading" class="two-col-title">Raising a concern</h3>
+          <div class="prose">
+            <p>
+              Concerns about any aspect of Kingsway&rsquo;s conduct &mdash;
+              quality, safety, ethics, commercial dealings &mdash; can be raised
+              through a dedicated confidential channel at
+              <a href="mailto:whistleblowing@kingswayinternational.co.uk" class="inline-link">
+                [whistleblowing@kingswayinternational.co.uk]</a>. Every concern
+              is acknowledged within one business day and handled according to
+              our written grievance procedure. Concerns can be raised anonymously.
+            </p>
+          </div>
+        </article>
+
+        <article aria-labelledby="review-heading">
+          <Eyebrow>Discipline</Eyebrow>
+          <h3 id="review-heading" class="two-col-title">Review and version control</h3>
+          <div class="prose">
+            <p>
+              Every policy is reviewed at least annually by its owning function
+              and formally signed off by the Managing Director. Each downloadable
+              policy PDF is dated and version-numbered. Superseded versions are
+              archived and available on request.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Download our policy pack"
+    caption="All published policies, as individual PDFs and as a single ZIP."
+    buttonLabel="Download the pack"
+    buttonHref="#"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Section primitives ── */
+  .section { padding: 5rem 0; }
+  .section--white { background-color: #ffffff; }
+  .section--tint  { background-color: var(--light-tint); }
+  .section--narrow { padding: 4rem 0 3rem; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+
+  .section-head {
+    max-width: 880px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── Two-col ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .two-col-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.25;
+    color: var(--primary);
+    margin: 0 0 1.25rem;
+  }
+
+  .prose p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .inline-link {
+    color: var(--primary);
+    border-bottom: 1px solid var(--accent);
+    text-decoration: none;
+    padding-bottom: 1px;
+  }
+
+  /* ── Policy list ── */
+  .policy-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #ffffff;
+    border: 1px solid var(--rule);
+  }
+
+  .policy-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.75rem 1.5rem;
+    border-top: 1px solid var(--rule);
+    transition: background-color 0.2s ease;
+  }
+
+  .policy-row:first-child { border-top: none; }
+
+  .policy-row:hover {
+    background-color: var(--light-tint);
+  }
+
+  .policy-row-number {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 36px;
+    color: var(--accent);
+    line-height: 1;
+    text-align: center;
+  }
+
+  .policy-row-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.25;
+    color: var(--primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .policy-row-summary {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 640px;
+  }
+
+  .policy-row-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 0.625rem 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .policy-row-download:hover {
+    background-color: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+  }
+
+  @media (max-width: 720px) {
+    .policy-row {
+      grid-template-columns: 50px 1fr;
+      gap: 1rem;
+      padding: 1.5rem 1.25rem;
+    }
+
+    .policy-row-number { font-size: 28px; }
+
+    .policy-row-download {
+      grid-column: 1 / -1;
+      justify-self: start;
+      margin-top: 0.5rem;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .section { padding: 3.5rem 0; }
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+import Button from '../ui/Button.astro';
+import type { CTAItem } from '../../lib/types';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  ctas?: CTAItem[];
+}
+
+const { eyebrow, title, subtitle, ctas = [] } = Astro.props;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    {eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
+
+    <h1 id="hero-title" class="hero-title">{title}</h1>
+
+    {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+
+    {ctas.length > 0 && (
+      <div class="hero-ctas">
+        {ctas.map(cta => (
+          <Button href={cta.href} variant={cta.variant ?? 'accent'} size="md" withArrow={cta.withArrow ?? false}>
+            {cta.label}
+          </Button>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    background-color: var(--primary-dark);
+    border-left: 6px solid var(--accent);
+    color: #ffffff;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(197, 135, 60, 0.15) 0%, transparent 65%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 120px 32px 130px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(40px, 5.2vw, 64px);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: #ffffff;
+    margin: 0 0 1.5rem;
+    max-width: 920px;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 1.8vw, 22px);
+    line-height: 1.5;
+    color: rgba(247, 239, 222, 0.85);
+    max-width: 720px;
+    margin: 0 0 2.5rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 720px) {
+    .hero-inner {
+      padding: 80px 1.5rem 90px;
+    }
+  }
+</style>

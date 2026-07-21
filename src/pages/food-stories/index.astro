@@ -1,0 +1,447 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import SectionTitle from '../../components/ui/SectionTitle.astro';
+import Lede from '../../components/ui/Lede.astro';
+import ImagePlaceholder from '../../components/ui/ImagePlaceholder.astro';
+
+const stories = (await getCollection('stories', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const dateFormatter = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const streams = [
+  {
+    letter: 'R',
+    label: 'Recipes',
+    body: 'Tested, ingredient-anchored recipes from across the cuisines we trade for — South Asian, African, Middle Eastern, South-East Asian and Caribbean.',
+    linkLabel: 'Browse recipes',
+    linkHref: '/food-stories?category=recipe',
+  },
+  {
+    letter: 'O',
+    label: 'Origin stories',
+    body: 'Where a spice or grain comes from, how it is grown and what gives it its character — told from the perspective of the people who grow and process it.',
+    linkLabel: 'Read origin stories',
+    linkHref: '/food-stories?category=origin-story',
+  },
+  {
+    letter: 'T',
+    label: 'Cooking tips',
+    body: 'Short, practical advice on getting the best from staples like basmati rice, whole spices, fresh turmeric and good-quality ghee.',
+    linkLabel: 'See cooking tips',
+    linkHref: '/food-stories?category=cooking-tip',
+  },
+];
+
+const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
+---
+
+<BaseLayout
+  title="Food Stories & Recipes | Kingsway International"
+  description="Recipes, origin stories and cooking tips from the kitchens behind Kingsway International's ingredients. Authentic, tested, ingredient-anchored."
+>
+  <Hero
+    eyebrow="Food stories"
+    title="The food behind the ingredients."
+    subtitle="Recipes, origin stories and cooking tips from the kitchens we trade for."
+  />
+
+  <!-- Intro -->
+  <section class="section section--white section--narrow" aria-label="Food Stories introduction">
+    <div class="container container--narrow">
+      <Lede>
+        Every ingredient Kingsway distributes is part of someone&rsquo;s dinner.
+        Food Stories is where we tell the rest of the story &mdash; the recipes
+        that use these ingredients, the origin markets they come from, and the
+        practical cooking tips that make them sing in a British kitchen.
+      </Lede>
+      <p class="prose">
+        All content is original, ingredient-anchored and tested before it is
+        published. If a recipe calls for a specific Kingsway product, we say so
+        &mdash; because provenance matters and because honest attribution is
+        better than generic category mentions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Three content streams -->
+  <section class="section section--tint" aria-labelledby="streams-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>What you&rsquo;ll find here</Eyebrow>
+        <SectionTitle id="streams-heading">Three streams of content</SectionTitle>
+      </div>
+
+      <div class="grid grid--3">
+        {streams.map(s => (
+          <article class="stream-card">
+            <span class="stream-card-letter" aria-hidden="true">{s.letter}</span>
+            <h3 class="stream-card-label">{s.label}</h3>
+            <p class="stream-card-body">{s.body}</p>
+            <a href={s.linkHref} class="stream-card-link">
+              {s.linkLabel} <span aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest grid -->
+  <section class="section section--white" aria-labelledby="latest-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Latest</Eyebrow>
+        <SectionTitle id="latest-heading">Recent stories</SectionTitle>
+      </div>
+
+      <div class="grid grid--3">
+        {stories.map(story => (
+          <article class="story-card">
+            <a href={`/food-stories/${story.slug}`} class="story-card-image">
+              <ImagePlaceholder label={story.data.title} aspect="4/3" />
+            </a>
+            <div class="story-card-body">
+              <p class="story-card-meta">
+                <span class="story-card-category">{story.data.category}</span>
+                <span aria-hidden="true">&middot;</span>
+                <span>{story.data.readTime}</span>
+              </p>
+              <h3 class="story-card-title">
+                <a href={`/food-stories/${story.slug}`}>{story.data.title}</a>
+              </h3>
+              <p class="story-card-excerpt">{story.data.excerpt}</p>
+              <p class="story-card-date">{dateFormatter.format(story.data.date)}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section section--tint" aria-labelledby="newsletter-heading">
+    <div class="container container--narrow">
+      <div class="newsletter-panel">
+        <Eyebrow>Newsletter</Eyebrow>
+        <h2 id="newsletter-heading" class="newsletter-heading">
+          New recipes and stories, once a month
+        </h2>
+        <p class="newsletter-body">
+          One email a month. Two or three new recipes, one origin story, and the
+          occasional cooking tip. No promotional noise.
+        </p>
+
+        <form
+          class="newsletter-form"
+          action={newsletterEndpoint}
+          method="POST"
+        >
+          <label for="newsletter-email" class="sr-only">Your email address</label>
+          <input
+            id="newsletter-email"
+            type="email"
+            name="email"
+            required
+            autocomplete="email"
+            placeholder="Your email address"
+            class="newsletter-input"
+          />
+          <button type="submit" class="newsletter-button">Subscribe</button>
+        </form>
+
+        <p class="newsletter-consent">
+          <label>
+            <input type="checkbox" name="consent" required class="newsletter-consent-checkbox" />
+            I agree to receive monthly updates from Kingsway International. I can
+            unsubscribe at any time.
+          </label>
+        </p>
+
+        {!newsletterEndpoint && (
+          <p class="newsletter-note">
+            <strong>Note:</strong> set <code>PUBLIC_FORMSPREE_NEWSLETTER</code>
+            in <code>.env</code> for this form to submit (see <code>.env.example</code>).
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ── Section primitives ── */
+  .section { padding: 5rem 0; }
+  .section--white { background-color: #ffffff; }
+  .section--tint  { background-color: var(--light-tint); }
+  .section--narrow { padding: 4rem 0 3rem; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+
+  .section-head {
+    max-width: 880px;
+    margin-bottom: 3rem;
+  }
+
+  .prose {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 1.5rem 0 0;
+    max-width: 700px;
+  }
+
+  /* ── Grids ── */
+  .grid { display: grid; gap: 2.5rem; }
+  .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  @media (max-width: 880px) {
+    .grid--3 { grid-template-columns: 1fr; }
+    .section { padding: 3.5rem 0; }
+  }
+
+  /* ── Stream card ── */
+  .stream-card {
+    background: #ffffff;
+    padding: 2rem 1.75rem;
+    border-top: 3px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stream-card-letter {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 56px;
+    color: var(--accent);
+    line-height: 0.9;
+  }
+
+  .stream-card-label {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--primary);
+    margin: 0;
+  }
+
+  .stream-card-body {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+    flex: 1;
+  }
+
+  .stream-card-link {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    align-self: flex-start;
+  }
+
+  /* ── Story card ── */
+  .story-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .story-card-image {
+    display: block;
+  }
+
+  .story-card-body {
+    padding-top: 1.5rem;
+  }
+
+  .story-card-meta {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--grey);
+    margin: 0 0 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .story-card-category {
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  .story-card-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    margin: 0 0 0.875rem;
+  }
+
+  .story-card-title a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .story-card-title a:hover {
+    border-bottom: 1px solid var(--accent);
+  }
+
+  .story-card-excerpt {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+
+  .story-card-date {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--grey);
+    margin: 0;
+  }
+
+  /* ── Newsletter ── */
+  .newsletter-panel {
+    background: #ffffff;
+    padding: 3rem 2.5rem;
+    border-top: 4px solid var(--accent);
+    text-align: center;
+  }
+
+  .newsletter-heading {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(26px, 3vw, 32px);
+    line-height: 1.2;
+    color: var(--primary);
+    margin: 0 0 1rem;
+  }
+
+  .newsletter-body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 2rem;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 480px;
+    margin: 0 auto 1rem;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--ink);
+    background: #ffffff;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+
+  .newsletter-input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--accent);
+  }
+
+  .newsletter-button {
+    padding: 0.875rem 1.5rem;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .newsletter-button:hover {
+    background-color: var(--primary-dark);
+  }
+
+  .newsletter-consent {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--grey);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .newsletter-consent label {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .newsletter-consent-checkbox {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+  }
+
+  .newsletter-note {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--grey);
+    margin: 1.5rem auto 0;
+    padding: 0.875rem 1rem;
+    background: var(--light-tint);
+    border-left: 3px solid var(--accent);
+    text-align: left;
+    max-width: 540px;
+  }
+
+  .newsletter-note code {
+    background: rgba(197, 135, 60, 0.1);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+    font-size: 11px;
+  }
+
+  @media (max-width: 560px) {
+    .newsletter-form {
+      flex-direction: column;
+    }
+
+    .newsletter-panel {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>

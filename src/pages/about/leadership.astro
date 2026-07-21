@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import SectionTitle from '../../components/ui/SectionTitle.astro';
+import Lede from '../../components/ui/Lede.astro';
+import ImagePlaceholder from '../../components/ui/ImagePlaceholder.astro';
+import CTABanner from '../../components/ui/CTABanner.astro';
+
+interface Bio {
+  role: string;
+  name: string;
+  bioBrief: string;
+}
+
+const bios: Bio[] = [
+  {
+    role: 'Managing Director',
+    name: '[Name]',
+    bioBrief: '[One-paragraph bio, 60–80 words. Cover: professional background, relevant trade and origin-market experience, the year they joined Kingsway, what they care about in the business. Include a short LinkedIn link.]',
+  },
+  {
+    role: 'Head of Commercial',
+    name: '[Name]',
+    bioBrief: '[Bio — sales leadership, category development, customer-facing track record.]',
+  },
+  {
+    role: 'Head of Operations',
+    name: '[Name]',
+    bioBrief: '[Bio — sourcing execution, logistics, warehousing, fulfilment.]',
+  },
+  {
+    role: 'Head of Quality & Compliance',
+    name: '[Name]',
+    bioBrief: '[Bio — food safety, QC systems, regulatory compliance.]',
+  },
+  {
+    role: 'Finance & Administration',
+    name: '[Name]',
+    bioBrief: '[Bio — accounting, reporting, treasury, company secretarial.]',
+  },
+];
+---
+
+<BaseLayout
+  title="Leadership | Kingsway International"
+  description="Meet the founding team behind Kingsway International — a UK trading and distribution company serving retail, wholesale and foodservice."
+>
+  <Hero
+    eyebrow="About • Leadership"
+    title="The people behind Kingsway."
+    subtitle="A founding team with roots in origin-market sourcing, international trade and UK retail distribution."
+  />
+
+  <!-- Intro -->
+  <section class="section section--white section--narrow" aria-label="Leadership introduction">
+    <div class="container container--narrow">
+      <Lede>
+        Kingsway International is led by a small, accountable team. Our structure
+        is deliberately lean &mdash; the functions below cover sourcing,
+        operations, commercial and quality from day one, and will be supplemented
+        as the business scales. Every trade customer will have one named person
+        at Kingsway whose reputation sits with their account.
+      </Lede>
+    </div>
+  </section>
+
+  <!-- Bios grid -->
+  <section class="section section--tint" aria-labelledby="bios-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Founding leadership</Eyebrow>
+        <SectionTitle id="bios-heading">Founding leadership</SectionTitle>
+      </div>
+
+      <div class="bios-grid">
+        {bios.map(b => (
+          <article class="bio-card">
+            <div class="bio-card-image">
+              <ImagePlaceholder label={`${b.role} portrait`} aspect="1/1" />
+            </div>
+            <div class="bio-card-body">
+              <p class="bio-card-role">{b.role}</p>
+              <h3 class="bio-card-name">{b.name}</h3>
+              <p class="bio-card-bio">{b.bioBrief}</p>
+              <a href="#" class="bio-card-link" aria-label={`LinkedIn profile for ${b.role}`}>
+                <span>LinkedIn</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional advisers -->
+  <section class="section section--white section--narrow" aria-labelledby="advisers-heading">
+    <div class="container container--narrow">
+      <Eyebrow>Advisers</Eyebrow>
+      <SectionTitle id="advisers-heading">Professional advisers</SectionTitle>
+      <div class="prose">
+        <p>
+          Kingsway International is supported by appointed advisers in
+          accounting, legal, food safety and banking. Adviser details are
+          recorded on the company&rsquo;s formal register and available on
+          request.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Get in touch"
+    caption="Trade buyer, supplier, journalist or candidate — we'd like to hear from you."
+    buttonLabel="Send an enquiry"
+    buttonHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Section primitives ── */
+  .section { padding: 5rem 0; }
+  .section--white { background-color: #ffffff; }
+  .section--tint  { background-color: var(--light-tint); }
+  .section--narrow { padding: 4rem 0 3rem; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+
+  .section-head {
+    max-width: 880px;
+    margin-bottom: 3rem;
+  }
+
+  .prose p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 1.25rem 0 0;
+  }
+
+  /* ── Bios grid (2-col on desktop) ── */
+  .bios-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 760px) {
+    .bios-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .section { padding: 3.5rem 0; }
+  }
+
+  .bio-card {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 1.5rem;
+    background: #ffffff;
+    padding: 1.75rem;
+    border-top: 3px solid var(--accent);
+  }
+
+  @media (max-width: 540px) {
+    .bio-card {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .bio-card-image {
+    width: 100%;
+  }
+
+  .bio-card-role {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+  }
+
+  .bio-card-name {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--primary);
+    margin: 0 0 0.875rem;
+  }
+
+  .bio-card-bio {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+
+  .bio-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+</style>

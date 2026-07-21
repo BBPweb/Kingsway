@@ -1,0 +1,484 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+import Callout from '../components/ui/Callout.astro';
+import ImagePlaceholder from '../components/ui/ImagePlaceholder.astro';
+import CTABanner from '../components/ui/CTABanner.astro';
+import Button from '../components/ui/Button.astro';
+
+const convictions = [
+  {
+    number: '01',
+    title: 'Authenticity over novelty',
+    body: 'We are not interested in gimmicks. We want to deliver spices, rice and pulses that taste exactly as a home cook in Delhi, Lagos, Colombo or Damascus would expect. That commitment to origin and character shapes every sourcing decision we make.',
+  },
+  {
+    number: '02',
+    title: 'Relationships as the real supply chain',
+    body: 'A sack of rice is not just a commodity; it is the product of a farmer, a miller, a shipper, a customs broker, a warehouse team and a delivery driver. We build direct, durable relationships with each link in that chain — because long-term relationships are how quality and reliability are actually maintained.',
+  },
+  {
+    number: '03',
+    title: 'Distribution as a promise to the consumer',
+    body: 'Every case we hand to a retailer is a promise made in our name to the person who eventually opens the pack. That promise — of freshness, safety, accuracy and honest value — is the single most important thing we have to protect.',
+  },
+];
+
+const missionItems = [
+  { numeral: 'i', text: 'Sourcing directly from reputable origin markets and producers who share our standards.' },
+  { numeral: 'ii', text: 'Operating a UK distribution network that is accurate, responsive and commercially fair.' },
+  { numeral: 'iii', text: 'Offering a product portfolio that reflects the real diversity of British kitchens.' },
+  { numeral: 'iv', text: 'Treating every partner — supplier, customer and colleague — with honesty and respect.' },
+  { numeral: 'v', text: 'Measuring our success by the confidence customers place in reordering from us.' },
+];
+
+const principles = [
+  {
+    title: 'Integrity first',
+    body: 'Commercial decisions are tested against one question before any other: is it honest? We walk away from opportunities that require us to compromise our word.',
+  },
+  {
+    title: 'Quality is non-negotiable',
+    body: 'We would rather miss a sale than sell a product we cannot stand behind. Our specifications, testing regime and grievance procedures are designed to reinforce that posture.',
+  },
+  {
+    title: 'Customer partnership',
+    body: 'We do not view buyers as transactions. We build plans around their businesses — category insight, promotional calendars, packaging preferences, payment terms — so that our success is genuinely linked to theirs.',
+  },
+  {
+    title: 'Respect for people and origins',
+    body: 'Authentic food is created by farmers, processors and culinary traditions that deserve acknowledgement. We source in a way that respects those people — and we expect the same standard from our partners.',
+  },
+  {
+    title: 'Operational discipline',
+    body: 'Distribution is a business of details: dates, temperatures, documents, dimensions. Getting those details right — every time — is what separates reliable distributors from expensive ones.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Kingsway International | Our Journey & Founding Story"
+  description="Kingsway International is a UK trading and distribution company founded on authenticity, relationships and operational discipline. Read the founding story."
+>
+  <Hero
+    eyebrow="About Kingsway"
+    title="A new chapter in a long tradition."
+    subtitle="Kingsway International was founded to serve British kitchens that depend on ingredients from thousands of miles away — and to serve them honestly."
+  />
+
+  <!-- A new chapter — two-column intro -->
+  <section class="section section--white" aria-labelledby="chapter-heading">
+    <div class="container">
+      <div class="two-col two-col--text-image">
+        <div class="two-col-text">
+          <Eyebrow>Our journey</Eyebrow>
+          <SectionTitle id="chapter-heading">The food the British trade has been waiting for</SectionTitle>
+          <div class="prose">
+            <p>
+              The United Kingdom is home to one of the world&rsquo;s most diverse food
+              cultures. From South Asian households that built the British curry
+              tradition, to West and East African communities, Caribbean, Middle
+              Eastern and South-East Asian diasporas &mdash; millions of kitchens
+              across the country depend on ingredients whose origins lie thousands
+              of miles away. The people who run those kitchens &mdash; whether at
+              home, in a restaurant, or behind a retail counter &mdash; want the
+              same thing: food that tastes the way it should.
+            </p>
+            <p>
+              Kingsway International has been founded to meet that expectation.
+              The company&rsquo;s name reflects its ambition: to be a trusted
+              King&rsquo;s way &mdash; a reliable, principled route &mdash; by
+              which authentic ingredients travel from their source to the British
+              consumer. Our founding team brings an understanding of origin
+              markets, international trade, and UK retail distribution that has
+              shaped the business plan from day one.
+            </p>
+          </div>
+        </div>
+        <div class="two-col-image two-col-image--portrait">
+          <ImagePlaceholder label="Founding story" aspect="3/4" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three founding convictions -->
+  <section class="section section--tint" aria-labelledby="convictions-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Our foundations</Eyebrow>
+        <SectionTitle id="convictions-heading">Built on three founding convictions</SectionTitle>
+      </div>
+
+      <div class="grid grid--3">
+        {convictions.map(c => (
+          <article class="conviction-card">
+            <p class="conviction-card-number">{c.number}.</p>
+            <h3 class="conviction-card-title">{c.title}</h3>
+            <p class="conviction-card-body">{c.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision callout (dark) -->
+  <section class="section section--dark" aria-labelledby="vision-heading">
+    <div class="container">
+      <div class="section-head section-head--light">
+        <Eyebrow>Our vision</Eyebrow>
+        <h2 id="vision-heading" class="section-title-light">A point on the horizon.</h2>
+      </div>
+
+      <Callout variant="dark" quoteMark>
+        <p>
+          To be the United Kingdom&rsquo;s most trusted trading and distribution
+          partner for authentic ethnic food ingredients &mdash; known equally for
+          the quality of what we sell and the integrity of how we sell it.
+        </p>
+        <span slot="attribution">Kingsway International &mdash; founding vision</span>
+      </Callout>
+    </div>
+  </section>
+
+  <!-- Mission — numbered list -->
+  <section class="section section--white" aria-labelledby="mission-heading">
+    <div class="container container--narrow">
+      <div class="section-head">
+        <Eyebrow>Our mission</Eyebrow>
+        <SectionTitle id="mission-heading">How we earn that trust</SectionTitle>
+        <p class="section-lede">
+          We will earn that trust, case by case and customer by customer, by:
+        </p>
+      </div>
+
+      <ol class="roman-list">
+        {missionItems.map(item => (
+          <li class="roman-list-item">
+            <span class="roman-list-numeral">{item.numeral}.</span>
+            <span class="roman-list-text">{item.text}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Five principles -->
+  <section class="section section--tint" aria-labelledby="principles-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Our values</Eyebrow>
+        <SectionTitle id="principles-heading">Five principles we run the company by</SectionTitle>
+      </div>
+
+      <div class="grid grid--5">
+        {principles.map(p => (
+          <article class="principle-card">
+            <h3 class="principle-card-title">{p.title}</h3>
+            <p class="principle-card-body">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership teaser -->
+  <section class="section section--white" aria-labelledby="leadership-heading">
+    <div class="container">
+      <div class="two-col two-col--image-text">
+        <div class="two-col-image">
+          <ImagePlaceholder label="Founding leadership team" aspect="4/3" />
+        </div>
+        <div class="two-col-text">
+          <Eyebrow>Leadership</Eyebrow>
+          <SectionTitle id="leadership-heading">Meet the people behind Kingsway</SectionTitle>
+          <div class="prose">
+            <p>
+              The company is led by a founding team with experience across
+              origin-market sourcing, international trade and UK retail
+              distribution. Full bios are published on our Leadership page.
+            </p>
+          </div>
+          <div class="cta-row">
+            <Button href="/about/leadership" variant="primary" size="md" withArrow>
+              Meet our leadership
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two next-step cards above main CTA banner -->
+  <section class="section section--tint" aria-label="Next steps">
+    <div class="container">
+      <div class="grid grid--2">
+        <article class="next-card">
+          <Eyebrow>Quality</Eyebrow>
+          <h3 class="next-card-title">Read our Quality Charter</h3>
+          <p class="next-card-body">
+            See how our five-stage framework works, stage by stage.
+          </p>
+          <Button href="/quality" variant="primary" size="sm" withArrow>
+            Read the charter
+          </Button>
+        </article>
+        <article class="next-card">
+          <Eyebrow>Portfolio</Eyebrow>
+          <h3 class="next-card-title">Explore our portfolio</h3>
+          <p class="next-card-body">
+            Eight core categories. Thousands of SKUs. One standard.
+          </p>
+          <Button href="/products" variant="primary" size="sm" withArrow>
+            See the portfolio
+          </Button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Read our Quality Charter"
+    caption="See how our five-stage framework works, stage by stage."
+    buttonLabel="Open the Quality Charter"
+    buttonHref="/quality"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Section primitives (mirrored from index.astro) ── */
+  .section {
+    padding: 5rem 0;
+  }
+
+  .section--white { background-color: #ffffff; }
+  .section--tint  { background-color: var(--light-tint); }
+  .section--dark  { background-color: var(--primary-dark); color: #ffffff; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+
+  .section-head {
+    max-width: 880px;
+    margin-bottom: 3rem;
+  }
+
+  .section-head--light :global(.eyebrow) {
+    color: var(--accent-light);
+  }
+
+  .section-title-light {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(32px, 3.6vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    margin: 0 0 1.5rem;
+  }
+
+  .section-lede {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 1.25rem 0 0;
+    max-width: 720px;
+  }
+
+  .prose p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+    max-width: 660px;
+  }
+
+  .prose p:last-child { margin-bottom: 0; }
+
+  .cta-row {
+    margin-top: 2rem;
+  }
+
+  /* ── Two-column blocks ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .two-col--image-text {
+    grid-template-columns: 1fr 1.15fr;
+  }
+
+  .two-col-image--portrait :global(.image-placeholder) {
+    max-width: 380px;
+    margin-left: auto;
+  }
+
+  @media (max-width: 880px) {
+    .two-col,
+    .two-col--image-text {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .two-col--image-text .two-col-image {
+      order: -1;
+    }
+  }
+
+  /* ── Grids ── */
+  .grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.5rem; }
+
+  @media (max-width: 1080px) {
+    .grid--5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 760px) {
+    .grid--2,
+    .grid--3,
+    .grid--5 {
+      grid-template-columns: 1fr;
+    }
+
+    .section { padding: 3.5rem 0; }
+  }
+
+  /* ── Conviction card ── */
+  .conviction-card {
+    background: #ffffff;
+    padding: 2rem 1.75rem;
+    border-top: 3px solid var(--accent);
+  }
+
+  .conviction-card-number {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--accent);
+    margin: 0 0 1rem;
+    line-height: 1;
+  }
+
+  .conviction-card-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--primary);
+    margin: 0 0 1rem;
+  }
+
+  .conviction-card-body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── Roman-numeral list (mission) ── */
+  .roman-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: roman;
+  }
+
+  .roman-list-item {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .roman-list-item:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .roman-list-numeral {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--accent);
+    line-height: 1.5;
+    text-align: right;
+  }
+
+  .roman-list-text {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  /* ── Principle card ── */
+  .principle-card {
+    background: #ffffff;
+    padding: 1.75rem 1.5rem;
+    border-left: 3px solid var(--accent);
+  }
+
+  .principle-card-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.25;
+    color: var(--primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .principle-card-body {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── Next-step card ── */
+  .next-card {
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    border-top: 3px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .next-card-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--primary);
+    margin: 0;
+  }
+
+  .next-card-body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 0.5rem;
+  }
+</style>

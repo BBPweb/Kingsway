@@ -1,0 +1,496 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+import Lede from '../components/ui/Lede.astro';
+import Callout from '../components/ui/Callout.astro';
+import CTABanner from '../components/ui/CTABanner.astro';
+
+const stages = [
+  {
+    number: '01',
+    title: 'Origin selection',
+    caption: 'Suppliers assessed, visited and specified before the first order.',
+    bullets: [
+      'Sourcing partners are assessed against written criteria covering food safety certification, traceability, ethical labour practices and production consistency.',
+      'Preference is given to producers and processors with established reputations and verifiable records in their origin markets.',
+      'Each supplier is visited, referenced and issued with a written specification before the first order is placed.',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Pre-shipment control',
+    caption: 'Inspected and tested at origin; documents validated before sailing.',
+    bullets: [
+      'Goods are inspected and, where appropriate, laboratory-tested at origin for moisture, foreign matter, pesticide residue and microbiological load.',
+      'Pre-shipment samples are retained and matched against arrival samples in the UK.',
+      'Documentation — phytosanitary certificates, certificates of origin, health certificates — is validated before shipment clears.',
+    ],
+  },
+  {
+    number: '03',
+    title: 'UK arrival & intake',
+    caption: 'Containers checked, samples reconciled, deviations quarantined.',
+    bullets: [
+      'Containers are checked on arrival for seal integrity, temperature (where applicable) and pest activity.',
+      'Incoming goods are sampled and reconciled against the agreed specification.',
+      'Any deviation is logged, quarantined and resolved through a formal non-conformance procedure.',
+    ],
+  },
+  {
+    number: '04',
+    title: 'Warehousing & order fulfilment',
+    caption: 'Stored to spec; picked, dispatched and traced end-to-end.',
+    bullets: [
+      'Storage conditions are monitored to preserve product quality — clean, dry, pest-controlled, with stock rotation on FEFO principles.',
+      'Pick accuracy and dispatch integrity are tracked as operational KPIs.',
+      'Traceability is maintained end-to-end so that any case can be traced back to its shipment and origin lot.',
+    ],
+  },
+  {
+    number: '05',
+    title: 'Customer feedback loop',
+    caption: 'Complaints investigated to root cause and fed back into the system.',
+    bullets: [
+      'Complaints and queries are logged, acknowledged promptly and investigated through to root cause.',
+      'Learning from complaints is fed back into specifications, supplier assessments and training.',
+      'Customer satisfaction is treated as the ultimate measure of whether the quality framework is working.',
+    ],
+  },
+];
+
+const certifications = [
+  {
+    name: 'BRCGS Agents & Brokers',
+    target: 'Targeted within the first trading year.',
+  },
+  {
+    name: 'SALSA',
+    target: 'Safe and Local Supplier Approval — targeted for the distribution centre.',
+  },
+  {
+    name: 'HACCP',
+    target: 'Embedded into all operational procedures from day one.',
+  },
+  {
+    name: 'Organic, Fairtrade and allergen-specific',
+    target: 'Pursued for applicable SKUs as the portfolio matures.',
+  },
+];
+---
+
+<BaseLayout
+  title="Quality Charter | From Source to Shelf | Kingsway International"
+  description="How Kingsway International operates quality end-to-end — a five-stage framework covering origin, shipment, intake, fulfilment and customer feedback."
+>
+  <Hero
+    eyebrow="Quality charter"
+    title="Our quality framework is not on a wall. It’s in the warehouse."
+    subtitle="Five stages, from origin selection to the moment a customer opens the pack."
+  />
+
+  <!-- Intro -->
+  <section class="section section--white section--narrow" aria-label="Quality framework introduction">
+    <div class="container container--narrow">
+      <Lede>
+        Every product distributed by Kingsway International passes through a
+        defined quality framework. The framework is designed to be observable,
+        auditable and genuinely enforced &mdash; not a statement of intent, but
+        a working discipline.
+      </Lede>
+    </div>
+  </section>
+
+  <!-- Five-stage diagram -->
+  <section class="section section--tint" aria-labelledby="framework-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>The framework</Eyebrow>
+        <SectionTitle id="framework-heading">The five-stage framework</SectionTitle>
+      </div>
+
+      <ol class="framework-diagram" aria-label="Five-stage quality framework diagram">
+        {stages.map((stage, idx) => (
+          <li class={`framework-stage${idx === 0 ? ' framework-stage--filled' : ''}`}>
+            <span class="framework-stage-circle" aria-hidden="true">{stage.number}</span>
+            <h3 class="framework-stage-title">{stage.title}</h3>
+            <p class="framework-stage-caption">{stage.caption}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Stage detail rows -->
+  <section class="section section--white" aria-labelledby="stage-detail-heading">
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>What it looks like</Eyebrow>
+        <SectionTitle id="stage-detail-heading">What each stage actually involves</SectionTitle>
+      </div>
+
+      <div class="stage-detail-list">
+        {stages.map(stage => (
+          <article class="stage-detail-row">
+            <div class="stage-detail-number" aria-hidden="true">{stage.number}</div>
+            <div class="stage-detail-content">
+              <h3 class="stage-detail-title">Stage {Number(stage.number)} &mdash; {stage.title}</h3>
+              <ul class="stage-detail-bullets">
+                {stage.bullets.map(b => (<li>{b}</li>))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quality promise callout (dark) -->
+  <section class="section section--dark" aria-labelledby="quality-promise-heading">
+    <div class="container">
+      <div class="section-head section-head--light">
+        <Eyebrow>Our quality promise</Eyebrow>
+        <h2 id="quality-promise-heading" class="section-title-light">A commitment, not a slogan.</h2>
+      </div>
+
+      <Callout variant="dark" quoteMark>
+        <p>
+          If a product does not match the quality we have promised, we will
+          replace it, refund it, or make it right &mdash; without debate.
+        </p>
+        <p>That is a commitment, not a slogan.</p>
+        <span slot="attribution">Kingsway quality charter</span>
+      </Callout>
+    </div>
+  </section>
+
+  <!-- Certifications & standards -->
+  <section class="section section--tint" aria-labelledby="certifications-heading">
+    <div class="container">
+      <div class="two-col two-col--text-image">
+        <div class="two-col-text">
+          <Eyebrow>Standards</Eyebrow>
+          <SectionTitle id="certifications-heading">Certifications and standards</SectionTitle>
+          <div class="prose">
+            <p>
+              As a pre-launch business, Kingsway International is working towards
+              the following industry-recognised certifications as part of our
+              commercial onboarding:
+            </p>
+            <p class="prose-foot">
+              Current certification status is maintained on our quality
+              documentation pack, available on request.
+            </p>
+          </div>
+        </div>
+        <div class="two-col-image">
+          <ul class="cert-list" role="list">
+            {certifications.map(c => (
+              <li class="cert-item">
+                <p class="cert-name">{c.name}</p>
+                <p class="cert-target">{c.target}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Raising a concern -->
+  <section class="section section--white section--narrow" aria-labelledby="concern-heading">
+    <div class="container container--narrow">
+      <Eyebrow>Speak up</Eyebrow>
+      <SectionTitle id="concern-heading">Raising a concern</SectionTitle>
+      <div class="prose">
+        <p>
+          Customers, suppliers and members of the public can raise a quality
+          concern at any time by emailing
+          <a href="mailto:quality@kingswayinternational.co.uk" class="inline-link">
+            quality@kingswayinternational.co.uk</a>. Every concern is acknowledged
+          within one business day and investigated through a formal procedure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Request our quality documentation pack"
+    caption="Specifications, certifications and supplier policies — sent as a single PDF."
+    buttonLabel="Request the pack"
+    buttonHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Section primitives ── */
+  .section { padding: 5rem 0; }
+  .section--white { background-color: #ffffff; }
+  .section--tint  { background-color: var(--light-tint); }
+  .section--dark  { background-color: var(--primary-dark); color: #ffffff; }
+  .section--narrow { padding: 4rem 0 3rem; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+
+  .section-head {
+    max-width: 880px;
+    margin-bottom: 3rem;
+  }
+
+  .section-head--light :global(.eyebrow) {
+    color: var(--accent-light);
+  }
+
+  .section-title-light {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(32px, 3.6vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    margin: 0 0 1.5rem;
+  }
+
+  .prose p {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 1.25rem;
+    max-width: 660px;
+  }
+
+  .prose p:last-child { margin-bottom: 0; }
+
+  .prose-foot {
+    font-size: 15px !important;
+    color: var(--grey) !important;
+    font-style: italic;
+  }
+
+  .inline-link {
+    color: var(--primary);
+    border-bottom: 1px solid var(--accent);
+    text-decoration: none;
+    padding-bottom: 1px;
+  }
+
+  .inline-link:hover { color: var(--primary-dark); }
+
+  /* ── Two-col ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 880px) {
+    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  /* ── Five-stage framework diagram ── */
+  .framework-diagram {
+    list-style: none;
+    padding: 2rem 0 1rem;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  /* Connecting horizontal line behind the circles */
+  .framework-diagram::before {
+    content: '';
+    position: absolute;
+    top: calc(2rem + 34px);
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background-color: var(--accent);
+    z-index: 0;
+  }
+
+  .framework-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .framework-stage-circle {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 8px var(--light-tint);
+  }
+
+  .framework-stage--filled .framework-stage-circle {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--accent-light);
+  }
+
+  .framework-stage-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .framework-stage-caption {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--grey);
+    margin: 0;
+    max-width: 180px;
+  }
+
+  @media (max-width: 880px) {
+    .framework-diagram {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .framework-diagram::before {
+      display: none;
+    }
+  }
+
+  /* ── Stage detail row ── */
+  .stage-detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .stage-detail-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .stage-detail-row:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .stage-detail-number {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(48px, 5vw, 64px);
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .stage-detail-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--primary);
+    margin: 0 0 1rem;
+  }
+
+  .stage-detail-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .stage-detail-bullets li {
+    position: relative;
+    padding-left: 1.25rem;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .stage-detail-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 7px;
+    height: 7px;
+    background-color: var(--accent);
+    border-radius: 0;
+  }
+
+  @media (max-width: 720px) {
+    .stage-detail-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .stage-detail-number {
+      font-size: 40px;
+    }
+
+    .section { padding: 3.5rem 0; }
+  }
+
+  /* ── Certifications list ── */
+  .cert-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cert-item {
+    background: #ffffff;
+    border-left: 3px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .cert-name {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--primary);
+    margin: 0 0 0.4rem;
+    line-height: 1.3;
+  }
+
+  .cert-target {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+</style>

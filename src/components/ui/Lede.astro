@@ -1,0 +1,22 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<p class={`lede ${className}`.trim()}>
+  <slot />
+</p>
+
+<style>
+  .lede {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 780px;
+    margin: 0 0 3rem;
+  }
+</style>

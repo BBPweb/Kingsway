@@ -1,0 +1,11 @@
+# Netlify / Cloudflare Pages redirect rules.
+# Defensive aliases in case stray inbound links ship without the full path.
+
+/trade-enquiries       /contact/trade-enquiries       301
+/become-a-supplier     /contact/become-a-supplier     301
+/suppliers             /contact/become-a-supplier     301
+/stories               /food-stories                  301
+/stories/*             /food-stories/:splat           301
+/recipes               /food-stories                  301
+/about/team            /about/leadership              301
+/quality-charter       /quality                       301

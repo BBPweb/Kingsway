@@ -1,0 +1,366 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import SectionTitle from '../../components/ui/SectionTitle.astro';
+import Lede from '../../components/ui/Lede.astro';
+import Callout from '../../components/ui/Callout.astro';
+import ImagePlaceholder from '../../components/ui/ImagePlaceholder.astro';
+import CTABanner from '../../components/ui/CTABanner.astro';
+import Hero from '../../components/sections/Hero.astro';
+import HeroHome from '../../components/sections/HeroHome.astro';
+import FeatureCard from '../../components/sections/FeatureCard.astro';
+import ChannelCard from '../../components/sections/ChannelCard.astro';
+---
+
+<BaseLayout
+  title="Kingsway | Component Showcase (dev only)"
+  description="Internal component showcase — deleted before launch."
+>
+  <div class="dev-banner" role="note">
+    <strong>DEV ONLY</strong> — this page lives at <code>/dev/components</code>.
+    Excluded from sitemap (Task 7) and removed before launch.
+  </div>
+
+  <!-- ========== UI PRIMITIVES ========== -->
+  <section class="dev-section dev-section--heading">
+    <div class="dev-inner">
+      <p class="dev-kicker">Part A</p>
+      <h2 class="dev-h2">UI primitives</h2>
+    </div>
+  </section>
+
+  <!-- Button -->
+  <section class="dev-section">
+    <div class="dev-inner">
+      <p class="dev-label">Button.astro</p>
+      <div class="dev-row">
+        <Button variant="primary">Primary</Button>
+        <Button variant="accent">Accent</Button>
+        <Button variant="accent" withArrow>Accent + arrow</Button>
+        <Button variant="ghost">Ghost link</Button>
+        <Button variant="primary" size="sm">Small primary</Button>
+        <Button href="/contact" variant="accent">Link variant</Button>
+      </div>
+      <div class="dev-row dev-row--dark">
+        <Button variant="outline">Outline (on dark)</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eyebrow -->
+  <section class="dev-section dev-section--alt">
+    <div class="dev-inner">
+      <p class="dev-label">Eyebrow.astro</p>
+      <Eyebrow>Authentic sourcing</Eyebrow>
+    </div>
+  </section>
+
+  <!-- SectionTitle -->
+  <section class="dev-section">
+    <div class="dev-inner">
+      <p class="dev-label">SectionTitle.astro</p>
+      <SectionTitle>Trusted supply, rigorously traced</SectionTitle>
+    </div>
+  </section>
+
+  <!-- Lede -->
+  <section class="dev-section dev-section--alt">
+    <div class="dev-inner">
+      <p class="dev-label">Lede.astro</p>
+      <Lede>
+        Kingsway International connects UK trade buyers to authentic ethnic
+        food staples, backed by traceable sourcing and consistent commercial
+        terms. Our portfolio is chosen with care and supplied with integrity.
+      </Lede>
+    </div>
+  </section>
+
+  <!-- Callout (dark) -->
+  <section class="dev-section">
+    <div class="dev-inner">
+      <p class="dev-label">Callout.astro — variant="dark", quoteMark</p>
+      <Callout variant="dark" eyebrow="Our quality promise" quoteMark>
+        <p>
+          Every pallet we ship is traceable to a named producer,
+          a named lot and a named inspection record &mdash; or it
+          does not leave the warehouse.
+        </p>
+        <span slot="attribution">Kingsway quality charter</span>
+      </Callout>
+    </div>
+  </section>
+
+  <!-- Callout (light-tint) -->
+  <section class="dev-section dev-section--alt">
+    <div class="dev-inner">
+      <p class="dev-label">Callout.astro — variant="light-tint"</p>
+      <Callout variant="light-tint" eyebrow="In brief">
+        <p>
+          We favour long partnerships over one-off shipments. That shapes
+          every choice we make, from supplier selection to shelf presentation.
+        </p>
+      </Callout>
+    </div>
+  </section>
+
+  <!-- ImagePlaceholder -->
+  <section class="dev-section">
+    <div class="dev-inner">
+      <p class="dev-label">ImagePlaceholder.astro</p>
+      <div class="dev-grid dev-grid--3">
+        <ImagePlaceholder label="Basmati rice — origin" aspect="4/3" />
+        <ImagePlaceholder label="Portrait aspect" aspect="3/4" />
+        <ImagePlaceholder label="16 / 9 landscape" aspect="16/9" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTABanner -->
+  <section class="dev-section dev-section--full">
+    <p class="dev-label dev-label--inset">CTABanner.astro</p>
+    <CTABanner
+      heading="Start a trade conversation"
+      caption="We answer every enquiry within one business day."
+      buttonLabel="Send an enquiry"
+      buttonHref="/contact"
+    />
+  </section>
+
+  <!-- ========== SECTION COMPONENTS ========== -->
+  <section class="dev-section dev-section--heading">
+    <div class="dev-inner">
+      <p class="dev-kicker">Part B</p>
+      <h2 class="dev-h2">Section components</h2>
+    </div>
+  </section>
+
+  <!-- Hero -->
+  <section class="dev-section dev-section--full">
+    <p class="dev-label dev-label--inset">Hero.astro</p>
+    <Hero
+      eyebrow="About Kingsway"
+      title="A UK trading house for the ingredients the British pantry has grown into."
+      subtitle="Built on authentic sourcing, traceable quality and commercial integrity."
+      ctas={[
+        { label: 'Read our Quality Charter', href: '/quality', variant: 'accent', withArrow: true },
+        { label: 'Meet the leadership', href: '/about/leadership', variant: 'outline' },
+      ]}
+    />
+  </section>
+
+  <!-- HeroHome -->
+  <section class="dev-section dev-section--full">
+    <p class="dev-label dev-label--inset">HeroHome.astro</p>
+    <HeroHome />
+  </section>
+
+  <!-- FeatureCard -->
+  <section class="dev-section dev-section--alt">
+    <div class="dev-inner">
+      <p class="dev-label">FeatureCard.astro (3-up strip)</p>
+      <div class="dev-grid dev-grid--3">
+        <FeatureCard
+          number="01"
+          eyebrow="Our journey"
+          title="Why Kingsway exists"
+          body="A trading house built to serve the authentic ethnic pantry that British retail has grown into."
+          linkLabel="Read our story"
+          linkHref="/about"
+          imageLabel="Company origin story"
+        />
+        <FeatureCard
+          number="02"
+          eyebrow="From source to shelf"
+          title="How we work"
+          body="Named producers, audited facilities, and documented lots &mdash; end-to-end traceability on every pallet."
+          linkLabel="See our quality charter"
+          linkHref="/quality"
+          imageLabel="Sourcing and quality"
+        />
+        <FeatureCard
+          number="03"
+          eyebrow="What we trade"
+          title="Our portfolio"
+          body="Rice, pulses, spices, flours, oils and ethnic grocery staples &mdash; chosen for provenance and consistency."
+          linkLabel="Explore the portfolio"
+          linkHref="/products"
+          imageLabel="Product portfolio"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ChannelCard -->
+  <section class="dev-section">
+    <div class="dev-inner">
+      <p class="dev-label">ChannelCard.astro (4-up strip)</p>
+      <div class="dev-grid dev-grid--4">
+        <ChannelCard
+          title="Independent retail"
+          body="Corner shops, neighbourhood grocers and independent convenience."
+          phase="1"
+        >
+          <svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l1-5h16l1 5" />
+            <path d="M4 9v11h16V9" />
+            <path d="M9 20v-6h6v6" />
+          </svg>
+        </ChannelCard>
+        <ChannelCard
+          title="Cash &amp; carry"
+          body="Regional wholesale depots serving foodservice and convenience."
+          phase="1"
+        >
+          <svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7l9-4 9 4v12H3z" />
+            <path d="M3 11h18" />
+            <path d="M3 15h18" />
+          </svg>
+        </ChannelCard>
+        <ChannelCard
+          title="Foodservice"
+          body="Kitchens, caterers and hospitality operators that cook authentic menus."
+          phase="1"
+        >
+          <svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 3v8a2 2 0 002 2h0v8" />
+            <path d="M11 3v10" />
+            <path d="M17 3c-1 2-2 4-2 7 0 2 1 3 2 3v8" />
+          </svg>
+        </ChannelCard>
+        <ChannelCard
+          title="Multiples &amp; export"
+          body="Listing-ready ranges for national grocers and overseas distributors."
+          phase="2"
+        >
+          <svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 21V6l6-3 6 3v15" />
+            <path d="M16 21V10l4 2v9" />
+            <path d="M8 10h1M8 13h1M8 16h1M12 10h1M12 13h1M12 16h1" />
+          </svg>
+        </ChannelCard>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .dev-banner {
+    background-color: var(--accent);
+    color: #ffffff;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  .dev-banner code {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+    font-size: 12px;
+  }
+
+  .dev-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .dev-section--alt {
+    background-color: var(--light-tint);
+  }
+
+  .dev-section--heading {
+    background-color: var(--primary);
+    color: #ffffff;
+    padding: 3.5rem 0;
+    border-bottom: none;
+  }
+
+  .dev-section--full {
+    padding: 0;
+  }
+
+  .dev-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .dev-kicker {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin: 0 0 0.75rem;
+  }
+
+  .dev-h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 40px);
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .dev-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin: 0 0 1.5rem;
+  }
+
+  .dev-label--inset {
+    max-width: 1240px;
+    margin: 0 auto 1rem;
+    padding: 2rem 2rem 0;
+  }
+
+  .dev-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .dev-row--dark {
+    background-color: var(--primary-dark);
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-radius: 2px;
+  }
+
+  .dev-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .dev-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dev-grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media (max-width: 960px) {
+    .dev-grid--3,
+    .dev-grid--4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .dev-grid--3,
+    .dev-grid--4 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

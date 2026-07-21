@@ -1,0 +1,182 @@
+---
+// Standalone pre-launch landing page. NOT linked from main nav, NOT in
+// sitemap (Task 7 will add the exclusion). Bypasses BaseLayout deliberately
+// so that no header/footer chrome appears on the holding screen.
+const title = 'Kingsway International | UK Trading & Distribution — launching soon';
+const description = 'Kingsway International — a new UK trading and distribution partner for spices, rice, pulses and ethnic grocery. Launching soon.';
+const canonical = 'https://www.kingswayinternational.co.uk/holding';
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex,nofollow" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:site_name" content="Kingsway International" />
+  </head>
+
+  <body>
+    <main class="holding">
+      <div class="holding-inner">
+        <p class="holding-eyebrow">Pre-launch</p>
+
+        <h1 class="holding-wordmark">
+          <span class="holding-wordmark-name">KINGSWAY INTERNATIONAL</span>
+          <span class="holding-wordmark-tag">UK Trading &amp; Distribution &mdash; launching soon.</span>
+        </h1>
+
+        <p class="holding-body">
+          Authentic ingredients. Trusted supply. A new UK trading and
+          distribution partner for spices, rice, pulses and ethnic grocery.
+        </p>
+
+        <p class="holding-body">
+          We are preparing for commercial launch. For early trade conversations
+          or supplier enquiries, please email us at the address below and
+          we&rsquo;ll be in touch within one business day.
+        </p>
+
+        <p class="holding-cta">
+          <a href="mailto:info@kingswayinternational.co.uk" class="holding-cta-link">
+            info@kingswayinternational.co.uk
+          </a>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  /* Self-contained styles — holding page does not load global.css to keep
+     the pre-launch page minimal. Brand vars duplicated locally. */
+  :root {
+    --primary-dark: #082C22;
+    --accent: #C5873C;
+    --accent-light: #E5B77A;
+    --cream: #F7EFDE;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: 'Manrope Variable', system-ui, -apple-system, sans-serif;
+    background-color: var(--primary-dark);
+    color: rgba(247, 239, 222, 0.85);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .holding {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .holding::after {
+    content: '';
+    position: absolute;
+    bottom: -250px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(197, 135, 60, 0.18) 0%, transparent 65%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .holding-inner {
+    max-width: 640px;
+  }
+
+  .holding-eyebrow {
+    font-family: 'Manrope Variable', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 2.5rem;
+  }
+
+  .holding-wordmark {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 0 0 2.5rem;
+  }
+
+  .holding-wordmark-name {
+    font-family: 'Fraunces Variable', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+
+  .holding-wordmark-tag {
+    font-family: 'Fraunces Variable', Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--accent-light);
+    line-height: 1.4;
+  }
+
+  .holding-body {
+    font-family: 'Manrope Variable', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(247, 239, 222, 0.75);
+    margin: 0 0 1.25rem;
+  }
+
+  .holding-cta {
+    margin: 2rem 0 0;
+  }
+
+  .holding-cta-link {
+    font-family: 'Manrope Variable', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  }
+
+  .holding-cta-link:hover,
+  .holding-cta-link:focus-visible {
+    color: var(--accent-light);
+    border-bottom-color: var(--accent-light);
+  }
+
+  .holding-cta-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+</style>

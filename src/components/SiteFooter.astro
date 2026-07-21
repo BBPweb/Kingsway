@@ -1,0 +1,248 @@
+---
+const currentYear = new Date().getFullYear();
+
+const exploreLinks = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Quality', href: '/quality' },
+  { label: 'Products', href: '/products' },
+  { label: 'Who We Serve', href: '/who-we-serve' },
+  { label: 'Food Stories', href: '/food-stories' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const tradeLinks = [
+  { label: 'Start a trade conversation', href: '/contact' },
+  { label: 'Become a supplier', href: '/contact/become-a-supplier' },
+  { label: 'Request a catalogue', href: '/contact' },
+  { label: 'Enquire about private label', href: '/contact' },
+  { label: 'Download policy pack', href: '/policies' },
+];
+
+const legalLinks = [
+  { label: 'Privacy Notice', href: '/privacy-notice' },
+  { label: 'Terms of Use', href: '/terms-of-use' },
+  { label: 'Cookie Policy', href: '/cookie-policy' },
+  { label: 'Modern Slavery Statement', href: '/modern-slavery-statement' },
+];
+---
+
+<footer class="site-footer" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Site footer</h2>
+
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <!-- Column 1: Brand -->
+      <div class="footer-col footer-brand">
+        <a href="/" class="footer-wordmark" aria-label="Kingsway International — home">
+          <span class="wordmark-primary">KINGSWAY</span>
+          <span class="wordmark-tag">TRADING &amp; DISTRIBUTION</span>
+        </a>
+        <p class="footer-tagline">
+          UK Ethnic Food Trading &amp; Distribution
+        </p>
+        <address class="footer-address">
+          <p>[Registered office address — to be confirmed]</p>
+          <p>Company No. [to be confirmed]</p>
+        </address>
+      </div>
+
+      <!-- Column 2: Explore -->
+      <div class="footer-col">
+        <h3 class="footer-col-heading">Explore</h3>
+        <ul class="footer-links" role="list">
+          {exploreLinks.map(link => (
+            <li>
+              <a href={link.href} class="footer-link">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 3: Trade -->
+      <div class="footer-col">
+        <h3 class="footer-col-heading">Trade</h3>
+        <ul class="footer-links" role="list">
+          {tradeLinks.map(link => (
+            <li>
+              <a href={link.href} class="footer-link">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact & Legal -->
+      <div class="footer-col">
+        <h3 class="footer-col-heading">Contact</h3>
+        <ul class="footer-links footer-contact-list" role="list">
+          <li>
+            <a href="mailto:info@kingswayinternational.co.uk" class="footer-link">
+              info@kingswayinternational.co.uk
+            </a>
+          </li>
+          <li class="footer-phone">[Phone — to be confirmed]</li>
+        </ul>
+        <h3 class="footer-col-heading footer-col-heading--legal">Legal</h3>
+        <ul class="footer-links" role="list">
+          {legalLinks.map(link => (
+            <li>
+              <a href={link.href} class="footer-link footer-link--small">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div><!-- /.footer-grid -->
+  </div><!-- /.footer-inner -->
+
+  <!-- Base line -->
+  <div class="footer-base">
+    <p class="footer-copyright">
+      &copy; {currentYear} Kingsway International Ltd. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--primary-dark);
+    color: rgba(247, 239, 222, 0.7);
+    font-family: var(--font-sans);
+  }
+
+  .footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  /* Brand column */
+  .footer-wordmark {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-bottom: 1.25rem;
+    text-decoration: none;
+  }
+
+  .wordmark-primary {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .wordmark-tag {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .footer-tagline {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: rgba(247, 239, 222, 0.55);
+  }
+
+  .footer-address {
+    font-style: normal;
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: rgba(247, 239, 222, 0.4);
+  }
+
+  /* Column headings */
+  .footer-col-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-col-heading--legal {
+    margin-top: 1.75rem;
+  }
+
+  /* Links */
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-link {
+    font-size: 0.875rem;
+    color: rgba(247, 239, 222, 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover,
+  .footer-link:focus-visible {
+    color: var(--accent-light);
+  }
+
+  .footer-link--small {
+    font-size: 0.8125rem;
+  }
+
+  .footer-phone {
+    font-size: 0.875rem;
+    color: rgba(247, 239, 222, 0.4);
+  }
+
+  /* Base line */
+  .footer-base {
+    border-top: 1px solid rgba(247, 239, 222, 0.15);
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .footer-copyright {
+    font-size: 0.8125rem;
+    color: rgba(247, 239, 222, 0.4);
+  }
+
+  /* ── Responsive ── */
+
+  /* Tablet: 2 columns */
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  /* Mobile: 1 column */
+  @media (max-width: 560px) {
+    .footer-inner {
+      padding: 3.5rem 1.5rem 2rem;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer-base {
+      padding: 1.25rem 1.5rem;
+    }
+  }
+</style>

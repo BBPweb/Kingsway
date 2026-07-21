@@ -1,0 +1,207 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  policyType: string;
+  lastUpdated?: string;
+}
+
+const {
+  title,
+  description,
+  policyType,
+  lastUpdated = '[to be confirmed]',
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="legal-wrap">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list" role="list">
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true" class="breadcrumb-sep">&rsaquo;</li>
+        <li><a href="/policies">Legal</a></li>
+        <li aria-hidden="true" class="breadcrumb-sep">&rsaquo;</li>
+        <li class="breadcrumb-current" aria-current="page">{title.split(' | ')[0]}</li>
+      </ol>
+    </nav>
+
+    <!-- DRAFT banner -->
+    <div class="draft-banner" role="note">
+      <span class="draft-banner-tag">[DRAFT]</span>
+      <span class="draft-banner-body">
+        This page is a placeholder. The full {policyType.toLowerCase()} will be
+        published prior to commercial launch.
+      </span>
+    </div>
+
+    <article class="legal-article">
+      <slot />
+
+      <!-- Universal "still drafting" paragraph (per spec) -->
+      <p class="legal-meta">
+        <strong>Last updated:</strong> {lastUpdated}
+      </p>
+
+      <p class="legal-stub-paragraph">
+        This {policyType.toLowerCase()} will be published prior to commercial launch.
+        For immediate enquiries, please contact
+        <a href="mailto:quality@kingswayinternational.co.uk" class="inline-link">
+          quality@kingswayinternational.co.uk</a>.
+      </p>
+
+      <p class="legal-back">
+        <a href="/policies" class="inline-link">&larr; Back to all policies</a>
+      </p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 2rem 5rem;
+  }
+
+  /* ── Breadcrumb ── */
+  .breadcrumb {
+    margin: 0 0 2rem;
+  }
+
+  .breadcrumb-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .breadcrumb-list a {
+    color: var(--grey);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+  }
+
+  .breadcrumb-list a:hover {
+    color: var(--primary);
+    border-bottom-color: var(--accent);
+  }
+
+  .breadcrumb-sep {
+    color: var(--rule);
+  }
+
+  .breadcrumb-current {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ── DRAFT banner ── */
+  .draft-banner {
+    background-color: rgba(197, 135, 60, 0.08);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 0 0 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .draft-banner-tag {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--cream);
+    padding: 0.3rem 0.6rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .draft-banner-body {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* ── Article ── */
+  .legal-article :global(h1) {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--primary);
+    margin: 0 0 1.5rem;
+  }
+
+  .legal-article :global(h2) {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--primary);
+    margin: 2.5rem 0 1rem;
+  }
+
+  .legal-article :global(p) {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin: 0 0 1.25rem;
+  }
+
+  .legal-meta {
+    margin-top: 2.5rem !important;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 14px !important;
+    color: var(--grey) !important;
+  }
+
+  .legal-meta strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .legal-stub-paragraph {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 1.5rem 0 2.5rem !important;
+    padding: 1.25rem 1.5rem;
+    background: var(--light-tint);
+    border-left: 3px solid var(--primary);
+  }
+
+  .legal-back {
+    margin-top: 2rem !important;
+  }
+
+  .inline-link {
+    color: var(--primary);
+    border-bottom: 1px solid var(--accent);
+    text-decoration: none;
+    padding-bottom: 1px;
+  }
+
+  .inline-link:hover {
+    color: var(--primary-dark);
+  }
+</style>

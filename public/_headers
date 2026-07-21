@@ -1,0 +1,31 @@
+# Netlify / Cloudflare Pages header rules.
+# Astro emits hashed filenames under /_astro/*, so those assets are immutable.
+
+# Hashed, content-addressed bundles — cache for 1 year, never revalidate.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Unhashed public assets — short daily cache.
+/favicon.ico
+  Cache-Control: public, max-age=86400
+/favicon.svg
+  Cache-Control: public, max-age=86400
+/og-default.svg
+  Cache-Control: public, max-age=86400
+/robots.txt
+  Cache-Control: public, max-age=86400
+
+# Sitemaps — revalidate every hour so crawlers see updates quickly.
+/sitemap-*.xml
+  Cache-Control: public, max-age=3600
+
+# HTML — always revalidate so new content ships immediately.
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Security headers on every response.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

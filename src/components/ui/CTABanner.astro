@@ -1,0 +1,74 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  heading: string;
+  caption: string;
+  buttonLabel: string;
+  buttonHref: string;
+}
+
+const { heading, caption, buttonLabel, buttonHref } = Astro.props;
+---
+
+<section class="cta-banner" aria-labelledby="cta-banner-heading">
+  <div class="cta-banner-inner">
+    <div class="cta-banner-text">
+      <h2 id="cta-banner-heading" class="cta-banner-heading">{heading}</h2>
+      <p class="cta-banner-caption">{caption}</p>
+    </div>
+    <div class="cta-banner-action">
+      <Button href={buttonHref} variant="accent" size="md" withArrow>
+        {buttonLabel}
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-banner {
+    background-color: var(--primary);
+    border-left: 6px solid var(--accent);
+    color: #ffffff;
+  }
+
+  .cta-banner-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .cta-banner-heading {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 36px);
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
+    color: #ffffff;
+  }
+
+  .cta-banner-caption {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(247, 239, 222, 0.85);
+    margin: 0;
+    max-width: 640px;
+  }
+
+  .cta-banner-action {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 720px) {
+    .cta-banner-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>

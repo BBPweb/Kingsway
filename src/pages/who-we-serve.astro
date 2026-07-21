@@ -1,0 +1,283 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Lede from '../components/ui/Lede.astro';
+import ImagePlaceholder from '../components/ui/ImagePlaceholder.astro';
+import CTABanner from '../components/ui/CTABanner.astro';
+import Button from '../components/ui/Button.astro';
+
+type Phase = '1' | '2';
+
+interface Channel {
+  slug: string;
+  phase: Phase;
+  title: string;
+  body: string;
+  bullets: string[];
+  ctaLabel: string;
+  ctaHref: string;
+  imageLabel: string;
+}
+
+const channels: Channel[] = [
+  {
+    slug: 'retail',
+    phase: '1',
+    title: 'Independent retail & convenience',
+    body: 'Independent grocers, specialist ethnic stores and convenience retailers are the backbone of ethnic food distribution in the UK. They demand flexibility, reliability and fair pricing — in that order.',
+    bullets: [
+      'Flexible pack sizes from single-unit retail to inner-case formats.',
+      'Reliable weekly delivery schedules through direct trading relationships and regional distribution partners.',
+      'Competitive wholesale pricing — transparent, with no hidden rebates or conditional discounts.',
+      'Merchandising and shelf-ready packaging support where required.',
+    ],
+    ctaLabel: 'Retail enquiry',
+    ctaHref: '/contact?subject=retail',
+    imageLabel: 'Independent retail aisle',
+  },
+  {
+    slug: 'wholesale',
+    phase: '1',
+    title: 'Cash & carry and wholesale',
+    body: 'National and regional cash-and-carry operators need volume, price discipline and a trading partner who respects margin structures. Kingsway will support this channel through:',
+    bullets: [
+      'Bulk pack formats for high-velocity categories — rice, pulses, oils.',
+      'A promotional calendar developed with buyer input, not imposed on them.',
+      'Clear trading terms published in writing, including payment terms and minimum order quantities.',
+      'Responsive account management for new listings, promotions and seasonal peaks.',
+    ],
+    ctaLabel: 'Wholesale enquiry',
+    ctaHref: '/contact?subject=wholesale',
+    imageLabel: 'Cash & carry depot',
+  },
+  {
+    slug: 'foodservice',
+    phase: '1',
+    title: 'Foodservice',
+    body: 'Restaurants, caterers and institutional kitchens require catering-pack formats, consistency of supply, and ingredient provenance that can be stood behind. This is a natural fit for a distributor whose sourcing discipline is a visible strength.',
+    bullets: [
+      'Catering pack formats matched to kitchen needs — not just to warehouse convenience.',
+      'Consistency of specification, order-to-order, season-to-season.',
+      'Provenance-led category advice for menu development.',
+      'Direct access to a named account owner for every foodservice customer.',
+    ],
+    ctaLabel: 'Foodservice enquiry',
+    ctaHref: '/contact?subject=foodservice',
+    imageLabel: 'Restaurant kitchen',
+  },
+  {
+    slug: 'multiples',
+    phase: '2',
+    title: 'Grocery multiples (Phase 2)',
+    body: 'We will approach national grocery multiples once our own-brand programme is proven and our operational track record is established. This phased approach protects category relationships and reputation, for the multiple and for us. Multiples interested in exploring a conversation ahead of Phase 2 are very welcome to get in touch now.',
+    bullets: [],
+    ctaLabel: 'Open a multiples conversation',
+    ctaHref: '/contact?subject=multiples',
+    imageLabel: 'Grocery multiples aisle',
+  },
+  {
+    slug: 'export',
+    phase: '2',
+    title: 'Export (Phase 2)',
+    body: 'Selected European markets — particularly those with comparable diaspora communities — will be addressed in Phase 2, using UK-based consolidation to serve EU buyers efficiently. Early export partner conversations are welcome.',
+    bullets: [],
+    ctaLabel: 'Open an export conversation',
+    ctaHref: '/contact?subject=export',
+    imageLabel: 'Export consolidation',
+  },
+];
+---
+
+<BaseLayout
+  title="Who We Serve | Retail, Wholesale & Foodservice | Kingsway International"
+  description="Kingsway International serves UK independent retail, cash-and-carry, wholesale and foodservice with authentic ethnic food ingredients and channel-specific expertise."
+>
+  <Hero
+    eyebrow="Who we serve"
+    title="A channel-led distribution strategy."
+    subtitle="Because a restaurant, a cash-and-carry and an independent retailer are running very different businesses."
+  />
+
+  <!-- Intro -->
+  <section class="section section--white section--narrow" aria-label="Channels introduction">
+    <div class="container container--narrow">
+      <Lede>
+        Each channel Kingsway serves has its own buying rhythm, price expectation
+        and service requirement. Each is served by a dedicated commercial
+        approach &mdash; and each has a named point of contact within the
+        Kingsway team.
+      </Lede>
+    </div>
+  </section>
+
+  <!-- Five alternating channel blocks (all on white) -->
+  <section class="section section--white section--no-pad-top" aria-label="Channels we serve">
+    <div class="container">
+      {channels.map((ch, idx) => (
+        <article
+          id={`channel-${ch.slug}`}
+          class={`channel-block ${idx % 2 === 1 ? 'channel-block--reverse' : ''}`}
+          aria-labelledby={`channel-heading-${ch.slug}`}
+        >
+          <div class="channel-block-text">
+            <span class={`phase-flag phase-flag--${ch.phase}`}>Phase {ch.phase}</span>
+            <h2 id={`channel-heading-${ch.slug}`} class="channel-block-title">{ch.title}</h2>
+            <p class="channel-block-body">{ch.body}</p>
+            {ch.bullets.length > 0 && (
+              <ul class="dash-list" role="list">
+                {ch.bullets.map(b => (<li>{b}</li>))}
+              </ul>
+            )}
+            <div class="cta-row">
+              <Button href={ch.ctaHref} variant="primary" size="md" withArrow>
+                {ch.ctaLabel}
+              </Button>
+            </div>
+          </div>
+          <div class="channel-block-image">
+            <ImagePlaceholder label={ch.imageLabel} aspect="16/9" />
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Start a trade conversation"
+    caption="Pick your channel. We'll route your enquiry to the right person."
+    buttonLabel="Send an enquiry"
+    buttonHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Section primitives ── */
+  .section { padding: 5rem 0; }
+  .section--white { background-color: #ffffff; }
+  .section--narrow { padding: 4rem 0 3rem; }
+  .section--no-pad-top { padding-top: 0; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow { max-width: 880px; }
+
+  .cta-row { margin-top: 2rem; }
+
+  /* ── Channel block ── */
+  .channel-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 4rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .channel-block:first-child {
+    padding-top: 4rem;
+  }
+
+  .channel-block--reverse .channel-block-text {
+    order: 2;
+  }
+
+  .channel-block--reverse .channel-block-image {
+    order: 1;
+  }
+
+  /* ── Phase flag ── */
+  .phase-flag {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    border-radius: 2px;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .phase-flag--1 {
+    background-color: var(--accent);
+    color: #ffffff;
+  }
+
+  .phase-flag--2 {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+  }
+
+  .channel-block-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(26px, 3vw, 32px);
+    line-height: 1.2;
+    color: var(--primary);
+    margin: 0 0 1.25rem;
+  }
+
+  .channel-block-body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+    max-width: 540px;
+  }
+
+  /* ── Em-dash bulleted list ── */
+  .dash-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .dash-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  .dash-list li::before {
+    content: '\2014';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ── Mobile: stack content above image ── */
+  @media (max-width: 880px) {
+    .channel-block,
+    .channel-block--reverse {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      padding: 3rem 0;
+    }
+
+    .channel-block--reverse .channel-block-text {
+      order: 1;
+    }
+
+    .channel-block--reverse .channel-block-image {
+      order: 2;
+    }
+
+    .section { padding: 3.5rem 0; }
+    .section--no-pad-top { padding-top: 0; }
+  }
+</style>
