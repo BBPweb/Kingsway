@@ -106,8 +106,11 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
         {stories.map(story => (
           <article class="story-card">
             <a href={`/food-stories/${story.slug}`} class="story-card-image">
-              <ImagePlaceholder label={story.data.title} aspect="4/3" />
-            </a>
+<img
+  src={story.data.image}
+  alt={story.data.title}
+  class="story-card-image"
+/>            </a>
             <div class="story-card-body">
               <p class="story-card-meta">
                 <span class="story-card-category">{story.data.category}</span>

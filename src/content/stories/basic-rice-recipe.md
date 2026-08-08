@@ -1,6 +1,7 @@
 ---
 title: "A basic rice recipe, done right"
 excerpt: "The simplest recipe on the site — how to cook perfect basmati rice, whether you're serving biryani, a North African tagine or a Sri Lankan curry."
+image: "/images/foodstories1.jpeg"
 category: "Recipe"
 readTime: "4 min read"
 date: 2026-04-15
