@@ -1,17 +1,14 @@
 ---
-title: "A basic rice recipe, done right"
-category: "Recipe"
-readTime: "4 min read"
-date: 2026-04-15
+title: "How to Cook Perfect Basmati Rice"
 excerpt: "The simplest recipe on the site — how to cook perfect basmati rice, whether you're serving biryani, a North African tagine or a Sri Lankan curry."
-image: "/images/foodstories1.jpeg"
+category: "Recipe"
+readTime: "5 min read"
+heroImage: "/images/foodstories1.jpeg"
+date: 2026-08-08
+draft: false
 ---
 
-The simplest recipe on the site — how to cook perfect basmati rice, whether you're serving biryani, a North African tagine or a Sri Lankan curry. Get this right and almost every other rice dish you make becomes easier.
-
 > Uses Kingsway basmati rice — the grain we built the recipe around.
-
-[Full recipe to be added before launch — 200–300 words plus an ingredient list and a six-step method, in line with the editorial brief in the Website Copy doc. Style: short intro paragraph, plain ingredient table, numbered method, single tip at the bottom.]
 
 ## Ingredients
 
