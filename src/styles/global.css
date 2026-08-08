@@ -70,6 +70,11 @@ a {
   text-decoration: none;
 }
 
+.logo-image {
+  width: 180px;
+  height: auto;
+  display: block;
+}
 /* ============================================================
    ACCESSIBILITY UTILITIES
    ============================================================ */
