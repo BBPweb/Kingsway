@@ -98,8 +98,12 @@ const principles = [
           </div>
         </div>
         <div class="two-col-image two-col-image--portrait">
-          <ImagePlaceholder label="Founding story" aspect="3/4" />
-        </div>
+  <img
+    src="/images/founding.jpeg"
+    alt="Founding story"
+    class="founding-story-image"
+  />
+</div>
       </div>
     </div>
   </section>
@@ -481,4 +485,10 @@ const principles = [
     color: var(--ink-soft);
     margin: 0 0 0.5rem;
   }
+  .founding-story-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
 </style>
