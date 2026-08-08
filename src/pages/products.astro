@@ -12,34 +12,42 @@ const categories = [
   {
     name: 'Rice',
     body: 'Basmati, Sella, Parboiled, Sona Masoori, Jasmine and long-grain white. Available in retail, wholesale and catering pack formats.',
+    image: "/images/Rice.jpeg"
   },
   {
     name: 'Spices — whole',
     body: 'Cumin, coriander, black pepper, cardamom, cloves, mustard and fenugreek — among others. Sourced at origin, milled and packed to specification.',
+    image: "/images/Spiceswhole.jpeg"
   },
   {
     name: 'Spices — ground',
     body: 'Turmeric, chilli, garam masala, curry powder and a range of regional blends. Retail and foodservice formats.',
+    image: "/images/Spicesground.jpeg"
   },
   {
     name: 'Pulses & lentils',
     body: 'Toor dal, urad, moong, chana, masoor, kidney beans and chickpeas. Staple dals in retail and wholesale pack formats.',
+    image: "/images/Pulseslentilsjpeg.jpeg"
   },
   {
     name: 'Flours & grains',
     body: 'Atta, chapati flour, besan (gram flour), semolina and maize meal. Retail and foodservice formats.',
+    image: "/images/Floursgrains.jpeg"
   },
   {
     name: 'Edible oils & ghee',
     body: 'Sunflower, groundnut, mustard and coconut oils; ghee and clarified butter. Retail and catering pack formats.',
+    image: "/images/Edibleoilsghee.jpeg"
   },
   {
     name: 'Ready-to-use',
     body: 'Pickles, chutneys, cooking pastes, sauces, papads and shelf-stable snacks. Retail formats.',
+    image: "/images/Ready.jpeg"
   },
   {
     name: 'Ethnic grocery',
     body: 'Teas, beverages and canned goods. A frozen range is planned in Phase 2.',
+    image: "/images/Ethnicgroceryjpeg.jpeg"
   },
 ];
 ---
@@ -78,8 +86,11 @@ const categories = [
       <div class="grid grid--4">
         {categories.map(cat => (
           <article class="category-card">
-            <ImagePlaceholder label={cat.name} aspect="4/3" />
-            <div class="category-card-body">
+<img
+  src={cat.image}
+  alt={cat.name}
+  class="category-card-image"
+/>            <div class="category-card-body">
               <h3 class="category-card-title">{cat.name}</h3>
               <p class="category-card-text">{cat.body}</p>
             </div>
@@ -131,8 +142,12 @@ const categories = [
           </div>
         </div>
         <div class="two-col-image">
-          <ImagePlaceholder label="Private label packaging" aspect="16/9" />
-        </div>
+  <img
+    src="/images/Private.jpeg"
+    alt="Private label packaging"
+    class="private-label-image"
+  />
+</div>
       </div>
     </div>
   </section>
@@ -302,4 +317,10 @@ const categories = [
     color: var(--ink-soft);
     margin: 0 0 0.5rem;
   }
+  .category-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
 </style>
