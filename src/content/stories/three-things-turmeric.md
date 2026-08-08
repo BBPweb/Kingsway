@@ -1,9 +1,9 @@
 ---
 title: "Three things to know about turmeric"
 excerpt: "Fresh vs dried, how much to use, and why heat changes its character."
-image: "/images/foodstories 3.jpeg"
 category: "Cooking tip"
 readTime: "3 min read"
+heroImage: "/images/foodstories 3.jpeg"
 date: 2026-04-05
 draft: false
 ---

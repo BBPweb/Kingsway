@@ -1,9 +1,9 @@
 ---
 title: "The journey of a peppercorn"
 excerpt: "From the hills of Kerala to the shelves of British kitchens — how black pepper is grown, dried, graded and shipped. Built around a single supplier relationship Kingsway has established."
-image: "/images/foodstories 2.jpeg"
 category: "Origin story"
 readTime: "6 min read"
+heroImage: "/images/foodstories 2.jpeg"
 date: 2026-04-10
 draft: false
 ---
