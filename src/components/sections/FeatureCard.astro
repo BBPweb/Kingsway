@@ -9,6 +9,7 @@ interface Props {
   linkLabel: string;
   linkHref: string;
   imageLabel?: string;
+  image?: string;
 }
 
 const {
@@ -19,12 +20,20 @@ const {
   linkLabel,
   linkHref,
   imageLabel,
+  image
 } = Astro.props;
 ---
 
 <article class="feature-card">
+{image ? (
+  <img
+    src={image}
+    alt={imageLabel ?? title}
+    class="feature-card-image"
+  />
+) : (
   <ImagePlaceholder label={imageLabel ?? title} aspect="4/3" />
-
+)}
   <div class="feature-card-body">
     <p class="feature-card-number">{number}</p>
     <p class="feature-card-eyebrow">{eyebrow}</p>
@@ -101,4 +110,10 @@ const {
   .feature-card-link:hover {
     gap: 0.7rem;
   }
+  .feature-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
 </style>
