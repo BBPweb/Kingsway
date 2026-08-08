@@ -193,8 +193,12 @@ const principles = [
     <div class="container">
       <div class="two-col two-col--image-text">
         <div class="two-col-image">
-          <ImagePlaceholder label="Founding leadership team" aspect="4/3" />
-        </div>
+  <img
+    src="/images/leadershipteam.jpeg"
+    alt="Founding leadership team"
+    class="leadership-image"
+  />
+</div>
         <div class="two-col-text">
           <Eyebrow>Leadership</Eyebrow>
           <SectionTitle id="leadership-heading">Meet the people behind Kingsway</SectionTitle>
@@ -489,6 +493,12 @@ const principles = [
   display: block;
   width: 100%;
   aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+.leadership-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 </style>
