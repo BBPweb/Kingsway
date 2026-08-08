@@ -103,30 +103,47 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
       </div>
 
       <div class="grid grid--3">
-        {stories.map(story => (
-          <article class="story-card">
-            <a href={`/food-stories/${story.slug}`} class="story-card-image">
-<img
-  src={story.data.image}
-  alt={story.data.title}
-  class="story-card-image"
-/>            </a>
-            <div class="story-card-body">
-              <p class="story-card-meta">
-                <span class="story-card-category">{story.data.category}</span>
-                <span aria-hidden="true">&middot;</span>
-                <span>{story.data.readTime}</span>
-              </p>
-              <h3 class="story-card-title">
-                <a href={`/food-stories/${story.slug}`}>{story.data.title}</a>
-              </h3>
-              <p class="story-card-excerpt">{story.data.excerpt}</p>
-              <p class="story-card-date">{dateFormatter.format(story.data.date)}</p>
-            </div>
-          </article>
-        ))}
+  {stories.map(story => (
+    <article class="story-card">
+      <a
+        href={`/food-stories/${story.slug}`}
+        class="story-card-image"
+      >
+        {story.data.heroImage ? (
+          <img
+            src={story.data.heroImage}
+            alt={story.data.title}
+            loading="lazy"
+          />
+        ) : (
+          <ImagePlaceholder label="Food story" />
+        )}
+      </a>
+
+      <div class="story-card-content">
+        <div class="story-card-meta">
+          <span>{story.data.category}</span>
+          <span aria-hidden="true">·</span>
+          <span>{story.data.readTime}</span>
+        </div>
+
+        <h3 class="story-card-title">
+          <a href={`/food-stories/${story.slug}`}>
+            {story.data.title}
+          </a>
+        </h3>
+
+        <p class="story-card-excerpt">
+          {story.data.excerpt}
+        </p>
+
+        <time datetime={story.data.date.toISOString()}>
+          {dateFormatter.format(story.data.date)}
+        </time>
       </div>
-    </div>
+    </article>
+  ))}
+</div>
   </section>
 
   <!-- Newsletter -->
