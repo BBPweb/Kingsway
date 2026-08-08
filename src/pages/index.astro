@@ -41,6 +41,7 @@ const storyPlaceholders = [
     excerpt: 'How to cook perfect basmati rice, whether you are serving biryani, a North African tagine or a Sri Lankan curry.',
     href: '/food-stories/basic-rice-recipe',
     imageLabel: 'Basmati rice — recipe',
+     image: "/images/foodstories1.jpeg"
   },
   {
     category: 'Origin story',
@@ -48,6 +49,7 @@ const storyPlaceholders = [
     excerpt: 'From the hills of Kerala to the shelves of British kitchens — how black pepper is grown, dried, graded and shipped.',
     href: '/food-stories/journey-of-a-peppercorn',
     imageLabel: 'Black pepper — origin',
+     image: "/images/foodstories 2.jpeg"
   },
   {
     category: 'Cooking tip',
@@ -55,6 +57,7 @@ const storyPlaceholders = [
     excerpt: 'Fresh vs dried, how much to use, and why heat changes its character.',
     href: '/food-stories/three-things-turmeric',
     imageLabel: 'Turmeric — cooking tip',
+     image: "/images/foodstories 3.jpeg"
   },
 ];
 ---
@@ -210,8 +213,11 @@ const storyPlaceholders = [
       <div class="grid grid--3">
         {storyPlaceholders.map(story => (
           <article class="story-card">
-            <ImagePlaceholder label={story.imageLabel} aspect="4/3" />
-            <div class="story-card-body">
+<img
+  src={story.image}
+  alt={story.imageLabel}
+  class="story-card-image"
+/>            <div class="story-card-body">
               <p class="story-card-eyebrow">{story.category}</p>
               <h3 class="story-card-title">
                 <a href={story.href}>{story.title}</a>
@@ -414,4 +420,10 @@ const storyPlaceholders = [
   .callout-link:hover {
     color: #ffffff;
   }
+  .story-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
 </style>
