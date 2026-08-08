@@ -17,6 +17,7 @@ interface Channel {
   ctaLabel: string;
   ctaHref: string;
   imageLabel: string;
+  image: string;
 }
 
 const channels: Channel[] = [
@@ -34,6 +35,7 @@ const channels: Channel[] = [
     ctaLabel: 'Retail enquiry',
     ctaHref: '/contact?subject=retail',
     imageLabel: 'Independent retail aisle',
+     image: '/images/howweserve1.jpeg',
   },
   {
     slug: 'wholesale',
@@ -49,6 +51,7 @@ const channels: Channel[] = [
     ctaLabel: 'Wholesale enquiry',
     ctaHref: '/contact?subject=wholesale',
     imageLabel: 'Cash & carry depot',
+     image: '/images/howweserve2.jpeg',
   },
   {
     slug: 'foodservice',
@@ -64,6 +67,7 @@ const channels: Channel[] = [
     ctaLabel: 'Foodservice enquiry',
     ctaHref: '/contact?subject=foodservice',
     imageLabel: 'Restaurant kitchen',
+     image: '/images/howweserve3.jpeg',
   },
   {
     slug: 'multiples',
@@ -74,6 +78,7 @@ const channels: Channel[] = [
     ctaLabel: 'Open a multiples conversation',
     ctaHref: '/contact?subject=multiples',
     imageLabel: 'Grocery multiples aisle',
+     image: '/images/howweserve4.jpeg',
   },
   {
     slug: 'export',
@@ -84,6 +89,7 @@ const channels: Channel[] = [
     ctaLabel: 'Open an export conversation',
     ctaHref: '/contact?subject=export',
     imageLabel: 'Export consolidation',
+     image: '/images/howweserve5.jpeg',
   },
 ];
 ---
@@ -135,8 +141,12 @@ const channels: Channel[] = [
             </div>
           </div>
           <div class="channel-block-image">
-            <ImagePlaceholder label={ch.imageLabel} aspect="16/9" />
-          </div>
+  <img
+    src={ch.image}
+    alt={ch.imageLabel}
+    class="channel-block-image-real"
+  />
+</div>
         </article>
       ))}
     </div>
@@ -280,4 +290,10 @@ const channels: Channel[] = [
     .section { padding: 3.5rem 0; }
     .section--no-pad-top { padding-top: 0; }
   }
+  .channel-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
 </style>
