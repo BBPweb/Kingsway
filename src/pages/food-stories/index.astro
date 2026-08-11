@@ -185,12 +185,7 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
           </label>
         </p>
 
-        {!newsletterEndpoint && (
-          <p class="newsletter-note">
-            <strong>Note:</strong> set <code>PUBLIC_FORMSPREE_NEWSLETTER</code>
-            in <code>.env</code> for this form to submit (see <code>.env.example</code>).
-          </p>
-        )}
+        
       </div>
     </div>
   </section>
