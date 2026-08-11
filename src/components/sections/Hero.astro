@@ -7,23 +7,13 @@ interface Props {
   title: string;
   subtitle?: string;
   ctas?: CTAItem[];
-  backgroundImage?: string;
+   backgroundImage?: string;
 }
 
-const {
-  eyebrow,
-  title,
-  subtitle,
-  ctas = [],
-  backgroundImage = '/images/kingswaybanner.webp',
-} = Astro.props;
+const { eyebrow, title, subtitle, ctas = [] } = Astro.props;
 ---
 
-<section
-  class="hero"
-  aria-labelledby="hero-title"
-  style={`background-image: url("${backgroundImage}");`}
->
+<section class="hero" aria-labelledby="hero-title">
   <div class="hero-inner">
     {eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
 
@@ -33,13 +23,8 @@ const {
 
     {ctas.length > 0 && (
       <div class="hero-ctas">
-        {ctas.map((cta) => (
-          <Button
-            href={cta.href}
-            variant={cta.variant ?? 'accent'}
-            size="md"
-            withArrow={cta.withArrow ?? false}
-          >
+        {ctas.map(cta => (
+          <Button href={cta.href} variant={cta.variant ?? 'accent'} size="md" withArrow={cta.withArrow ?? false}>
             {cta.label}
           </Button>
         ))}
@@ -51,23 +36,12 @@ const {
 <style>
   .hero {
     position: relative;
-    min-height: 560px;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    background-image: url("/images/kingswaybanner.webp");
     border-left: 6px solid var(--accent);
     color: #ffffff;
     overflow: hidden;
     isolation: isolate;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.25);
-    z-index: -1;
-    pointer-events: none;
+    background-size:cover;
   }
 
   .hero::after {
@@ -77,18 +51,12 @@ const {
     right: -200px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(
-      circle,
-      rgba(197, 135, 60, 0.15) 0%,
-      transparent 65%
-    );
+    background: radial-gradient(circle, rgba(197, 135, 60, 0.15) 0%, transparent 65%);
     z-index: -1;
     pointer-events: none;
   }
 
   .hero-inner {
-    position: relative;
-    z-index: 1;
     max-width: 1240px;
     margin: 0 auto;
     padding: 120px 32px 130px;
@@ -134,21 +102,8 @@ const {
   }
 
   @media (max-width: 720px) {
-    .hero {
-      min-height: 500px;
-      background-position: center center;
-    }
-
     .hero-inner {
       padding: 80px 1.5rem 90px;
-    }
-
-    .hero-title {
-      font-size: clamp(36px, 10vw, 48px);
-    }
-
-    .hero-subtitle {
-      font-size: 18px;
     }
   }
 </style>
