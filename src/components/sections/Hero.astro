@@ -35,11 +35,12 @@ const { eyebrow, title, subtitle, ctas = [] } = Astro.props;
 <style>
   .hero {
     position: relative;
-    background-color: var(--primary-dark);
+    background-image: url("/images/kingswaybanner.webp");
     border-left: 6px solid var(--accent);
     color: #ffffff;
     overflow: hidden;
     isolation: isolate;
+    background-size:cover;
   }
 
   .hero::after {
