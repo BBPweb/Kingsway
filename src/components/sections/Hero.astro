@@ -27,6 +27,7 @@ const {
     {eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
 
     <h1 id="hero-title" class="hero-title">{title}</h1>
+      <div class="hero-overlay"></div>
 
     {subtitle && <p class="hero-subtitle">{subtitle}</p>}
 
@@ -55,14 +56,15 @@ const {
     background-repeat: no-repeat;
   }
 
-  .hero::before {
-  content: '';
+
+.hero-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.12);
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
 }
+
 
 
   .hero-inner {
