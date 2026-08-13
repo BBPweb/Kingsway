@@ -23,11 +23,12 @@ const {
   aria-labelledby="hero-title"
   style={`background-image: url("${backgroundImage}");`}
 >
+      <div class="hero-overlay"></div>
   <div class="hero-inner">
     {eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
 
     <h1 id="hero-title" class="hero-title">{title}</h1>
-      <div class="hero-overlay"></div>
+
 
     {subtitle && <p class="hero-subtitle">{subtitle}</p>}
 
