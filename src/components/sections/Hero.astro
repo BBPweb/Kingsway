@@ -21,9 +21,8 @@ const {
 <section
   class="hero"
   aria-labelledby="hero-title"
-  style={`background-image: url("${backgroundImage}");`}
+  style={`background-image: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), url("${backgroundImage}");`}
 >
-      <div class="hero-overlay"></div>
   <div class="hero-inner">
     {eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
 
@@ -58,13 +57,6 @@ const {
   }
 
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.12);
-  z-index: 1;
-  pointer-events: none;
-}
 
 
 
