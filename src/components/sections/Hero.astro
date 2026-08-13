@@ -55,21 +55,15 @@ const {
     background-repeat: no-repeat;
   }
 
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -200px;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(
-    circle,
-    rgba(197, 135, 60, 0.06) 0%,
-    transparent 65%
-  );
-    z-index: -1;
-    pointer-events: none;
-  }
+  .hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.12);
+  z-index: 0;
+  pointer-events: none;
+}
+
 
   .hero-inner {
     max-width: 1240px;
