@@ -9,11 +9,20 @@ interface Props {
   ctas?: CTAItem[];
    backgroundImage?: string;
 }
-
-const { eyebrow, title, subtitle, ctas = [] } = Astro.props;
+const {
+  eyebrow,
+  title,
+  subtitle,
+  ctas = [],
+  backgroundImage = '/images/kingswaybanner.webp'
+} = Astro.props;
 ---
 
-<section class="hero" aria-labelledby="hero-title">
+<section
+  class="hero"
+  aria-labelledby="hero-title"
+  style={`background-image: url("${backgroundImage}");`}
+>
   <div class="hero-inner">
     {eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
 
@@ -36,12 +45,14 @@ const { eyebrow, title, subtitle, ctas = [] } = Astro.props;
 <style>
   .hero {
     position: relative;
-    background-image: url("/images/kingswaybanner.webp");
     border-left: 6px solid var(--accent);
     color: #ffffff;
     overflow: hidden;
     isolation: isolate;
-    background-size:cover;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .hero::after {
@@ -51,7 +62,11 @@ const { eyebrow, title, subtitle, ctas = [] } = Astro.props;
     right: -200px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(197, 135, 60, 0.15) 0%, transparent 65%);
+    background: radial-gradient(
+      circle,
+      rgba(197, 135, 60, 0.15) 0%,
+      transparent 65%
+    );
     z-index: -1;
     pointer-events: none;
   }
