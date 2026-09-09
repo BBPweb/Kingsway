@@ -26,7 +26,18 @@ const {
   <div class="hero-inner">
     {eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
 
-    <h1 id="hero-title" class="hero-title">{title}</h1>
+
+
+
+<h1 id="hero-title" class="hero-title">{title.split('\n').map((line, index) => (
+  <>
+    {line}
+    {index < title.split('\n').length - 1 && <br />}
+  </>
+))}</h1>
+
+
+
 
 
     {subtitle && <p class="hero-subtitle">{subtitle}</p>}
