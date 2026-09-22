@@ -8,18 +8,28 @@ import Button from '../../components/ui/Button.astro';
 const products = [
   {
     name: 'MEDIUM POWA',
+    body: 'Medium-cut flattened rice with a light, versatile texture for everyday recipes, snacks and breakfast preparations.',
+    image: '/images/Rice.jpeg',
   },
   {
     name: 'THICK POWA',
+    body: 'Thicker flattened rice with a fuller bite, suited to poha dishes and recipes that need more texture.',
+    image: '/images/Rice.jpeg',
   },
   {
     name: 'MAKAI POWA',
+    body: 'Corn-based poha with a crisp, distinctive texture for traditional snacks and savoury preparations.',
+    image: '/images/Rice.jpeg',
   },
   {
     name: 'KANAIYA MAMRA',
+    body: 'Light, crisp mamra for snack mixes, chaat-style recipes and a wide range of traditional preparations.',
+    image: '/images/Rice.jpeg',
   },
   {
     name: 'KINGSWAY PHOOL MAKANA',
+    body: 'Light and crunchy phool makana, suitable for roasting, seasoning and convenient everyday snacking.',
+    image: '/images/Rice.jpeg',
   },
 ];
 ---
@@ -35,7 +45,6 @@ const products = [
     backgroundImage="/images/Rice.jpeg"
   />
 
-  <!-- Category introduction -->
   <section
     class="section section--white intro-section"
     aria-labelledby="category-title"
@@ -48,13 +57,12 @@ const products = [
       </SectionTitle>
 
       <p class="intro-copy">
-        Explore our selected range of Poha, Mamra and Phool Makana products,
+        Explore our selected range of Powa, Mamra and Phool Makana products,
         available for retail, wholesale and foodservice requirements.
       </p>
     </div>
   </section>
 
-  <!-- Products -->
   <section
     class="section section--tint"
     aria-labelledby="products-heading"
@@ -68,19 +76,30 @@ const products = [
         </SectionTitle>
       </div>
 
-      <div class="product-list">
-        {products.map((product, index) => (
-          <article class="product-row">
-            <div class="product-number">
-              {String(index + 1).padStart(2, '0')}
-            </div>
+      <div class="product-grid">
+        {products.map((product) => (
+          <article class="product-card">
+            <img
+              src={product.image}
+              alt={product.name}
+              class="product-card-image"
+              loading="lazy"
+            />
 
-            <div class="product-name">
-              <h3>{product.name}</h3>
-            </div>
+            <div class="product-card-body">
+              <h3 class="product-card-title">{product.name}</h3>
 
-            <div class="product-action">
-              <span>Trade enquiry →</span>
+              <p class="product-card-text">
+                {product.body}
+              </p>
+
+              <a
+                class="product-card-link"
+                href="/contact"
+                aria-label={'Enquire about ' + product.name}
+              >
+                Trade enquiry →
+              </a>
             </div>
           </article>
         ))}
@@ -88,7 +107,6 @@ const products = [
     </div>
   </section>
 
-  <!-- Trade enquiry -->
   <section class="section section--white">
     <div class="container">
       <div class="enquiry-panel">
@@ -119,8 +137,6 @@ const products = [
 </BaseLayout>
 
 <style>
-  /* ── Sections ── */
-
   .section {
     padding: 5rem 0;
   }
@@ -147,8 +163,6 @@ const products = [
     padding-bottom: 4rem;
   }
 
-  /* ── Introduction ── */
-
   .intro-copy {
     max-width: 760px;
     margin: 1.5rem 0 0;
@@ -158,69 +172,82 @@ const products = [
     color: var(--ink-soft);
   }
 
-  /* ── Section heading ── */
-
   .section-head {
     max-width: 880px;
     margin-bottom: 3rem;
   }
 
-  /* ── Product list ── */
-
-  .product-list {
-    max-width: 1000px;
-    margin: 0 auto;
-    border-top: 1px solid var(--rule);
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    align-items: stretch;
   }
 
-  .product-row {
-    display: grid;
-    grid-template-columns: 90px 1fr auto;
-    align-items: center;
-    gap: 2rem;
-    min-height: 105px;
-    padding: 1.5rem 2rem;
+  .product-card {
+    min-width: 0;
     background: #ffffff;
-    border-left: 3px solid transparent;
-    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--rule);
     transition:
-      border-color 0.2s ease,
       transform 0.2s ease,
       box-shadow 0.2s ease;
   }
 
-  .product-row:hover {
-    border-left-color: var(--accent);
-    transform: translateX(4px);
-    box-shadow: 0 5px 18px rgba(8, 44, 34, 0.06);
+  .product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(8, 44, 34, 0.06);
   }
 
-  .product-number {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    color: var(--accent);
-    letter-spacing: 0.08em;
+  .product-card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
   }
 
-  .product-name h3 {
-    margin: 0;
+  .product-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+
+  .product-card-title {
+    margin: 0 0 0.625rem;
     font-family: var(--font-serif);
-    font-size: clamp(1.35rem, 2vw, 1.7rem);
     font-weight: 400;
+    font-size: 20px;
     line-height: 1.25;
     color: var(--primary);
   }
 
-  .product-action {
+  .product-card-text {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--grey);
+  }
+
+  .product-card-link {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: 1rem;
     font-family: var(--font-sans);
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--primary);
     letter-spacing: 0.04em;
-    white-space: nowrap;
+    text-decoration: none;
   }
 
-  /* ── Enquiry panel ── */
+  .product-card-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 
   .enquiry-panel {
     display: flex;
@@ -250,24 +277,18 @@ const products = [
     line-height: 1.65;
   }
 
-  /* ── Tablet ── */
+  @media (max-width: 1080px) {
+    .product-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
 
   @media (max-width: 900px) {
-    .product-row {
-      grid-template-columns: 70px 1fr;
-    }
-
-    .product-action {
-      grid-column: 2;
-    }
-
     .enquiry-panel {
       align-items: flex-start;
       flex-direction: column;
     }
   }
-
-  /* ── Mobile ── */
 
   @media (max-width: 560px) {
     .section {
@@ -278,20 +299,8 @@ const products = [
       padding: 0 1.25rem;
     }
 
-    .product-row {
-      grid-template-columns: 45px 1fr;
-      gap: 1rem;
-      min-height: 90px;
-      padding: 1.25rem 1rem;
-    }
-
-    .product-name h3 {
-      font-size: 1.25rem;
-    }
-
-    .product-action {
-      grid-column: 2;
-      margin-top: -0.5rem;
+    .product-grid {
+      grid-template-columns: 1fr;
     }
 
     .enquiry-panel {
