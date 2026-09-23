@@ -1,0 +1,296 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import SectionTitle from '../../components/ui/SectionTitle.astro';
+import Button from '../../components/ui/Button.astro';
+import catalog, { type CatalogCategory } from '../../data/catalog';
+
+export function getStaticPaths() {
+  return catalog
+    .filter((category) => category.slug !== 'rice-poha-mamra')
+    .map((category) => ({
+      params: { slug: category.slug },
+      props: { category },
+    }));
+}
+
+const { category } = Astro.props as { category: CatalogCategory };
+---
+
+<BaseLayout
+  title={`${category.name} | Kingsway International`}
+  description={`Explore the Kingsway International ${category.name} product range.`}
+>
+  <Hero
+    eyebrow={category.name}
+    title={`${category.name}\nOur products`}
+    subtitle="Explore our available product range and individual pack sizes."
+    backgroundImage={category.image}
+  />
+
+  <section
+    class="section section--white intro-section"
+    aria-labelledby="category-title"
+  >
+    <div class="container container--narrow">
+      <Eyebrow>Category range</Eyebrow>
+
+      <SectionTitle id="category-title">
+        {category.name}
+      </SectionTitle>
+
+      <p class="intro-copy">
+        Browse the products available in this category. Individual unit sizes are
+        shown from the Kingsway catalogue.
+      </p>
+    </div>
+  </section>
+
+  <section
+    class="section section--tint"
+    aria-labelledby="products-heading"
+  >
+    <div class="container">
+      <div class="section-head">
+        <Eyebrow>Our products</Eyebrow>
+
+        <SectionTitle id="products-heading">
+          Products in this category
+        </SectionTitle>
+      </div>
+
+      <div class="product-grid">
+        {category.products.map((product) => (
+          <article class="product-card">
+            <img
+              src={category.image}
+              alt={product.name}
+              class="product-card-image"
+              loading="lazy"
+            />
+
+            <div class="product-card-body">
+              <h3 class="product-card-title">{product.name}</h3>
+
+              {product.size && (
+                <p class="product-card-text">
+                  {product.size}
+                </p>
+              )}
+
+              <a
+                class="product-card-link"
+                href="/contact"
+                aria-label={'Enquire about ' + product.name}
+              >
+                Trade enquiry →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="enquiry-panel">
+        <div>
+          <Eyebrow>Trade enquiries</Eyebrow>
+
+          <h2>
+            Looking for product specifications or availability?
+          </h2>
+
+          <p>
+            Contact Kingsway International for product availability,
+            specifications, pack formats and trade enquiries.
+          </p>
+        </div>
+
+        <Button
+          href="/contact"
+          variant="primary"
+          size="md"
+          withArrow
+        >
+          Start a trade conversation
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    padding: 5rem 0;
+  }
+
+  .section--white {
+    background: #ffffff;
+  }
+
+  .section--tint {
+    background: var(--light-tint);
+  }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container--narrow {
+    max-width: 880px;
+  }
+
+  .intro-section {
+    padding-bottom: 4rem;
+  }
+
+  .intro-copy {
+    max-width: 760px;
+    margin: 1.5rem 0 0;
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+
+  .section-head {
+    max-width: 880px;
+    margin-bottom: 3rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .product-card {
+    min-width: 0;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--rule);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(8, 44, 34, 0.06);
+  }
+
+  .product-card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .product-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+
+  .product-card-title {
+    margin: 0 0 0.625rem;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.25;
+    color: var(--primary);
+  }
+
+  .product-card-text {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--grey);
+  }
+
+  .product-card-link {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .product-card-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .enquiry-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 3rem;
+    background: var(--light-tint);
+    border-top: 3px solid var(--accent);
+  }
+
+  .enquiry-panel h2 {
+    max-width: 680px;
+    margin: 0.5rem 0 0.75rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--primary);
+  }
+
+  .enquiry-panel p {
+    max-width: 650px;
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 1080px) {
+    .product-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .enquiry-panel {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    .container {
+      padding: 0 1.25rem;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .enquiry-panel {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>
