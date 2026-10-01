@@ -18,7 +18,7 @@ const { category } = Astro.props;
 
 <BaseLayout
   title={`${category.name} | Products | Kingsway International`}
-  description={`Explore ${category.name} products from Kingsway International and view available pack sizes.`}
+  description={category.description}
 >
   <Hero
     eyebrow={category.name}
@@ -39,9 +39,7 @@ const { category } = Astro.props;
       </SectionTitle>
 
       <p class="intro-copy">
-        Browse the products currently listed in this category. Pack sizes below
-        show the individual product size from the supplied catalogue, without
-        outer-case quantities.
+        {category.description}
       </p>
     </div>
   </section>
@@ -63,7 +61,7 @@ const { category } = Astro.props;
         {category.products.map((product) => (
           <article class="product-card">
             <img
-              src={category.image}
+              src={product.image}
               alt={product.name}
               class="product-card-image"
               loading="lazy"
@@ -72,11 +70,7 @@ const { category } = Astro.props;
             <div class="product-card-body">
               <h3 class="product-card-title">{product.name}</h3>
 
-              {product.weight && (
-                <p class="product-card-text">
-                  {product.weight}
-                </p>
-              )}
+              <p class="product-card-text">{category.name}</p>
 
               <a
                 class="product-card-link"
@@ -189,7 +183,7 @@ const { category } = Astro.props;
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .product-card-body {
