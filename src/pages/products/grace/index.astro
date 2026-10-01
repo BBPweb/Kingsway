@@ -1,36 +1,20 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/sections/Hero.astro';
-import Eyebrow from '../components/ui/Eyebrow.astro';
-import SectionTitle from '../components/ui/SectionTitle.astro';
-import Lede from '../components/ui/Lede.astro';
-import Button from '../components/ui/Button.astro';
-import { mainProductCategories } from '../data/product-categories';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Hero from '../../../components/sections/Hero.astro';
+import Eyebrow from '../../../components/ui/Eyebrow.astro';
+import SectionTitle from '../../../components/ui/SectionTitle.astro';
+import GraceBreadcrumbs from '../../../components/products/GraceBreadcrumbs.astro';
+import { graceProducts } from '../../../data/product-categories';
 ---
-
-<BaseLayout
-  title="Products | Kingsway International"
-  description="Explore the Kingsway International product catalogue across lentils, spices, rice, flour, oils, sauces, Grace products, Dunn's River, frozen foods and more."
->
-  <Hero
-    eyebrow="Our portfolio"
-    title={"A focused portfolio\nChosen with purpose"}
-    subtitle={`${mainProductCategories.length} product categories from our current catalogue.`}
-    backgroundImage="/images/Productsbanner.jpeg"
-  />
-
-  <section
-    class="section section--white section--narrow"
-    aria-label="Products introduction"
-  >
+<BaseLayout title="Grace Products | Kingsway International" description={graceProducts.description}>
+  <Hero eyebrow="Our portfolio" title={"Grace Products\nOur range"}
+    subtitle={graceProducts.description} backgroundImage={graceProducts.image} />
+  <section class="section section--white section--narrow">
     <div class="container container--narrow">
-      <Lede>
-        Explore our current product catalogue by category. Each category page
-        includes the products available in our current range.
-      </Lede>
+      <GraceBreadcrumbs />
+      <p class="prose">{graceProducts.description}</p>
     </div>
   </section>
-
   <section
     class="section section--tint"
     aria-labelledby="categories-heading"
@@ -39,15 +23,15 @@ import { mainProductCategories } from '../data/product-categories';
       <div class="section-head">
         <Eyebrow>Categories</Eyebrow>
         <SectionTitle id="categories-heading">
-          Browse our product categories
+          Browse our Grace product categories
         </SectionTitle>
       </div>
 
       <div class="grid grid--4">
-        {mainProductCategories.map((cat) => (
+        {graceProducts.categories.map((cat) => (
           <a
             class="category-card"
-            href={`/products/${cat.slug}/`}
+            href={`/products/grace/${cat.slug}/`}
             aria-label={`View ${cat.name} products`}
           >
             <img
@@ -65,7 +49,7 @@ import { mainProductCategories } from '../data/product-categories';
               </p>
 
               <span class="category-card-link">
-                {cat.slug === 'grace' ? 'View Grace Products →' : 'View products →'}
+                View products →
               </span>
             </div>
           </a>
@@ -74,100 +58,7 @@ import { mainProductCategories } from '../data/product-categories';
     </div>
   </section>
 
-  <section
-    class="section section--white section--narrow"
-    aria-labelledby="philosophy-heading"
-  >
-    <div class="container container--narrow">
-      <Eyebrow>Our discipline</Eyebrow>
-
-      <SectionTitle id="philosophy-heading">
-        A range with purpose, not excess
-      </SectionTitle>
-
-      <div class="prose">
-        <p>
-          Every SKU Kingsway lists has earned its place. We evaluate new lines
-          against three tests:
-        </p>
-
-        <ul>
-          <li>
-            <strong>Is there confirmed customer demand?</strong>
-          </li>
-          <li>
-            <strong>Can we source the product to our quality standard?</strong>
-          </li>
-          <li>
-            <strong>Does it strengthen the range rather than dilute it?</strong>
-          </li>
-        </ul>
-
-        <p>
-          Lines that fail any of the three are not listed, however commercially
-          tempting they might look in isolation.
-        </p>
-
-        <div class="cta-row">
-          <Button
-            href="/contact"
-            variant="primary"
-            size="sm"
-            withArrow
-          >
-            Request a catalogue
-          </Button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section
-    class="section section--tint"
-    aria-labelledby="private-label-heading"
-  >
-    <div class="container">
-      <div class="two-col">
-        <div class="two-col-text">
-          <Eyebrow>Private label</Eyebrow>
-
-          <SectionTitle id="private-label-heading">
-            Private label and own-brand programmes
-          </SectionTitle>
-
-          <div class="prose">
-            <p>
-              Kingsway operates a private-label programme for retail and
-              foodservice customers who want the quality of our supply chain
-              under their own brand. Minimum order quantities, packaging options
-              and lead times are agreed case-by-case.
-            </p>
-          </div>
-
-          <div class="cta-row">
-            <Button
-              href="/contact"
-              variant="primary"
-              size="md"
-              withArrow
-            >
-              Enquire about private label
-            </Button>
-          </div>
-        </div>
-
-        <div class="two-col-image">
-          <img
-            src="/images/Private.jpeg"
-            alt="Private label packaging"
-            class="private-label-image"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
 </BaseLayout>
-
 <style>
   .section {
     padding: 5rem 0;
@@ -200,7 +91,7 @@ import { mainProductCategories } from '../data/product-categories';
     margin-bottom: 3rem;
   }
 
-  .prose p {
+  .prose {
     font-family: var(--font-sans);
     font-size: 17px;
     line-height: 1.75;

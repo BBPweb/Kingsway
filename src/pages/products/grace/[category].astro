@@ -1,21 +1,21 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/sections/Hero.astro';
-import Eyebrow from '../../components/ui/Eyebrow.astro';
-import SectionTitle from '../../components/ui/SectionTitle.astro';
-import Button from '../../components/ui/Button.astro';
-import { productCategories, getGraceCategoryPath } from '../../data/product-categories';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Hero from '../../../components/sections/Hero.astro';
+import Eyebrow from '../../../components/ui/Eyebrow.astro';
+import SectionTitle from '../../../components/ui/SectionTitle.astro';
+import Button from '../../../components/ui/Button.astro';
+import { graceProducts } from '../../../data/product-categories';
 
 export function getStaticPaths() {
-  return productCategories.map((category) => ({
+  return graceProducts.categories.map((category) => ({
     params: { category: category.slug },
     props: { category },
   }));
 }
 
+import GraceBreadcrumbs from '../../../components/products/GraceBreadcrumbs.astro';
 const { category } = Astro.props;
-const gracePath = getGraceCategoryPath(category);
-if (gracePath) return Astro.redirect(gracePath, 301);
+
 ---
 
 <BaseLayout
@@ -34,6 +34,7 @@ if (gracePath) return Astro.redirect(gracePath, 301);
     aria-labelledby="category-title"
   >
     <div class="container container--narrow">
+      <GraceBreadcrumbs categoryName={category.name} />
       <Eyebrow>Category range</Eyebrow>
 
       <SectionTitle id="category-title">
