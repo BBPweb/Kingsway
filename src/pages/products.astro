@@ -26,8 +26,7 @@ import { productCategories } from '../data/product-categories';
     <div class="container container--narrow">
       <Lede>
         Explore our current product catalogue by category. Each category page
-        includes the products and individual pack sizes provided in the latest
-        catalogue.
+        includes the products available in our current range.
       </Lede>
     </div>
   </section>
@@ -62,7 +61,7 @@ import { productCategories } from '../data/product-categories';
               <h3 class="category-card-title">{cat.name}</h3>
 
               <p class="category-card-text">
-                {cat.products.length} products in the current catalogue.
+                {cat.description}
               </p>
 
               <span class="category-card-link">
