@@ -43,3 +43,40 @@ export const productCategories: ProductCategory[] = folders.map((name) => {
 }).sort((a, b) => categoryOrder.indexOf(a.slug) - categoryOrder.indexOf(b.slug));
 export const getProductCategoryBySlug = (slug: string) =>
   productCategories.find((category) => category.slug === slug);
+
+
+export type ProductCategoryGroup = {
+  name: string; slug: string; image: string; description: string;
+  categories: ProductCategory[];
+};
+
+// The existing adaptation folders remain the product source of truth.
+// Only folders explicitly branded Grace belong to this extra category level.
+export const graceProducts: ProductCategoryGroup = {
+  name: 'Grace Products',
+  slug: 'grace',
+  image: '/images/Ethnicgroceryjpeg.jpeg',
+  description: 'Explore our range of Grace branded food, beverages, snacks, sauces, ingredients and specialty products.',
+  categories: productCategories.filter((category) => category.name.startsWith('Grace '))
+    .map((category) => ({
+      ...category,
+      slug: category.name.slice('Grace '.length).toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+    })),
+};
+
+export const mainProductCategories: (ProductCategory | ProductCategoryGroup)[] = [];
+let graceGroupAdded = false;
+for (const category of productCategories) {
+  if (category.name.startsWith('Grace ')) {
+    if (!graceGroupAdded) mainProductCategories.push(graceProducts);
+    graceGroupAdded = true;
+  } else {
+    mainProductCategories.push(category);
+  }
+}
+
+export const getGraceCategoryPath = (category: ProductCategory) => {
+  const nested = graceProducts.categories.find((item) => item.name === category.name);
+  return nested ? `/products/grace/${nested.slug}/` : undefined;
+};
