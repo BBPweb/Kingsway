@@ -852,17 +852,16 @@ html:has(.home-page) {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
-  align-items: start;
+  align-items: stretch;
 }
-.thread:nth-child(2) {
-  margin-top: 60px;
-}
-.thread:nth-child(3) {
-  margin-top: 120px;
+.thread {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .thread-image {
   display: block;
-  aspect-ratio: 4 / 4.5;
+  aspect-ratio: 365 / 273;
   margin-bottom: 26px;
   background: #e8e2d6;
 }
@@ -903,7 +902,8 @@ html:has(.home-page) {
   max-width: 330px;
 }
 .thread .home-text-link {
-  margin-top: 18px;
+  margin-top: auto;
+  padding-top: 18px;
 }
 
 .home-quality {
@@ -1189,11 +1189,14 @@ html:has(.home-page) {
 .showcase-item {
   min-width: 0;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .showcase-image {
   display: block;
   position: relative;
-  height: 300px;
+  aspect-ratio: 556 / 312;
   overflow: hidden;
 }
 .showcase-number {
@@ -1205,6 +1208,9 @@ html:has(.home-page) {
 .showcase-copy {
   padding-top: 24px;
   max-width: 88%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 .showcase-copy .home-kicker {
   font-size: 9px;
@@ -1226,7 +1232,8 @@ html:has(.home-page) {
   color: #c5cce2;
 }
 .showcase-copy .home-text-link {
-  margin-top: 8px;
+  margin-top: auto;
+  padding-top: 8px;
 }
 .showcase-ingredient {
   width: 90px;
@@ -1314,14 +1321,20 @@ html:has(.home-page) {
 }
 .home-story {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 .story-image {
   display: block;
+  aspect-ratio: 365 / 273;
   margin-bottom: 24px;
+  overflow: hidden;
 }
 .home-story .story-image picture,
 .home-story .story-image img {
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .home-story .home-kicker {
   color: #806235;
