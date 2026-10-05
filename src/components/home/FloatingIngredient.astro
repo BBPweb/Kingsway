@@ -1,0 +1,43 @@
+---
+import { ingredients } from "../../data/home";
+interface Props {
+  ingredient: keyof typeof ingredients;
+  target?: string;
+  speed?: number;
+  rotation?: number;
+  class?: string;
+  sizes?: string;
+}
+const {
+  ingredient,
+  target = "ambient",
+  speed = 16,
+  rotation = 8,
+  class: className = "",
+  sizes = "(max-width: 767px) 82px, 135px",
+} = Astro.props;
+const asset = ingredients[ingredient];
+---
+
+<span
+  class:list={["floating-ingredient", className]}
+  data-ingredient={target}
+  style={`--drift-duration:${speed}s;--drift-rotation:${rotation}deg;`}
+  aria-hidden="true"
+>
+  <picture>
+    <source
+      srcset={`${asset.image.replace(".png", "-160.webp")} 160w, ${asset.image.replace(".png", "-320.webp")} 320w, ${asset.image.replace(".png", ".webp")} 480w`}
+      sizes={sizes}
+      type="image/webp"
+    />
+    <img
+      src={asset.image}
+      alt=""
+      width="480"
+      height="480"
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+</span>

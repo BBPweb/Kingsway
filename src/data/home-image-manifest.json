@@ -1,0 +1,200 @@
+{
+  "hero-spices": {
+    "width": 1980,
+    "height": 600,
+    "widths": [
+      640,
+      960,
+      1440,
+      1920
+    ],
+    "mobileWidths": [
+      480,
+      768
+    ]
+  },
+  "hero-origin": {
+    "width": 1980,
+    "height": 620,
+    "widths": [
+      640,
+      960,
+      1440,
+      1920
+    ],
+    "mobileWidths": [
+      480,
+      768
+    ]
+  },
+  "hero-quality": {
+    "width": 1980,
+    "height": 600,
+    "widths": [
+      640,
+      960,
+      1440,
+      1920
+    ],
+    "mobileWidths": [
+      480,
+      768
+    ]
+  },
+  "hero-portfolio": {
+    "width": 1980,
+    "height": 559,
+    "widths": [
+      640,
+      960,
+      1440,
+      1920
+    ],
+    "mobileWidths": [
+      480,
+      768
+    ]
+  },
+  "journey": {
+    "width": 365,
+    "height": 273,
+    "widths": [
+      365
+    ],
+    "mobileWidths": []
+  },
+  "quality": {
+    "width": 365,
+    "height": 273,
+    "widths": [
+      365
+    ],
+    "mobileWidths": []
+  },
+  "portfolio": {
+    "width": 365,
+    "height": 273,
+    "widths": [
+      365
+    ],
+    "mobileWidths": []
+  },
+  "quality-promise": {
+    "width": 1980,
+    "height": 620,
+    "widths": [
+      640,
+      960,
+      1440,
+      1920
+    ],
+    "mobileWidths": []
+  },
+  "retail": {
+    "width": 556,
+    "height": 312,
+    "widths": [
+      400,
+      556
+    ],
+    "mobileWidths": []
+  },
+  "wholesale": {
+    "width": 556,
+    "height": 312,
+    "widths": [
+      400,
+      556
+    ],
+    "mobileWidths": []
+  },
+  "foodservice": {
+    "width": 556,
+    "height": 312,
+    "widths": [
+      400,
+      556
+    ],
+    "mobileWidths": []
+  },
+  "export": {
+    "width": 556,
+    "height": 312,
+    "widths": [
+      400,
+      556
+    ],
+    "mobileWidths": []
+  },
+  "pepper-origin": {
+    "width": 365,
+    "height": 273,
+    "widths": [
+      365
+    ],
+    "mobileWidths": []
+  },
+  "rice-story": {
+    "width": 365,
+    "height": 273,
+    "widths": [
+      365
+    ],
+    "mobileWidths": []
+  },
+  "turmeric-story": {
+    "width": 365,
+    "height": 273,
+    "widths": [
+      365
+    ],
+    "mobileWidths": []
+  },
+  "whole-spices": {
+    "width": 556,
+    "height": 312,
+    "widths": [
+      400,
+      556
+    ],
+    "mobileWidths": []
+  },
+  "ground-spices": {
+    "width": 556,
+    "height": 312,
+    "widths": [
+      400,
+      556
+    ],
+    "mobileWidths": []
+  },
+  "rice": {
+    "width": 556,
+    "height": 312,
+    "widths": [
+      400,
+      556
+    ],
+    "mobileWidths": []
+  },
+  "pulses": {
+    "width": 556,
+    "height": 312,
+    "widths": [
+      400,
+      556
+    ],
+    "mobileWidths": []
+  },
+  "trade": {
+    "width": 1980,
+    "height": 490,
+    "widths": [
+      640,
+      960,
+      1440,
+      1920
+    ],
+    "mobileWidths": []
+  }
+}

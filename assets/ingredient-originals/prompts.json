@@ -1,0 +1,47 @@
+{
+  "tool": "Built-in image_gen",
+  "purpose": "Decorative storytelling only; not product or sourcing evidence",
+  "promptTemplate": "Use case: photorealistic-natural. Asset type: decorative ingredient cutout for a premium spice website, not a branded product. Subject: {subject}. Isolated, centred, entirely visible with generous clear margins, realistic macro food photography, natural warm colours, fine tactile texture, soft light from upper left. Genuine transparent alpha background. No surface, no cast shadow, no bowl, no lettering, no packaging, no additional objects. Square composition.",
+  "subjects": [
+    {
+      "name": "01_black_pepper",
+      "subject": "three black peppercorns, loosely grouped"
+    },
+    {
+      "name": "02_cardamom",
+      "subject": "two green cardamom pods"
+    },
+    {
+      "name": "03_cinnamon",
+      "subject": "two short cinnamon quills"
+    },
+    {
+      "name": "04_star_anise",
+      "subject": "one whole star anise"
+    },
+    {
+      "name": "05_chilli",
+      "subject": "one dried red chilli with its stem"
+    },
+    {
+      "name": "06_turmeric",
+      "subject": "one small turmeric root with a cut orange end"
+    },
+    {
+      "name": "07_cumin_seed",
+      "subject": "three cumin seeds"
+    },
+    {
+      "name": "08_coriander_seed",
+      "subject": "three coriander seeds"
+    },
+    {
+      "name": "09_clove",
+      "subject": "two whole cloves"
+    },
+    {
+      "name": "10_rice_grain",
+      "subject": "three uncooked long basmati rice grains"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+---
+import { about } from '../../data/about';
+import { getProductCategoryBySlug } from '../../data/product-categories';
+import HomeImage from '../home/HomeImage.astro';
+import Arrow from '../home/Arrow.astro';
+const { portfolio } = about;
+const packSelections = [{ slug: 'spices', file: 'CHILLI POWDER.png' }, { slug: 'lentils', file: 'CHICK PEAS.png' }, { slug: 'lentils', file: 'RED SPLIT LENTILS.png' }].map(({ slug, file }) => {
+  const product = getProductCategoryBySlug(slug)?.products.find(item => item.sourceFile === file);
+  if (!product) throw new Error(`Missing About portfolio product: ${file}`);
+  return { ...product, href: `/products/${slug}` };
+});
+---
+<section class="about-section about-portfolio" aria-labelledby="portfolio-title"><div class="about-container">
+  <div class="about-split-heading" data-about-reveal><div><p class="about-eyebrow">{portfolio.eyebrow}</p><h2 id="portfolio-title" class="about-heading">{portfolio.title}</h2></div><div><p>{portfolio.description}</p><a href="/products" class="home-text-link">Discover the full portfolio <Arrow /></a></div></div>
+  <div class="about-portfolio-grid">{portfolio.items.map((item, i) => <a href={item.slug ? `/products/${item.slug}` : '/products'} class="about-category" data-about-reveal><div class="about-category-photo"><HomeImage name={item.image} alt={item.alt} sizes="(max-width: 767px) 46vw, 24vw" /><span aria-hidden="true">↗</span></div><p class="about-eyebrow">{String(i + 1).padStart(2, '0')} / The portfolio</p><h3>{item.title}</h3><p>{item.detail}</p></a>)}</div>
+  <div class="about-packs" data-about-reveal><div><p class="about-eyebrow">The ingredients you know</p><h3>A familiar place<br />on your shelves.</h3><p>Explore the products and pack formats in our catalogue.</p></div><div class="about-pack-images">{packSelections.map(product => <a href={product.href}><img src={product.image} alt={`Kingsway ${product.name} product pack`} width="350" height="260" loading="lazy" decoding="async" /><span>{product.name}<Arrow /></span></a>)}</div></div>
+</div></section>

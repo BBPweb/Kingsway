@@ -1,0 +1,74 @@
+---
+import { home, ingredients } from "../../data/home";
+import HomeImage from "./HomeImage.astro";
+import Arrow from "./Arrow.astro";
+import FloatingIngredient from "./FloatingIngredient.astro";
+---
+
+<section
+  class="home-showcase home-section"
+  aria-labelledby="showcase-title"
+  data-showcase
+>
+  <div class="home-container">
+    <div class="home-split-head">
+      <div>
+        <p class="home-kicker">{home.showcase.eyebrow}</p>
+        <h2 id="showcase-title" class="home-heading">
+          {home.showcase.title}
+        </h2>
+      </div>
+      <div>
+        <p>{home.showcase.description}</p>
+        <a class="home-text-link" href={home.showcase.link.href}>
+          {home.showcase.link.label}
+          <Arrow />
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="showcase-viewport" data-showcase-viewport>
+    <div class="showcase-track" data-showcase-track>
+      {home.showcase.items.map((item, i) => (
+        <article class="showcase-item">
+          <a
+            href={item.href}
+            class="showcase-image"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            <HomeImage
+              name={item.image}
+              alt={item.alt}
+              sizes="(max-width: 767px) 100vw, 42vw"
+            />
+            <span class="showcase-number">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+          </a>
+          <div class="showcase-copy">
+            <p class="home-kicker">{item.category}</p>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <p class="showcase-origin">{item.origin}</p>
+            <a href={item.href} class="home-text-link">
+              {home.showcase.productLinkLabel}<span class="sr-only">: {item.title}</span>
+              <Arrow />
+            </a>
+          </div>
+          <FloatingIngredient
+            ingredient={item.ingredient as keyof typeof ingredients}
+            class="showcase-ingredient"
+          />
+        </article>
+      ))}
+    </div>
+  </div>
+  <div class="home-container showcase-bottom" aria-hidden="true">
+    <span>{home.showcase.closingNote}</span>
+    <span class="showcase-progress">
+      <span data-showcase-progress></span>
+    </span>
+    <span>01 — 04</span>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+---
+import { home } from "../../data/home";
+import HomeImage from "./HomeImage.astro";
+import Arrow from "./Arrow.astro";
+---
+
+<section class="home-channels home-section" aria-labelledby="channels-title">
+  <div class="home-container">
+    <div class="home-split-head">
+      <div data-reveal>
+        <p class="home-kicker">{home.channels.eyebrow}</p>
+        <h2 id="channels-title" class="home-heading">
+          {home.channels.title}
+        </h2>
+      </div>
+      <p data-reveal>{home.channels.description}</p>
+    </div>
+    <div class="channel-grid">
+      {home.channels.items.map((item) => (
+        <a class="channel-tile" href="/who-we-serve" data-reveal>
+          <HomeImage
+            name={item.image}
+            alt={item.alt}
+            sizes="(max-width: 767px) 100vw, 50vw"
+          />
+          <div class="channel-shade" aria-hidden="true"></div>
+          <span class="channel-number">{item.number}</span>
+          <div class="channel-content">
+            <p class="home-kicker">{item.label}</p>
+            <h3>{item.title}</h3>
+            <p class="channel-description">{item.description}</p>
+          </div>
+          <span class="channel-arrow">
+            <Arrow />
+          </span>
+        </a>
+      ))}
+    </div>
+    <a class="home-text-link channel-more" href={home.channels.link.href}>
+      {home.channels.link.label}
+      <Arrow />
+    </a>
+  </div>
+</section>

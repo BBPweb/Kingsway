@@ -1,5 +1,7 @@
 ---
 const currentYear = new Date().getFullYear();
+interface Props { wordmarkLabel?: string; }
+const { wordmarkLabel = 'Kingsway International — home' } = Astro.props;
 
 const exploreLinks = [
   { label: 'About Us', href: '/about' },
@@ -34,7 +36,7 @@ const legalLinks = [
 
       <!-- Column 1: Brand -->
       <div class="footer-col footer-brand">
-        <a href="/" class="footer-wordmark" aria-label="Kingsway International — home">
+        <a href="/" class="footer-wordmark" aria-label={wordmarkLabel}>
           <span class="wordmark-primary">KINGSWAY</span>
           <span class="wordmark-tag">TRADING &amp; DISTRIBUTION</span>
         </a>

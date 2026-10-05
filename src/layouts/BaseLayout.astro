@@ -9,6 +9,8 @@ interface Props {
   description: string;
   ogImage?: string;
   ogType?: 'website' | 'article';
+  homepage?: boolean;
+  bodyClass?: string;
 }
 
 const {
@@ -16,6 +18,8 @@ const {
   description,
   ogImage = '/og-default.svg',
   ogType = 'website',
+  homepage = false,
+  bodyClass = '',
 } = Astro.props;
 
 // If title starts with 'Kingsway', use as-is; otherwise append brand suffix
@@ -69,16 +73,16 @@ const isSvgOg = ogImage.endsWith('.svg');
 
     <slot name="head" />
   </head>
-  <body>
+  <body class:list={[bodyClass, { 'home-page': homepage }]}>
     <!-- Skip to main content — visible on keyboard focus -->
     <a href="#main" class="skip-link">Skip to content</a>
 
-    <SiteHeader />
+    <slot name="header"><SiteHeader /></slot>
 
     <main id="main">
       <slot />
     </main>
 
-    <SiteFooter />
+    <SiteFooter wordmarkLabel={homepage ? 'Kingsway Trading & Distribution — home' : undefined} />
   </body>
 </html>

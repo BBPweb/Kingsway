@@ -1,0 +1,74 @@
+---
+import { home, ingredients } from "../../data/home";
+import HomeImage from "./HomeImage.astro";
+import Arrow from "./Arrow.astro";
+---
+
+<section
+  class="home-journey home-section"
+  aria-labelledby="journey-title"
+  data-ingredient-journey
+>
+  <div class="home-container">
+    <div class="journey-layout">
+      <div class="journey-image home-image-reveal" data-reveal>
+        <HomeImage
+          name={home.journey.image}
+          alt={home.journey.alt}
+          sizes="(max-width: 767px) 100vw, 50vw"
+        />
+        <span class="journey-caption">{home.journey.caption}</span>
+      </div>
+      <div class="journey-copy" data-reveal>
+        <p class="home-kicker">{home.journey.eyebrow}</p>
+        <h2 id="journey-title" class="home-heading">
+          {home.journey.title[0]}
+          <em>{home.journey.title[1]}</em>
+        </h2>
+        <p>{home.journey.description}</p>
+        <a class="home-text-link" href={home.journey.link.href}>
+          {home.journey.link.label}
+          <Arrow />
+        </a>
+      </div>
+    </div>
+    <div class="ingredient-path" data-ingredient-path>
+      <div
+        class="travelling-ingredient"
+        data-travelling-ingredient
+        aria-hidden="true"
+      >
+        <picture>
+          <source
+            srcset={ingredients.pepper.image.replace(".png", "-160.webp")}
+            type="image/webp"
+          />
+          <img
+            src={ingredients.pepper.image}
+            alt=""
+            width="480"
+            height="480"
+            loading="lazy"
+          />
+        </picture>
+      </div>
+      <ol>
+        {home.journey.stages.map((stage, i) => (
+          <li>
+            <span
+              class="ingredient-anchor"
+              id={stage.target}
+              data-ingredient-target
+              aria-hidden="true"
+            >
+              <span></span>
+            </span>
+            <span class="home-kicker">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{stage.title}</h3>
+            <p>{stage.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

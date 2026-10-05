@@ -1,0 +1,70 @@
+---
+import manifest from "../../data/home-image-manifest.json";
+interface Props {
+  name: string;
+  alt: string;
+  sizes?: string;
+  class?: string;
+  priority?: boolean;
+  deferred?: boolean;
+}
+const {
+  name,
+  alt,
+  sizes = "(max-width: 767px) 100vw, 40vw",
+  class: className,
+  priority = false,
+  deferred = false,
+} = Astro.props;
+const entry = manifest[name as keyof typeof manifest];
+if (!entry) throw new Error(`Unknown homepage image: ${name}`);
+const srcset = (format: string) =>
+  entry.widths
+    .map((width) => `/images/home/${name}-${width}.${format} ${width}w`)
+    .join(", ");
+const fallback = `/images/home/${name}-${entry.widths[Math.min(1, entry.widths.length - 1)]}.webp`;
+const mobileSet = (format: string) =>
+  entry.mobileWidths
+    .map((width) => `/images/home/${name}-mobile-${width}.${format} ${width}w`)
+    .join(", ");
+---
+
+<picture class={className}>
+  {entry.mobileWidths.length > 0 && (
+    <>
+      <source
+        media="(max-width: 767px)"
+        type="image/avif"
+        srcset={deferred ? undefined : mobileSet("avif")}
+        data-srcset={deferred ? mobileSet("avif") : undefined}
+        sizes="100vw"
+      />
+      <source
+        media="(max-width: 767px)"
+        type="image/webp"
+        srcset={deferred ? undefined : mobileSet("webp")}
+        data-srcset={deferred ? mobileSet("webp") : undefined}
+        sizes="100vw"
+      />
+    </>
+  )}
+  <source
+    type="image/avif"
+    srcset={deferred ? undefined : srcset("avif")}
+    data-srcset={deferred ? srcset("avif") : undefined}
+    sizes={sizes}
+  />
+  <img
+    src={deferred ? undefined : fallback}
+    data-src={deferred ? fallback : undefined}
+    srcset={deferred ? undefined : srcset("webp")}
+    data-srcset={deferred ? srcset("webp") : undefined}
+    sizes={sizes}
+    alt={alt}
+    width={entry.width}
+    height={entry.height}
+    loading={priority ? "eager" : "lazy"}
+    fetchpriority={priority ? "high" : undefined}
+    decoding="async"
+  />
+</picture>

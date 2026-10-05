@@ -1,0 +1,9 @@
+---
+import { about } from '../../data/about';
+import HomeImage from '../home/HomeImage.astro';
+const { values } = about;
+---
+<section class="about-section about-values" aria-labelledby="values-title"><div class="about-container">
+  <div class="about-values-heading" data-about-reveal><p class="about-eyebrow">{values.eyebrow}</p><h2 id="values-title" class="about-heading">{values.title}</h2></div>
+  <div class="about-values-grid"><figure class="about-values-photo" data-about-reveal><HomeImage name="ground-spices" alt="Earthy red and golden ground spices in wooden bowls" sizes="(max-width: 767px) 100vw, 40vw" /><figcaption>Authenticity. Quality. Reliability. Partnership.</figcaption></figure><div class="about-values-list">{values.items.map((value, i) => <details class="about-value" open={i === 0}><summary><span class="about-value-number">{String(i + 1).padStart(2, '0')}</span><h3>{value.title}</h3><span class="about-value-toggle" aria-hidden="true"></span></summary><p>{value.body}</p></details>)}</div></div>
+</div></section>

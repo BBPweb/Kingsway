@@ -1,0 +1,10 @@
+---
+import { about } from '../../data/about';
+import HomeImage from '../home/HomeImage.astro';
+import Arrow from '../home/Arrow.astro';
+const { partnership } = about;
+---
+<section class="about-section about-partnership" aria-labelledby="partnership-title"><div class="about-container about-partnership-grid">
+  <div class="about-partnership-photo" data-about-reveal><HomeImage name="wholesale" alt="Packaged food products organised on pallets in a distribution warehouse" sizes="(max-width: 767px) 100vw, 48vw" /><span>Good ingredients.<br /><em>Lasting relationships.</em></span></div>
+  <div data-about-reveal><p class="about-eyebrow">{partnership.eyebrow}</p><h2 id="partnership-title" class="about-heading">{partnership.title}</h2><p class="about-lede">{partnership.body}</p><p>{partnership.detail}</p><div class="about-partnership-links"><a href="/about/leadership" class="home-text-link">Meet our leadership <Arrow /></a><a href="/who-we-serve" class="home-text-link">Who we serve <Arrow /></a></div></div>
+</div></section>

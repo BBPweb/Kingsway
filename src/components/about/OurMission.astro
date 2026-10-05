@@ -1,0 +1,15 @@
+---
+import { about } from '../../data/about';
+import HomeImage from '../home/HomeImage.astro';
+import Arrow from '../home/Arrow.astro';
+const { mission } = about;
+---
+<section id="our-mission" class="about-mission" aria-labelledby="mission-title">
+  <div class="about-mission-pin">
+    <div class="about-container about-mission-heading"><div><p class="about-eyebrow">{mission.eyebrow}</p><h2 id="mission-title" class="about-heading">{mission.title}</h2></div><div><p>{mission.description}</p><p class="about-mission-hint"><span aria-hidden="true">↔</span> <span data-mission-hint>Scroll across to explore all five commitments</span></p></div></div>
+    <div class="about-mission-viewport" tabindex="0" role="region" aria-label="Our five mission commitments" data-mission-viewport>
+      <ol class="about-mission-track">{mission.items.map((item, i) => <li class="about-mission-item" data-mission-item><div class="about-mission-image"><HomeImage name={item.image} alt={item.alt} sizes="(max-width: 767px) 85vw, 35vw" /><span class="about-mission-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span></div><div class="about-mission-copy"><p class="about-eyebrow">{item.label}</p><h3>{item.title}</h3><p>{item.text}</p></div></li>)}</ol>
+    </div>
+    <div class="about-container about-mission-controls" data-mission-controls hidden><span class="about-mission-count"><span data-mission-count>01</span><span> / 05</span></span><div class="about-mission-dots" aria-label="Choose a mission commitment">{mission.items.map((item, i) => <button type="button" data-mission-go={i} aria-label={`Commitment ${i + 1}: ${item.title}`} aria-pressed={i === 0}><span></span></button>)}</div><div class="about-mission-arrows"><button type="button" data-mission-prev aria-label="Previous commitment"><Arrow /></button><button type="button" data-mission-next aria-label="Next commitment"><Arrow /></button></div></div>
+  </div>
+</section>

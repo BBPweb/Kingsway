@@ -1,0 +1,10 @@
+---
+import { about } from '../../data/about';
+import HomeImage from '../home/HomeImage.astro';
+import Arrow from '../home/Arrow.astro';
+const { quality } = about;
+---
+<section class="about-section about-quality" aria-labelledby="quality-title"><div class="about-container about-quality-grid">
+  <div data-about-reveal><p class="about-eyebrow">{quality.eyebrow}</p><h2 id="quality-title" class="about-heading">{quality.title}</h2><div class="about-gold-rule" aria-hidden="true"></div><blockquote>“{quality.quote}”</blockquote><p>{quality.detail}</p><a href="/quality" class="home-button home-button-gold">Read our Quality Charter <Arrow /></a></div>
+  <div class="about-quality-photo" data-about-reveal><HomeImage name="whole-spices" alt="Cinnamon, star anise and whole spices showing their natural texture and character" sizes="(max-width: 767px) 100vw, 40vw" /><span>Care you can see.<br />Quality you can trust.</span></div>
+</div></section>

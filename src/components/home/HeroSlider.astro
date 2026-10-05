@@ -1,0 +1,193 @@
+---
+import { home } from "../../data/home";
+import HomeImage from "./HomeImage.astro";
+import Arrow from "./Arrow.astro";
+import FloatingIngredient from "./FloatingIngredient.astro";
+import { productCategories } from "../../data/product-categories";
+
+const orbitSlugs = ["lentils", "spices", "rice-poha-mamra", "flour", "nuts"];
+const orbitCategories = orbitSlugs.map((slug) => {
+  const category = productCategories.find((item) => item.slug === slug);
+  if (!category) throw new Error(`Missing hero category: ${slug}`);
+  return category;
+});
+---
+
+<section
+  class="home-hero"
+  aria-label="Discover Kingsway"
+  aria-roledescription="carousel"
+  data-hero
+  data-interval={home.hero.interval}
+>
+  <div class="hero-scene" data-hero-scene>
+    {home.hero.slides.map((slide, i) => (
+      <div
+        class:list={["hero-backdrop", { "is-active": i === 0 }]}
+        data-backdrop={i}
+        aria-hidden={i !== 0 ? "true" : undefined}
+      >
+        <HomeImage
+          name={slide.image}
+          alt={slide.alt}
+          priority={i === 0}
+          deferred={i !== 0}
+          sizes="100vw"
+        />
+      </div>
+    ))}
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-ingredients" aria-hidden="true">
+    <FloatingIngredient
+      ingredient="anise"
+      class="hero-anise"
+      speed={19}
+      rotation={7}
+    />
+    <FloatingIngredient
+      ingredient="cardamom"
+      class="hero-cardamom"
+      speed={23}
+      rotation={-5}
+    />
+    <FloatingIngredient
+      ingredient="pepper"
+      class="hero-pepper"
+      speed={17}
+      rotation={4}
+    />
+    <FloatingIngredient
+      ingredient="cinnamon"
+      class="hero-cinnamon"
+      speed={27}
+      rotation={-4}
+    />
+    <FloatingIngredient
+      ingredient="chilli"
+      class="hero-chilli"
+      speed={21}
+      rotation={6}
+    />
+    <FloatingIngredient
+      ingredient="turmeric"
+      class="hero-turmeric"
+      speed={25}
+      rotation={-3}
+    />
+  </div>
+  <div class="home-container hero-content" data-hero-content>
+    {home.hero.slides.map((slide, i) => (
+      <div
+        class:list={["hero-slide", { "is-active": i === 0 }]}
+        data-slide={i}
+        role="group"
+        aria-roledescription="slide"
+        aria-label={`${i + 1} of ${home.hero.slides.length}: ${slide.chapter}`}
+        aria-hidden={i !== 0 ? "true" : undefined}
+        inert={i !== 0}
+      >
+        <p class="home-kicker hero-eyebrow">
+          <span></span>
+          {slide.eyebrow}
+        </p>
+        {i === 0 ? (
+          <h1 class="hero-title">
+            {slide.title[0]}
+            <em>{slide.title[1]}</em>
+          </h1>
+        ) : (
+          <p class="hero-title">
+            {slide.title[0]}
+            <em>{slide.title[1]}</em>
+          </p>
+        )}
+        <p class="hero-description">{slide.description}</p>
+        <div class="hero-actions">
+          <a
+            class="home-button home-button-gold"
+            href={slide.cta.href}
+            tabindex={i === 0 ? undefined : -1}
+          >
+            {slide.cta.label}
+            <Arrow />
+          </a>
+          <a
+            class="home-text-link hero-secondary"
+            href={home.hero.secondary.href}
+            tabindex={i === 0 ? undefined : -1}
+          >
+            {home.hero.secondary.label}
+            <Arrow />
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="category-orbit" data-category-orbit aria-label="Featured product categories">
+    <a
+      class="orbit-active-label"
+      data-category-active-label
+      data-category-link
+      href="/products/spices/"
+      aria-label="Explore Spices"
+    >Spices</a>
+    <div class="orbit-ring" aria-hidden="true"></div>
+    {orbitCategories.map((category, i) => (
+      <button
+        type="button"
+        class:list={["category-orbit-item", { "is-active": category.slug === "spices" }]}
+        data-orbit-category
+        data-category-title={category.name}
+        data-category-href={`/products/${category.slug}/`}
+        data-category-index={i}
+        aria-pressed={category.slug === "spices"}
+        aria-label={`Show ${category.name}`}
+      >
+        <img src={category.image} alt="" loading={i === 1 ? "eager" : "lazy"} />
+        <span>{category.name}</span>
+      </button>
+    ))}
+  </div>
+  <div class="home-container hero-bottom">
+    <a class="hero-scroll" href="#introduction">
+      <span class="scroll-line" aria-hidden="true"></span>
+      {home.hero.scrollLabel}
+      <span aria-hidden="true">↓</span>
+    </a>
+    <div class="hero-controls" data-hero-controls hidden>
+      <div class="hero-chapters" role="group" aria-label="Choose a chapter">
+        {home.hero.slides.map((slide, i) => (
+          <button
+            type="button"
+            data-slide-select={i}
+            aria-label={`${String(i + 1).padStart(2, "0")} ${slide.chapter}: show chapter`}
+            aria-pressed={i === 0}
+            class:list={["hero-chapter", { "is-active": i === 0 }]}
+          >
+            <span class="chapter-number">{String(i + 1).padStart(2, "0")}</span>
+            <span class="chapter-name">{slide.chapter}</span>
+            <span class="chapter-progress" aria-hidden="true"></span>
+          </button>
+        ))}
+      </div>
+      <button
+        type="button"
+        class="hero-pause"
+        data-hero-pause
+        aria-label="Pause slideshow"
+        aria-pressed="false"
+      >
+        <span data-pause-icon aria-hidden="true">
+          Ⅱ
+        </span>
+      </button>
+    </div>
+  </div>
+  <p
+    class="sr-only"
+    data-slide-status
+    aria-live="polite"
+    aria-atomic="true"
+  ></p>
+</section>

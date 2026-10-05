@@ -1,0 +1,41 @@
+---
+import { home } from "../../data/home";
+import HomeImage from "./HomeImage.astro";
+import Arrow from "./Arrow.astro";
+---
+
+<section class="home-threads home-section" aria-labelledby="threads-title">
+  <div class="home-container">
+    <div class="home-section-head" data-reveal>
+      <p class="home-kicker">{home.threads.eyebrow}</p>
+      <h2 id="threads-title" class="home-heading">
+        {home.threads.title}
+      </h2>
+    </div>
+    <div class="threads-grid">
+      {home.threads.items.map((item) => (
+        <article class="thread" data-reveal>
+          <a
+            class="thread-image home-image-reveal"
+            href={item.link.href}
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            <HomeImage name={item.image} alt={item.alt} />
+            <span class="thread-number">{item.number}</span>
+            <span class="image-arrow">
+              <Arrow />
+            </span>
+          </a>
+          <p class="home-kicker">{item.eyebrow}</p>
+          <h3>{item.title}</h3>
+          <p class="thread-description">{item.description}</p>
+          <a class="home-text-link" href={item.link.href}>
+            {item.link.label}
+            <Arrow />
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

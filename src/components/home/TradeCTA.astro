@@ -1,0 +1,30 @@
+---
+import { home } from "../../data/home";
+import HomeImage from "./HomeImage.astro";
+import Arrow from "./Arrow.astro";
+---
+
+<section class="home-trade" aria-labelledby="trade-title">
+  <div class="trade-image" data-parallax>
+    <HomeImage
+      name={home.cta.image}
+      alt={home.cta.alt}
+      sizes="100vw"
+    />
+  </div>
+  <div class="trade-shade" aria-hidden="true"></div>
+  <div class="home-container trade-content">
+    <p class="home-kicker" data-reveal>
+      {home.cta.eyebrow}
+    </p>
+    <h2 id="trade-title" data-reveal>
+      {home.cta.title[0]}
+      <em>{home.cta.title[1]}</em>
+    </h2>
+    <p data-reveal>{home.cta.description}</p>
+    <a class="home-button home-button-gold" href={home.cta.link.href}>
+      {home.cta.link.label}
+      <Arrow />
+    </a>
+  </div>
+</section>

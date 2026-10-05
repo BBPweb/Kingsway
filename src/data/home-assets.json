@@ -1,0 +1,22 @@
+{
+  "hero-spices": { "source": "Homebanner32.jpeg", "wide": true, "mobileFocus": 0.67 },
+  "hero-origin": { "source": "parallaxbanner.jpeg", "wide": true },
+  "hero-quality": { "source": "Qualitybanner.jpeg", "wide": true },
+  "hero-portfolio": { "source": "Productsbanner.jpeg", "wide": true },
+  "journey": { "source": "home1.jpeg" },
+  "quality": { "source": "home 2.jpeg" },
+  "portfolio": { "source": "home3.jpeg" },
+  "quality-promise": { "source": "parallaxbanner.jpeg", "wide": true },
+  "retail": { "source": "howweserve1.jpeg" },
+  "wholesale": { "source": "howweserve2.jpeg" },
+  "foodservice": { "source": "howweserve3.jpeg" },
+  "export": { "source": "howweserve5.jpeg" },
+  "pepper-origin": { "source": "foodstories 2.jpeg" },
+  "rice-story": { "source": "foodstories1.jpeg" },
+  "turmeric-story": { "source": "foodstories 3.jpeg" },
+  "whole-spices": { "source": "Spiceswhole.jpeg" },
+  "ground-spices": { "source": "Spicesground.jpeg" },
+  "rice": { "source": "Rice.jpeg" },
+  "pulses": { "source": "Pulseslentilsjpeg.jpeg" },
+  "trade": { "source": "contact.jpeg", "wide": true }
+}

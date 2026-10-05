@@ -1,0 +1,17 @@
+---
+import { about } from '../../data/about';
+import HomeImage from '../home/HomeImage.astro';
+const { story } = about;
+---
+<section id="our-story" class="about-section about-story" aria-labelledby="story-title">
+  <div class="about-container">
+    <div class="about-split-heading" data-about-reveal><div><p class="about-eyebrow">{story.eyebrow}</p><h2 id="story-title" class="about-heading">{story.title}</h2></div><div class="about-story-intro"><p class="about-lede">{story.intro}</p><p>{story.body}</p></div></div>
+    <nav class="about-story-nav" aria-label="Our journey milestones">{story.stages.map((stage, i) => <a href={`#story-${i}`} data-story-link={i}><span>{String(i + 1).padStart(2, '0')}</span>{stage.title}</a>)}<span class="about-story-progress" aria-hidden="true"></span></nav>
+    <div class="about-story-layout">
+      <div class="about-story-visual" aria-hidden="true">{story.stages.map((stage, i) => <figure data-story-image={i} class:list={{ 'is-active': i === 0 }}><HomeImage name={stage.image} alt="" sizes="45vw" /><figcaption><span>{String(i + 1).padStart(2, '0')}</span>{stage.label}</figcaption></figure>)}</div>
+      <div class="about-story-stages">{story.stages.map((stage, i) => <article id={`story-${i}`} class="about-story-stage" data-story-stage={i}>
+        <HomeImage name={stage.image} alt={stage.alt} sizes="100vw" class="about-story-inline" /><p class="about-eyebrow"><span>{String(i + 1).padStart(2, '0')}</span> {stage.title}</p><h3>{stage.subtitle}</h3><p>{stage.body}</p>
+      </article>)}</div>
+    </div>
+  </div>
+</section>

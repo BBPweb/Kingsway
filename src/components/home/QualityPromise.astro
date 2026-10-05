@@ -1,0 +1,42 @@
+---
+import { home } from "../../data/home";
+import HomeImage from "./HomeImage.astro";
+import Arrow from "./Arrow.astro";
+import FloatingIngredient from "./FloatingIngredient.astro";
+---
+
+<section class="home-quality" aria-labelledby="quality-title">
+  <div class="quality-image" data-parallax>
+    <HomeImage
+      name={home.quality.image}
+      alt={home.quality.alt}
+      sizes="100vw"
+    />
+  </div>
+  <div class="quality-shade" aria-hidden="true"></div>
+  <div class="home-container quality-content">
+    <p class="home-kicker" data-reveal>
+      {home.quality.eyebrow}
+    </p>
+    <span class="quality-rule" data-line aria-hidden="true"></span>
+    <h2 id="quality-title">
+      {home.quality.title.map((line) => (
+        <span data-reveal>{line}</span>
+      ))}
+    </h2>
+    <blockquote data-reveal>{home.quality.quote}</blockquote>
+    <p class="quality-detail" data-reveal>
+      {home.quality.detail}
+    </p>
+    <a class="home-text-link" href={home.quality.link.href}>
+      {home.quality.link.label}
+      <Arrow />
+    </a>
+  </div>
+  <FloatingIngredient
+    ingredient="clove"
+    class="quality-clove"
+    speed={28}
+    rotation={4}
+  />
+</section>

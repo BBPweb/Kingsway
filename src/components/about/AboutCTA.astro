@@ -1,0 +1,6 @@
+---
+import { about } from '../../data/about';
+import Arrow from '../home/Arrow.astro';
+const { cta } = about;
+---
+<section class="about-cta" aria-labelledby="about-cta-title"><img class="about-cta-spice" src="/images/ingredients/04_star_anise-320.webp" alt="" aria-hidden="true" width="240" height="240" loading="lazy" /><div class="about-container" data-about-reveal><p class="about-eyebrow">{cta.eyebrow}</p><h2 id="about-cta-title">{cta.title}</h2><p>{cta.body}</p><a href={cta.href} class="home-button home-button-gold">{cta.label}<Arrow /></a></div></section>

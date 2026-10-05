@@ -1,0 +1,10 @@
+---
+import { about } from '../../data/about';
+import Arrow from '../home/Arrow.astro';
+const { source } = about;
+---
+<section class="about-source" aria-labelledby="source-title"><div class="about-container about-source-pin">
+  <div class="about-source-heading" data-about-reveal><p class="about-eyebrow">{source.eyebrow}</p><h2 id="source-title" class="about-heading">{source.title}</h2><p>{source.description}</p></div>
+  <div class="about-source-path" data-source-path><div class="about-source-line" aria-hidden="true"><span data-source-line></span></div><img class="about-source-ingredient" src="/images/ingredients/01_black_pepper-160.webp" alt="" width="90" height="90" aria-hidden="true" data-source-ingredient loading="lazy" /><ol>{source.stages.map((stage, i) => <li data-source-stage><div class="about-source-target" data-source-target aria-hidden="true"><span>{String(i + 1).padStart(2, '0')}</span></div><h3>{stage.title}</h3><p>{stage.body}</p><span class="about-source-detail">{stage.detail}</span></li>)}</ol></div>
+  <a href="/quality" class="home-text-link">Explore our quality framework <Arrow /></a>
+</div></section>

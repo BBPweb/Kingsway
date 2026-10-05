@@ -1,0 +1,92 @@
+---
+import { home, navigation } from "../../data/home";
+import Arrow from "./Arrow.astro";
+interface Props { solid?: boolean }
+const { solid = false } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrent = (href: string) => href === "/" ? currentPath === "/" : currentPath === href || currentPath.startsWith(`${href}/`);
+---
+
+<header class:list={["home-header", { "is-tinted": solid, "is-solid": solid }]} data-home-header data-header-solid={solid || undefined}>
+  <div class="home-header-inner">
+    <a class="home-brand" href="/" aria-label="Kingsway International — home">
+      <img
+        src={home.brand.logo}
+        alt=""
+        width="66"
+        height="66"
+        fetchpriority="low"
+      />
+      <span>
+        <strong>Kingsway</strong>
+        <small>International</small>
+      </span>
+    </a>
+    <nav class="home-desktop-nav" aria-label="Primary navigation">
+      {navigation.map((link) => (
+        <a
+          href={link.href}
+          aria-current={isCurrent(link.href) ? "page" : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+    <a class="home-header-cta" href={home.tradeLink.href}>
+      {home.tradeLink.label}
+      <Arrow />
+    </a>
+    <button
+      type="button"
+      class="home-menu-toggle"
+      aria-controls="home-menu"
+      aria-expanded="false"
+      aria-label="Open navigation menu"
+      data-menu-open
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+<dialog id="home-menu" class="home-menu" aria-label="Navigation menu">
+  <div class="home-menu-top">
+    <span class="home-kicker">Kingsway International</span>
+    <button
+      type="button"
+      class="home-menu-close"
+      aria-label="Close navigation menu"
+      data-menu-close
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="m5 5 14 14M5 19 19 5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+      </svg>
+    </button>
+  </div>
+  <nav aria-label="Mobile navigation">
+    {navigation.map((link, i) => (
+      <a href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
+        <span>{String(i + 1).padStart(2, "0")}</span>
+        {link.label}
+        <Arrow />
+      </a>
+    ))}
+  </nav>
+  <a class="home-button" href={home.tradeLink.href}>
+    {home.tradeLink.label}
+    <Arrow />
+  </a>
+  <p class="home-menu-caption">{home.brand.descriptor}</p>
+</dialog>
+<noscript>
+  <nav class="home-nojs-nav" aria-label="Mobile navigation">
+    {navigation.map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))}
+  </nav>
+</noscript>

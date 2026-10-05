@@ -1,0 +1,10 @@
+---
+import { about } from '../../data/about';
+import HomeImage from '../home/HomeImage.astro';
+const { global } = about;
+---
+<section class="about-section about-global" aria-labelledby="global-title"><div class="about-container about-global-grid">
+  <div data-about-reveal><p class="about-eyebrow">{global.eyebrow}</p><h2 id="global-title" class="about-heading">{global.title}</h2><p>{global.body}</p></div>
+  <figure class="about-map" data-about-reveal><HomeImage name="journey" alt="A world map formed from spices and grains, illustrating the connection between food cultures" sizes="(max-width: 767px) 100vw, 45vw" /><span class="about-map-pulse" aria-hidden="true"></span><figcaption>A world of food traditions. A shared British table.</figcaption></figure>
+  <div class="about-vision" data-about-reveal><p class="about-eyebrow">Our founding vision</p><blockquote>{global.vision}</blockquote></div>
+</div></section>

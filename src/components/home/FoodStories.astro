@@ -1,0 +1,50 @@
+---
+import { home } from "../../data/home";
+import HomeImage from "./HomeImage.astro";
+import Arrow from "./Arrow.astro";
+---
+
+<section class="home-stories home-section" aria-labelledby="stories-title">
+  <div class="home-container">
+    <div class="home-split-head">
+      <div data-reveal>
+        <p class="home-kicker">{home.stories.eyebrow}</p>
+        <h2 class="home-heading" id="stories-title">
+          {home.stories.title}
+        </h2>
+      </div>
+      <div data-reveal>
+        <p>{home.stories.description}</p>
+        <a class="home-text-link" href={home.stories.link.href}>
+          {home.stories.link.label}
+          <Arrow />
+        </a>
+      </div>
+    </div>
+    <div class="stories-grid">
+      {home.stories.items.map((story) => (
+        <article class="home-story" data-reveal>
+          <a
+            class="story-image home-image-reveal"
+            href={story.href}
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            <HomeImage name={story.image} alt={story.alt} />
+            <span class="image-arrow">
+              <Arrow />
+            </span>
+          </a>
+          <p class="home-kicker">{story.category}</p>
+          <h3>
+            <a href={story.href}>
+              {story.title}
+              <Arrow />
+            </a>
+          </h3>
+          <p class="story-description">{story.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
