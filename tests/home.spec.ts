@@ -14,6 +14,19 @@ const sizes = [
   [360, 800],
 ];
 
+test("home journey uses the peppercorn harvest image", async ({ page }) => {
+  await page.goto("/");
+  const image = page.locator(".journey-image img");
+  await expect(image).toHaveAttribute(
+    "src",
+    /peppercorn_harvest_614x512(?:\.webp)?/,
+  );
+  await expect(image).toHaveAttribute(
+    "alt",
+    "Peppercorns growing on a vine at harvest",
+  );
+});
+
 for (const [width, height] of sizes) {
   test(`homepage layout and reverse scroll at ${width}x${height}`, async ({
     page,

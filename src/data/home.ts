@@ -198,7 +198,7 @@ export const home = {
     title: ["A world behind", "every peppercorn."],
     description:
       "From the hills of Kerala to British kitchens. Follow the ingredient, and the care that goes into every stage.",
-    image: "pepper-origin",
+    image: "/images/home/peppercorn_harvest_614x512.webp",
     caption: "Piper nigrum · Kerala, India",
     alt: "Peppercorns growing on a vine at harvest",
     link: {

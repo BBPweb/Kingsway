@@ -2,6 +2,8 @@
 import { home, ingredients } from "../../data/home";
 import HomeImage from "./HomeImage.astro";
 import Arrow from "./Arrow.astro";
+
+const journeyImageIsStatic = home.journey.image.startsWith("/images/");
 ---
 
 <section
@@ -12,11 +14,25 @@ import Arrow from "./Arrow.astro";
   <div class="home-container">
     <div class="journey-layout">
       <div class="journey-image home-image-reveal" data-reveal>
-        <HomeImage
-          name={home.journey.image}
-          alt={home.journey.alt}
-          sizes="(max-width: 767px) 100vw, 50vw"
-        />
+        {
+          journeyImageIsStatic ? (
+            <img
+              src={home.journey.image}
+              alt={home.journey.alt}
+              width="614"
+              height="512"
+              sizes="(max-width: 767px) 100vw, 50vw"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <HomeImage
+              name={home.journey.image}
+              alt={home.journey.alt}
+              sizes="(max-width: 767px) 100vw, 50vw"
+            />
+          )
+        }
         <span class="journey-caption">{home.journey.caption}</span>
       </div>
       <div class="journey-copy" data-reveal>

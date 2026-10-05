@@ -438,7 +438,7 @@ html:has(.home-page) {
   background:
     linear-gradient(
       90deg,
-      rgb(11 17 26 / 84%) 0%,
+      rgb(11 17 26 / 84%) 100%,
       rgb(15 20 25 / 52%) 50%,
       rgb(12 16 20 / 13%) 100%
     ),
@@ -1309,19 +1309,19 @@ html:has(.home-page) {
 
 .stories-grid {
   display: grid;
-  grid-template-columns: 1.25fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
 }
 .home-story {
   min-width: 0;
 }
 .story-image {
-  aspect-ratio: 1.2;
   display: block;
   margin-bottom: 24px;
 }
-.home-story:first-child .story-image {
-  aspect-ratio: 1.05;
+.home-story .story-image picture,
+.home-story .story-image img {
+  height: auto;
 }
 .home-story .home-kicker {
   color: #806235;
@@ -1886,10 +1886,6 @@ html:has(.home-page) {
   .stories-grid {
     grid-template-columns: 1fr;
     gap: 42px;
-  }
-  .home-story:first-child .story-image,
-  .story-image {
-    aspect-ratio: 1.2;
   }
   .home-story h3 {
     font-size: 30px;
