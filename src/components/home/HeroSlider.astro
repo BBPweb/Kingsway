@@ -1,15 +1,17 @@
 ---
 import { home } from "../../data/home";
+import { Image, getImage } from "astro:assets";
 import HomeImage from "./HomeImage.astro";
 import Arrow from "./Arrow.astro";
 import FloatingIngredient from "./FloatingIngredient.astro";
-import { productCategories } from "../../data/product-categories";
-
-const orbitSlugs = ["lentils", "spices", "rice-poha-mamra", "flour", "nuts"];
-const orbitCategories = orbitSlugs.map((slug) => {
-  const category = productCategories.find((item) => item.slug === slug);
-  if (!category) throw new Error(`Missing hero category: ${slug}`);
-  return category;
+const { items: orbitCategories, initialCategoryId } = home.hero.featuredCategories;
+const activeCategory = orbitCategories.find((category) => category.id === initialCategoryId)
+  ?? orbitCategories[0];
+const categoryBackground = await getImage({
+  src: home.hero.featuredCategories.backgroundImage,
+  width: 640,
+  format: "webp",
+  quality: 85,
 });
 ---
 
@@ -124,31 +126,46 @@ const orbitCategories = orbitSlugs.map((slug) => {
       </div>
     ))}
   </div>
-  <div class="category-orbit" data-category-orbit aria-label="Featured product categories">
+  {activeCategory && <div
+    class="category-orbit"
+    data-category-orbit
+    aria-label="Featured product categories"
+    style={{ "--category-background": `url("${categoryBackground.src}")` }}
+  >
     <a
       class="orbit-active-label"
       data-category-active-label
       data-category-link
-      href="/products/spices/"
-      aria-label="Explore Spices"
-    >Spices</a>
+      href={activeCategory.href}
+      aria-label={`Explore ${activeCategory.name}`}
+    >{activeCategory.name}</a>
     <div class="orbit-ring" aria-hidden="true"></div>
     {orbitCategories.map((category, i) => (
       <button
         type="button"
-        class:list={["category-orbit-item", { "is-active": category.slug === "spices" }]}
+        class:list={["category-orbit-item", { "is-active": category.id === activeCategory.id }]}
         data-orbit-category
         data-category-title={category.name}
-        data-category-href={`/products/${category.slug}/`}
+        data-category-href={category.href}
         data-category-index={i}
-        aria-pressed={category.slug === "spices"}
+        aria-pressed={category.id === activeCategory.id}
         aria-label={`Show ${category.name}`}
       >
-        <img src={category.image} alt="" loading={i === 1 ? "eager" : "lazy"} />
+        <Image
+          src={category.image}
+          alt={category.alt}
+          width={640}
+          widths={[160, 320, 640]}
+          sizes="(max-width: 767px) 158px, (max-width: 1409px) 22vw, 310px"
+          format="webp"
+          quality={85}
+          loading={category.id === activeCategory.id ? "eager" : "lazy"}
+          decoding="async"
+        />
         <span>{category.name}</span>
       </button>
     ))}
-  </div>
+  </div>}
   <div class="home-container hero-bottom">
     <a class="hero-scroll" href="#introduction">
       <span class="scroll-line" aria-hidden="true"></span>
@@ -191,3 +208,12 @@ const orbitCategories = orbitSlugs.map((slug) => {
     aria-atomic="true"
   ></p>
 </section>
+
+<style>
+  /* Fit the supplied transparent pack groups inside the existing orbit circles. */
+  .category-orbit-item img {
+    object-fit: contain;
+    padding: 7%;
+    background: #27170e var(--category-background) center / cover no-repeat;
+  }
+</style>

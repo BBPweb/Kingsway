@@ -1,5 +1,7 @@
 // All homepage copy, destinations and imagery live here. Asset keys map to
 // home-assets.json; run npm run images:home after changing a source photograph.
+import { homeFeaturedCategories } from "./home-categories";
+
 export const navigation = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
@@ -44,6 +46,7 @@ export const home = {
   },
   tradeLink,
   hero: {
+    featuredCategories: homeFeaturedCategories,
     interval: 6500,
     scrollLabel: "Discover Kingsway",
     secondary: { label: "Explore our products", href: "/products" },
