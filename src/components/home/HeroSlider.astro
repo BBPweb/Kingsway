@@ -210,10 +210,11 @@ const categoryBackground = await getImage({
 </section>
 
 <style>
-  /* Fit the supplied transparent pack groups inside the existing orbit circles. */
+  /* Keep the full pack groups visible, with their bases on the stone surface. */
   .category-orbit-item img {
     object-fit: contain;
+    object-position: center 44%;
     padding: 7%;
-    background: #27170e var(--category-background) center / cover no-repeat;
+    background: #111820 var(--category-background) center / cover no-repeat;
   }
 </style>

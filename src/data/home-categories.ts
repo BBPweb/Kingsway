@@ -4,7 +4,7 @@ import spicesImage from "../assets/home/categories/spices.png";
 import riceImage from "../assets/home/categories/rice-poha-mamra.png";
 import flourImage from "../assets/home/categories/flour.png";
 import nutsImage from "../assets/home/categories/nuts.png";
-import woodBackground from "../assets/home/categories/dark-wood.webp";
+import podiumBackground from "../assets/home/categories/stone-podium.webp";
 
 export interface HomeFeaturedCategory {
   id: string;
@@ -23,7 +23,7 @@ export const homeFeaturedCategories: {
   initialCategoryId: string;
   items: HomeFeaturedCategory[];
 } = {
-  backgroundImage: woodBackground,
+  backgroundImage: podiumBackground,
   initialCategoryId: "spices",
   items: [
     {
