@@ -55,7 +55,7 @@ export type ProductCategoryGroup = {
 export const graceProducts: ProductCategoryGroup = {
   name: 'Grace Products',
   slug: 'grace',
-  image: '/images/Ethnicgroceryjpeg.jpeg',
+  image: '/images/GraceProducts.jpeg',
   description: 'Explore our range of Grace branded food, beverages, snacks, sauces, ingredients and specialty products.',
   categories: productCategories.filter((category) => category.name.startsWith('Grace '))
     .map((category) => ({
