@@ -53,7 +53,7 @@ export const home = {
     slides: [
       {
         eyebrow: "Kingsway International",
-        title: ["Authentic Spices,", "Global Standards"],
+        title: ["Authentic Spicess,", "Global Standards"],
         description:
           "A UK trading and distribution partner for spices, rice, pulses and ethnic grocery — built for the British trade.",
         image: "hero-spices",
