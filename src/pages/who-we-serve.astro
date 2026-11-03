@@ -166,31 +166,6 @@ const faqs = [
   description="Kingsway International delivers authentic ethnic food ingredients across the UK with dedicated commercial strategies for independent retail, cash & carry, wholesale, food service, grocery multiples, and export."
 >
   <!-- ══════════════════════════════════════════════════════════════════════════
-       BREADCRUMB BAR (Light Gradient Image Background)
-       ══════════════════════════════════════════════════════════════════════════ -->
-  <nav class="breadcrumb-bar" aria-label="Breadcrumb navigation">
-    <div class="breadcrumb-texture-overlay" aria-hidden="true"></div>
-    <div class="content-container">
-      <div class="breadcrumb-inner">
-        <ol class="breadcrumb-list" role="list">
-          <li>
-            <a href="/" class="breadcrumb-link">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 4px; vertical-align: -1px;">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
-              Home
-            </a>
-          </li>
-          <li aria-hidden="true" class="breadcrumb-sep">/</li>
-          <li class="breadcrumb-current" aria-current="page">Who We Serve</li>
-        </ol>
-       <!--<span class="breadcrumb-page-tag">UK Commercial Channels</span>-->
-      </div>
-    </div>
-  </nav>
-
-  <!-- ══════════════════════════════════════════════════════════════════════════
        INNER-PAGE EDITORIAL HERO (Realistic, Layered & Floated Architecture)
        Structured 2-Column Corporate Layout with Floating Ambient Depth
        ══════════════════════════════════════════════════════════════════════════ -->
@@ -200,11 +175,27 @@ const faqs = [
     <div class="hero-ambient-orb hero-ambient-orb--blue" aria-hidden="true"></div>
 
     <div class="content-container">
+      <!-- Reference-Style Integrated Breadcrumb -->
+      <nav class="hero-breadcrumb" aria-label="Breadcrumb navigation">
+        <ol class="hero-breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/" class="hero-breadcrumb-link" itemprop="item">
+              <span itemprop="name">Home</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+          <li aria-hidden="true" class="hero-breadcrumb-sep">/</li>
+          <li class="hero-breadcrumb-current" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">Who we serve</span>
+            <meta itemprop="position" content="2" />
+          </li>
+        </ol>
+      </nav>
+
       <div class="inner-hero-grid">
 
         <!-- Left Column: Editorial Content & Floating Translucent Card -->
         <div class="inner-hero-content" data-reveal>
-        
           <h1 class="inner-hero-title">
             A channel-led<br />
             distribution <span class="inner-hero-title-accent">strategy</span>
@@ -223,24 +214,6 @@ const faqs = [
               approach, and each has a named point of contact within the
               Kingsway team.
             </p>
-          </div>
-
-          <div class="inner-hero-actions">
-            <a href="#channels" class="btn-primary-gold">
-              <span>Explore Channels</span>
-              <span class="btn-icon-circle" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-            </a>
-
-            <a href="/contact" class="btn-secondary-navy">
-              <span>Start Trade Conversation</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
           </div>
 
           <!-- Channel Quick Nav Pills -->
@@ -992,88 +965,71 @@ const faqs = [
   }
 
   /* ══════════════════════════════════════════════════════════════════════════
-     BREADCRUMB BAR (Light Gradient Image Background)
+     REFERENCE-STYLE INTEGRATED HERO BREADCRUMB
      ══════════════════════════════════════════════════════════════════════════ */
-  .breadcrumb-bar {
+  .hero-breadcrumb {
+    margin-bottom: 2rem;
     position: relative;
-    background: linear-gradient(
-      90deg,
-      rgba(250, 249, 246, 0.95) 0%,
-      rgba(247, 239, 222, 0.91) 45%,
-      rgba(250, 249, 246, 0.96) 100%
-    ),
-    url('/images/kingsway_spice_background_under_100kb.webp') center / cover no-repeat;
-    border-bottom: 1px solid rgba(217, 164, 65, 0.25);
-    padding: 1.15rem 0;
-    overflow: hidden;
+    z-index: 5;
   }
 
-  .breadcrumb-texture-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(241, 237, 229, 0.5) 100%);
-    pointer-events: none;
-  }
-
-  .breadcrumb-inner {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .breadcrumb-list {
+  .hero-breadcrumb-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     gap: 0.65rem;
-    align-items: center;
     font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    letter-spacing: 0.04em;
+    font-size: 0.9375rem;
+    line-height: 1.4;
   }
 
-  .breadcrumb-link {
-    display: inline-flex;
-    align-items: center;
-    color: #475569;
+  .hero-breadcrumb-link {
+    color: var(--body-text);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
   }
 
-  .breadcrumb-link:hover {
+  .hero-breadcrumb-link:hover {
     color: var(--royal-navy);
   }
 
-  .breadcrumb-sep {
-    color: var(--champagne-gold);
-    font-size: 0.8rem;
+  .hero-breadcrumb-sep {
+    color: rgba(70, 81, 102, 0.45);
+    font-size: 0.9375rem;
+    font-weight: 400;
+  }
+
+  .hero-breadcrumb-current {
+    color: var(--deep-navy);
     font-weight: 600;
   }
 
-  .breadcrumb-current {
-    color: var(--deep-navy);
-    font-weight: 700;
+  /* ── Reference-Style Eyebrow with Asterisk Spark ── */
+  .hero-eyebrow-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
   }
 
-  .breadcrumb-page-tag {
-    font-family: var(--font-sans);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+  .hero-spark-icon {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
     color: var(--champagne-gold);
-    background: rgba(255, 255, 255, 0.9);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    border: 1px solid rgba(217, 164, 65, 0.35);
-    box-shadow: 0 2px 6px rgba(11, 28, 54, 0.04);
+  }
+
+  .hero-eyebrow-text {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--royal-navy);
   }
 
   /* ══════════════════════════════════════════════════════════════════════════
@@ -1436,7 +1392,7 @@ const faqs = [
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #22C55E;
+    background-color: var(--champagne-gold);
   }
 
   .pulse-ring {
@@ -1444,7 +1400,7 @@ const faqs = [
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: rgba(34, 197, 94, 0.4);
+    background-color: rgba(217, 164, 65, 0.4);
     animation: pulseWave 2s ease-out infinite;
   }
 
