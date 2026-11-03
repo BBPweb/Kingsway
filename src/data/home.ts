@@ -36,7 +36,7 @@ export const home = {
   seo: {
     title: "Kingsway International | UK Ethnic Food Trading & Distribution",
     description:
-      "Authentic spices, rice, pulses and ethnic grocery. Kingsway International is a UK trading and distribution partner for British retail, wholesale and foodservice.",
+      "Authentic spices, rice, pulses and ethnic grocery. Kingsway International is a UK trading and distribution partner for British retail, wholesale and food service",
     image: "/images/home/social.jpg",
   },
   brand: {
@@ -53,7 +53,7 @@ export const home = {
     slides: [
       {
         eyebrow: "Kingsway International",
-        title: ["Authentic Spices,", "Global Standards"],
+        title: ["Authentic spices,", "Global standards"],
         description:
           "A UK trading and distribution partner for spices, rice, pulses and ethnic grocery — built for the British trade.",
         image: "hero-spices",
@@ -63,7 +63,7 @@ export const home = {
       },
       {
         eyebrow: "From source to shelf",
-        title: ["A world of flavour.", "Closer to home."],
+        title: ["A world of flavour", "Closer to home"],
         description:
           "Sourced directly from origin, for the authentic ethnic food needs of British retail, wholesale and foodservice.",
         image: "hero-origin",
@@ -73,7 +73,7 @@ export const home = {
       },
       {
         eyebrow: "Our quality promise",
-        title: ["A commitment.", "Not a slogan."],
+        title: ["A commitment", "Not a slogan"],
         description:
           "A five-stage quality framework. And a promise to replace, refund or make it right when a product falls short.",
         image: "hero-quality",
@@ -83,7 +83,7 @@ export const home = {
       },
       {
         eyebrow: "Chosen with purpose",
-        title: ["A focused portfolio.", "A world of possibility."],
+        title: ["A focused portfolio", "A world of possibility"],
         description:
           "Spices, rice, pulses and ethnic groceries. Every line chosen with the needs of the British trade in mind.",
         image: "hero-portfolio",
@@ -95,7 +95,7 @@ export const home = {
   },
   intro: {
     eyebrow: "Rooted in origin. Built for Britain.",
-    title: ["Authentic food.", "Thoughtfully sourced.", "Reliably delivered."],
+    title: ["Authentic food", "Thoughtfully sourced", "Reliably delivered"],
     body: "Kingsway International is a UK-based trading and distribution company serving the authentic ethnic food needs of British retail, wholesale and foodservice buyers.",
     detail:
       "We source directly from origin, operate quality as a framework, and treat every case we deliver as a promise made in our name.",
@@ -104,14 +104,14 @@ export const home = {
   },
   threads: {
     eyebrow: "The Kingsway approach",
-    title: "Three threads that run through everything we do.",
+    title: "Three threads that run through everything we do",
     items: [
       {
         number: "01",
         eyebrow: "Our journey",
-        title: "A company built on conviction.",
+        title: "A company built on conviction",
         description:
-          "Why we started Kingsway International — and the convictions the company was built on.",
+          "Why we started Kingsway International and the convictions the company was built on.",
         image: "journey",
         alt: "A map of the world formed from spices and grains",
         link: { label: "Read our story", href: "/about" },
@@ -119,9 +119,9 @@ export const home = {
       {
         number: "02",
         eyebrow: "From source to shelf",
-        title: "Quality at every step.",
+        title: "Quality at every step",
         description:
-          "Our five-stage quality framework — observable, auditable, lived.",
+          "Our five-stage quality framework observable, auditable, lived.",
         image: "quality",
         alt: "A food professional checking ingredients in a kitchen",
         link: { label: "Explore the quality charter", href: "/quality" },
@@ -129,7 +129,7 @@ export const home = {
       {
         number: "03",
         eyebrow: "What we trade",
-        title: "A range with purpose.",
+        title: "A range with purpose",
         description:
           "A focused portfolio across spices, rice, pulses and ethnic groceries.",
         image: "portfolio",
@@ -140,9 +140,9 @@ export const home = {
   },
   quality: {
     eyebrow: "Our quality promise",
-    title: ["A commitment,", "not a slogan."],
+    title: ["A commitment,", "not a slogan"],
     quote:
-      "If a product does not match the quality we have promised, we will replace it, refund it, or make it right — without debate.",
+      "If a product does not match the quality we have promised, we will replace it, refund it, or make it right, without debate.",
     detail: "Our five-stage quality framework is how we keep that promise.",
     link: { label: "How the framework works", href: "/quality" },
     image: "quality-promise",
@@ -240,7 +240,7 @@ export const home = {
     productLinkLabel: "Explore product",
     closingNote: "Selected with purpose",
     eyebrow: "The ingredients of your business",
-    title: "Good food starts here.",
+    title: "Good food starts here",
     description:
       "A considered range of authentic ingredients, for the shelves and kitchens you serve.",
     link: { label: "Explore the full portfolio", href: "/products" },
@@ -249,9 +249,9 @@ export const home = {
       {
         title: "Whole spices",
         category: "Aromatic & distinctive",
-        origin: "Origin: enquire for individual lines",
+        // origin: "Origin: enquire for individual lines",
         description:
-          "The character of whole spice. Explore our current spice range.",
+          "Retaining full aroma and natural freshness from origin to kitchen.",
         image: "whole-spices",
         alt: "Whole spices in a brass bowl",
         href: "/products/spices/",
@@ -260,7 +260,7 @@ export const home = {
       {
         title: "Ground spices",
         category: "Depth & warmth",
-        origin: "Origin: enquire for individual lines",
+        // origin: "Origin: enquire for individual lines",
         description:
           "Colour, warmth and flavour for everyday cooking and professional kitchens.",
         image: "ground-spices",
@@ -271,7 +271,7 @@ export const home = {
       {
         title: "Rice",
         category: "The foundation of a meal",
-        origin: "Origin: enquire for individual lines",
+        // origin: "Origin: enquire for individual lines",
         description:
           "From everyday meals to shared feasts. Discover our rice, poha and mamra.",
         image: "rice",
@@ -282,7 +282,7 @@ export const home = {
       {
         title: "Pulses & lentils",
         category: "Everyday nourishment",
-        origin: "Origin: enquire for individual lines",
+        // origin: "Origin: enquire for individual lines",
         description:
           "A kitchen essential, with a place in food traditions across the world.",
         image: "pulses",
@@ -294,9 +294,9 @@ export const home = {
   },
   stories: {
     eyebrow: "The Kingsway journal",
-    title: "Beyond the ingredient.",
+    title: "Beyond the ingredient",
     description:
-      "Recipes, origin stories and cooking tips. The food behind the ingredients — stories from the kitchens we trade for.",
+      "Recipes, origin stories and cooking tips. The food behind the ingredients, stories from the kitchens we trade for.",
     link: { label: "Visit Food Stories", href: "/food-stories" },
     items: [
       {
@@ -331,7 +331,7 @@ export const home = {
   cta: {
     alt: "A conversation about ingredients and trade around a table",
     eyebrow: "Let’s build something lasting",
-    title: ["Start a trade", "conversation."],
+    title: ["Start a trade", "conversation"],
     description: "We answer every enquiry within one business day.",
     link: { label: "Send an enquiry", href: "/contact" },
     image: "trade",
