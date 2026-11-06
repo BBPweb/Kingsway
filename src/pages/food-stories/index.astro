@@ -169,24 +169,27 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
         <div class="stream-pill-box">
           <span class="stream-letter" aria-hidden="true">R</span>
           <div class="stream-content">
-            <h3 class="stream-name">Authentic Recipes</h3>
-            <p class="stream-desc">Ingredient-anchored recipes across South Asian, African, Middle Eastern and Caribbean cuisines.</p>
+            <h3 class="stream-name">Recipes</h3>
+            <p class="stream-desc">Ingredient-anchored recipes showcasing our entire pantry range, from aromatic biryanis and lentil dhal to traditional breads, curries, and regional favorites.</p>
+            <a href="#articles" class="stream-link" data-story-category-target="Recipe">Browse recipes →</a>
           </div>
         </div>
 
         <div class="stream-pill-box">
           <span class="stream-letter" aria-hidden="true">O</span>
           <div class="stream-content">
-            <h3 class="stream-name">Origin Stories</h3>
-            <p class="stream-desc">Where spices and grains come from, how they are harvested, and the traditions behind them.</p>
+            <h3 class="stream-name">Origin &amp; sourcing</h3>
+            <p class="stream-desc">How our pulses, grains, nuts, and spices are grown and processed—told from the perspective of the dedicated growers behind every ingredient.</p>
+            <a href="#articles" class="stream-link" data-story-category-target="Origin story">Read origin stories →</a>
           </div>
         </div>
 
         <div class="stream-pill-box">
           <span class="stream-letter" aria-hidden="true">T</span>
           <div class="stream-content">
-            <h3 class="stream-name">Kitchen Advice</h3>
-            <p class="stream-desc">Short, practical advice on getting the best performance from staples in commercial and home kitchens.</p>
+            <h3 class="stream-name">Cooking &amp; pantry tips</h3>
+            <p class="stream-desc">Practical kitchen advice—from cooking fluffy basmati rice and tempering spices in ghee to choosing the right flours and lentils for every dish.</p>
+            <a href="#articles" class="stream-link" data-story-category-target="Cooking tip">See cooking tips →</a>
           </div>
         </div>
       </div>
@@ -443,6 +446,16 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
         tab.setAttribute('aria-selected', 'true');
         activeCategory = tab.getAttribute('data-category') || 'all';
         filterCards();
+      });
+    });
+
+    document.querySelectorAll('.stream-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        const category = link.getAttribute('data-story-category-target');
+        const targetTab = Array.from(tabs).find(
+          (tab) => tab.getAttribute('data-category') === category
+        );
+        targetTab?.click();
       });
     });
 
@@ -962,6 +975,20 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
     line-height: 1.5;
     color: var(--body-text);
     margin: 0;
+  }
+
+  .stream-link {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    color: var(--royal-navy);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .stream-link:hover {
+    color: var(--champagne-gold);
   }
 
   /* ══════════════════════════════════════════════════════════════════════════
