@@ -138,8 +138,8 @@ export function initAbout() {
       frame = 0;
       const path = document.querySelector<HTMLElement>("[data-source-path]");
       const line = document.querySelector<HTMLElement>("[data-source-line]");
-      const ingredient = document.querySelector<HTMLElement>("[data-source-ingredient]");
-      if (!path || !line || !ingredient) return;
+      const marker = document.querySelector<HTMLElement>("[data-source-marker]");
+      if (!path || !line || !marker) return;
       const rect = path.getBoundingClientRect();
       const progress = Math.min(1, Math.max(0, (innerHeight * 0.78 - rect.top) / (rect.height * 0.72)));
       line.style.setProperty("--source-progress", `${progress * 100}%`);
@@ -148,9 +148,13 @@ export function initAbout() {
       const index = Math.min(targets.length - 1, Math.floor(progress * targets.length));
       const pathRect = path.getBoundingClientRect();
       const targetRect = targets[index].getBoundingClientRect();
-      ingredient.style.setProperty(
-        "--ingredient-x",
-        `${Math.max(0, targetRect.left - pathRect.left)}px`,
+      marker.style.setProperty(
+        "--marker-x",
+        `${Math.max(0, targetRect.left - pathRect.left + (targetRect.width - marker.offsetWidth) / 2)}px`,
+      );
+      marker.style.setProperty(
+        "--marker-y",
+        `${Math.max(0, targetRect.top - pathRect.top + (targetRect.height - marker.offsetHeight) / 2)}px`,
       );
     };
     window.addEventListener(

@@ -3,7 +3,7 @@
   --about-tint: #eef2ed;
   --about-ink: #262722;
   --about-muted: #696a64;
-  --about-blue: #1e3794;
+  --deep-navy: #0B1C36;
   --about-gold: #f9c66a;
   --about-rule: #d9d9d1;
   color: var(--about-ink);
@@ -35,7 +35,7 @@
 
 .about-heading {
   margin: 0;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-serif);
   font-size: clamp(36px, 4.2vw, 58px);
   font-weight: 400;
@@ -61,7 +61,7 @@
   margin-top: 0;
   overflow: hidden;
   background: var(--about-paper);
-  color: var(--about-blue);
+  color: var(--deep-navy);
 }
 
 .about-hero::before {
@@ -113,7 +113,7 @@
 
 .about-hero h1 {
   margin: 0;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-serif);
   font-size: clamp(52px, 5.2vw, 80px);
   font-weight: 400;
@@ -169,7 +169,7 @@
   min-height: 44px;
   align-items: center;
   gap: 10px;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-sans);
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -260,7 +260,7 @@
 
 .about-story-nav a[aria-current="step"],
 .about-story-nav a.is-active {
-  color: var(--about-blue);
+  color: var(--deep-navy);
 }
 
 .about-story-progress {
@@ -350,7 +350,7 @@
 .about-mission-copy h3,
 .about-source-path h3 {
   margin: 0 0 16px;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-serif);
   font-size: 32px;
   font-weight: 400;
@@ -372,7 +372,7 @@
 .about-source {
   padding-block: 110px;
   overflow: hidden;
-  background: #1e3794;
+  background: var(--deep-navy);
   color: #fff;
 }
 
@@ -443,7 +443,7 @@
   place-items: center;
   border: 1px solid var(--about-gold);
   border-radius: 50%;
-  background: #1e3794;
+  background: var(--deep-navy);
   color: var(--about-gold);
   font-size: 9px;
 }
@@ -467,15 +467,18 @@
   text-transform: uppercase;
 }
 
-.about-source-ingredient {
+.about-source-marker {
   position: absolute;
-  top: -30px;
+  top: 8px;
   left: 0;
   z-index: 2;
-  width: 58px;
-  height: 58px;
-  object-fit: contain;
-  transform: translateX(var(--ingredient-x, 0));
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--deep-navy);
+  border-radius: 50%;
+  outline: 1px solid var(--about-gold);
+  background: var(--about-gold);
+  transform: translateX(var(--marker-x, 0));
 }
 
 .about-source > .about-container > .home-text-link {
@@ -584,7 +587,7 @@
 }
 
 .about-mission-count {
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-sans);
   font-size: 11px;
 }
@@ -604,7 +607,7 @@
   place-items: center;
   border: 1px solid var(--about-rule);
   background: transparent;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   cursor: pointer;
 }
 
@@ -622,8 +625,8 @@
 }
 
 .about-mission-dots button[aria-pressed="true"] span {
-  background: var(--about-blue);
-  box-shadow: 0 0 0 4px rgb(30 55 148 / 12%);
+  background: var(--deep-navy);
+  box-shadow: 0 0 0 4px rgb(11 28 54 / 12%);
 }
 
 .about-mission-arrows button:last-child svg {
@@ -708,7 +711,7 @@
 
 .about-value h3 {
   margin: 0;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-serif);
   font-size: 22px;
   font-weight: 400;
@@ -727,7 +730,7 @@
   left: 2px;
   width: 12px;
   height: 1px;
-  background: var(--about-blue);
+  background: var(--deep-navy);
   content: "";
 }
 
@@ -807,7 +810,7 @@
 .about-vision blockquote {
   max-width: 1050px;
   margin: 0;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-serif);
   font-size: 25px;
   line-height: 1.5;
@@ -860,7 +863,7 @@
   height: 36px;
   place-items: center;
   background: var(--about-gold);
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-size: 19px;
 }
 
@@ -872,7 +875,7 @@
 .about-category h3,
 .about-packs h3 {
   margin: 0 0 8px;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-serif);
   font-size: 24px;
   font-weight: 400;
@@ -902,7 +905,7 @@
 .about-pack-images a {
   display: grid;
   gap: 11px;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-sans);
   font-size: 11px;
 }
@@ -928,7 +931,7 @@
   gap: 14px;
   padding-block: 12px;
   border-bottom: 1px solid currentColor;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-size: 12px;
   font-weight: 700;
 }
@@ -948,7 +951,7 @@
 .about-quality blockquote {
   max-width: 570px;
   margin: 30px 0;
-  color: var(--about-blue);
+  color: var(--deep-navy);
   font-family: var(--font-serif);
   font-size: 25px;
   line-height: 1.5;
@@ -1024,7 +1027,7 @@
   align-items: center;
   overflow: hidden;
   padding-block: 80px;
-  background: #1e3794;
+  background: var(--deep-navy);
   color: white;
 }
 
@@ -1151,7 +1154,7 @@
   .about-source-path ol { grid-template-columns: 1fr; gap: 25px; }
   .about-source-path li { padding: 0 0 0 30px; }
   .about-source-target { top: 0; left: -28px; width: 25px; height: 25px; }
-  .about-source-ingredient { top: -8px; left: -18px; width: 38px; height: 38px; }
+  .about-source-marker { top: 0; left: -2px; transform: translateY(var(--marker-y, 0)); }
   .about-source-path h3 { margin-bottom: 7px; }
   .about-mission { padding-block: 72px; }
   .about-mission-heading { grid-template-columns: 1fr; gap: 18px; margin-bottom: 24px; }
