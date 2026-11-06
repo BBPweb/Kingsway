@@ -36,7 +36,7 @@ export const productCategories: ProductCategory[] = folders.map((name) => {
     .filter((file) => /\.(png|jpe?g|webp|avif)$/i.test(file))
     .sort((a, b) => a.localeCompare(b, 'en')).map((sourceFile) => ({
       name: productName(sourceFile), sourceFile,
-      image: `${publicRoot}${encodeURIComponent(name)}/${encodeURIComponent(sourceFile)}`,
+      image: `${publicRoot}${encodeURI(name)}/${encodeURI(sourceFile)}`,
     }));
   if (!products.length) throw new Error(`No product images in ${name}`);
   return { name, ...details, products };

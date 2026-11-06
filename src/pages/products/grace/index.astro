@@ -1,237 +1,657 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import Hero from '../../../components/sections/Hero.astro';
-import Eyebrow from '../../../components/ui/Eyebrow.astro';
-import SectionTitle from '../../../components/ui/SectionTitle.astro';
-import GraceBreadcrumbs from '../../../components/products/GraceBreadcrumbs.astro';
+import ProductCard from '../../../components/products/ProductCard.astro';
 import { graceProducts } from '../../../data/product-categories';
+
+const totalCategories = graceProducts.categories.length;
+const totalProducts = graceProducts.categories.reduce((acc, cat) => acc + (cat.products?.length || 0), 0);
 ---
-<BaseLayout title="Grace Products | Kingsway International" description={graceProducts.description}>
-  <Hero eyebrow="Our portfolio" title={"Grace Products\nOur range"}
-    subtitle={graceProducts.description} backgroundImage={graceProducts.image} />
-  <section class="section section--white section--narrow">
-    <div class="container container--narrow">
-      <GraceBreadcrumbs />
-      <p class="prose">{graceProducts.description}</p>
-    </div>
-  </section>
-  <section
-    class="section section--tint"
-    aria-labelledby="categories-heading"
-  >
-    <div class="container">
-      <div class="section-head">
-        <Eyebrow>Categories</Eyebrow>
-        <SectionTitle id="categories-heading">
-          Browse our Grace product categories
-        </SectionTitle>
-      </div>
 
-      <div class="grid grid--4">
-        {graceProducts.categories.map((cat) => (
-          <a
-            class="category-card"
-            href={`/products/grace/${cat.slug}/`}
-            aria-label={`View ${cat.name} products`}
-          >
+<BaseLayout
+  title="Grace Products | Wholesale Food & Beverages | Kingsway International"
+  description="Explore the complete Grace wholesale portfolio distributed by Kingsway International: tropical rhythms, coconut waters, plantain chips, sauces, seasonings, canned fish and Jamaican jerk specialties across the UK."
+>
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       HERO SECTION (Corporate Luxury, Breadcrumb, Heading, Description, Image Only)
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <header class="grace-hero" aria-label="Grace products introduction">
+    <div class="hero-ambient-orb hero-ambient-orb--gold" aria-hidden="true"></div>
+    <div class="hero-ambient-orb hero-ambient-orb--blue" aria-hidden="true"></div>
+
+    <div class="content-container">
+      <div class="grace-hero-grid">
+        <!-- Left Column: Breadcrumb, Heading and Description -->
+        <div class="grace-hero-content">
+          <!-- Breadcrumb Navigation -->
+          <nav class="hero-breadcrumb" aria-label="Breadcrumb navigation">
+            <ol class="hero-breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+              <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/" class="hero-breadcrumb-link" itemprop="item">
+                  <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+              </li>
+              <li aria-hidden="true" class="hero-breadcrumb-sep">/</li>
+              <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/products" class="hero-breadcrumb-link" itemprop="item">
+                  <span itemprop="name">Products</span>
+                </a>
+                <meta itemprop="position" content="2" />
+              </li>
+              <li aria-hidden="true" class="hero-breadcrumb-sep">/</li>
+              <li class="hero-breadcrumb-current" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Grace Products</span>
+                <meta itemprop="position" content="3" />
+              </li>
+            </ol>
+          </nav>
+
+          <div class="grace-hero-kicker-row">
+            <span class="grace-hero-kicker">OFFICIAL UK WHOLESALE PORTFOLIO</span>
+            <span class="hero-count-badge">
+              <span class="badge-num">{totalProducts}</span> Products Across {totalCategories} Ranges
+            </span>
+          </div>
+
+          <h1 class="grace-hero-title">
+            Grace Foods Wholesale Range
+          </h1>
+
+          <p class="grace-hero-subtitle">
+            Authentic Caribbean and world food favourites, beverages, snacks, seasonings and pantry staples, supplied with nationwide UK delivery from our Leicester central distribution depot.
+          </p>
+        </div>
+
+        <!-- Right Column: Sculpted Commercial Category Image Only -->
+        <div class="grace-hero-visual">
+          <div class="visual-sculpture-container">
             <img
-              src={cat.image}
-              alt={cat.name}
-              class="category-card-image"
-              loading="lazy"
+              src={graceProducts.image}
+              alt="Grace Foods Wholesale Portfolio"
+              class="hero-visual-img"
+              loading="eager"
             />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-            <div class="category-card-body">
-              <h3 class="category-card-title">{cat.name}</h3>
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       SECOND SECTION: GRACE CATEGORIES CATALOGUE (Immediate High-CRO Focus)
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="categories-section" id="grace-categories" aria-labelledby="grace-categories-heading">
+    <div class="content-container">
+      <!-- Section Header -->
+      <div class="catalogue-section-header">
+        <div class="header-left">
+          <span class="catalogue-kicker">BROWSE BY RANGE</span>
+          <h2 id="grace-categories-heading" class="catalogue-main-title">
+            Explore Grace product categories
+          </h2>
+          <p class="catalogue-subtitle">
+            Select a category below to view all commercial product lines, pack specifications and trade enquiry options.
+          </p>
+        </div>
 
-              <p class="category-card-text">
-                {cat.description}
-              </p>
-
-              <span class="category-card-link">
-                View products →
-              </span>
-            </div>
+        <div class="catalogue-stats-box">
+          <a href="/contact?subject=Grace%20Price%20List" class="btn-price-list">
+            <span>Request Grace Price List</span>
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" class="btn-arrow" aria-hidden="true">
+              <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </a>
-        ))}
+        </div>
+      </div>
+
+      <!-- Categories Grid -->
+      <div class="catalogue-grid">
+        {graceProducts.categories.map((cat) => {
+          const skuCount = cat.products?.length || 0;
+          const linkHref = `/products/grace/${cat.slug}/`;
+
+          return (
+            <ProductCard
+              class="category-card"
+              name={cat.name}
+              image={cat.image}
+              description={cat.description}
+              href={linkHref}
+              enquiryHref={`/contact?subject=${encodeURIComponent('Grace - ' + cat.name)}`}
+              productCount={skuCount}
+            />
+          );
+        })}
       </div>
     </div>
   </section>
 
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       THIRD SECTION: WHOLESALE TRADE BANNER
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="trade-banner-section" aria-labelledby="trade-banner-heading">
+    <div class="content-container">
+      <div class="trade-banner-card">
+        <div class="banner-content">
+          <span class="banner-kicker">UK WHOLESALE DISTRIBUTION</span>
+          <h2 id="trade-banner-heading" class="banner-title">
+            Distribute Grace products in your store or restaurant
+          </h2>
+          <p class="banner-text">
+            We partner with grocery multiples, cash &amp; carry wholesalers, and independent retailers across the UK, offering reliable stock continuity, competitive tiered wholesale rates, and flexible pallet consolidations.
+          </p>
+          <div class="banner-actions">
+            <a href="/contact?subject=Grace%20Distribution%20Enquiry" class="banner-primary-btn">
+              <span>Start a trade conversation</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="btn-arrow" aria-hidden="true">
+                <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/products" class="banner-back-link">
+              ← Back to All Products
+            </a>
+          </div>
+        </div>
+
+        <div class="banner-specs-list">
+          <div class="spec-item">
+            <span class="spec-bullet" aria-hidden="true">✓</span>
+            <div>
+              <strong>Authentic Grace Brands</strong>
+              <p>Tropical Rhythms, Encona, Dunn's River, Coconut Water &amp; more.</p>
+            </div>
+          </div>
+          <div class="spec-item">
+            <span class="spec-bullet" aria-hidden="true">✓</span>
+            <div>
+              <strong>Consolidated Mixed Pallets</strong>
+              <p>Optimize your freight costs with flexible mixed product orders.</p>
+            </div>
+          </div>
+          <div class="spec-item">
+            <span class="spec-bullet" aria-hidden="true">✓</span>
+            <div>
+              <strong>Next-Day UK Dispatch</strong>
+              <p>Central UK distribution ensuring dependable shelf continuity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
 <style>
-  .section {
-    padding: 5rem 0;
+  /* ══════════════════════════════════════════════════════════════════════════
+     COLOR PALETTE & DESIGN SYSTEM
+     ══════════════════════════════════════════════════════════════════════════ */
+  :root {
+    --deep-navy: #0B1C36;
+    --royal-navy: #173A78;
+    --champagne-gold: #D9A441;
+    --gold-light: #F4BF4F;
+    --gold-soft-bg: rgba(217, 164, 65, 0.12);
+    --gold-border: rgba(217, 164, 65, 0.35);
+    --warm-white: #FAF9F6;
+    --light-beige: #F1EDE5;
+    --surface-white: #FFFFFF;
+    --rule-subtle: rgba(11, 28, 54, 0.08);
+    --rule-border: #E5E1D8;
+    --ink-primary: #0B1C36;
+    --ink-body: #465166;
+    --ink-soft: #637085;
+    --font-serif: "Cinzel", "Playfair Display", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   }
 
-  .section--white {
-    background-color: #ffffff;
-  }
-
-  .section--tint {
-    background-color: var(--light-tint);
-  }
-
-  .section--narrow {
-    padding: 4rem 0 3rem;
-  }
-
-  .container {
-    max-width: 1240px;
+  .content-container {
+    max-width: 1360px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 clamp(1.25rem, 3.5vw, 3rem);
   }
 
-  .container--narrow {
-    max-width: 880px;
+  /* ══════════════════════════════════════════════════════════════════════════
+     HERO SECTION
+     ══════════════════════════════════════════════════════════════════════════ */
+  .grace-hero {
+    position: relative;
+    background: linear-gradient(180deg, #FAF9F6 0%, #F5F1E8 100%);
+    padding: clamp(1.75rem, 3vw, 2.75rem) 0 clamp(2rem, 3.5vw, 3rem);
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule-border);
   }
 
-  .section-head {
-    max-width: 880px;
-    margin-bottom: 3rem;
+  .hero-ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.14;
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .prose {
-    font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--ink-soft);
-    margin: 0 0 1.5rem;
-    max-width: 700px;
+  .hero-ambient-orb--gold {
+    width: 440px;
+    height: 440px;
+    top: -100px;
+    right: 5%;
+    background: radial-gradient(circle, var(--champagne-gold), transparent 70%);
   }
 
-  .prose strong {
-    color: var(--primary);
-    font-weight: 600;
+  .hero-ambient-orb--blue {
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    left: -100px;
+    background: radial-gradient(circle, var(--royal-navy), transparent 70%);
   }
 
-  .prose ul {
-    max-width: 700px;
-    margin: 0 0 1.5rem;
-    padding-left: 1.25rem;
-    font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--ink-soft);
+  /* Breadcrumb Navigation */
+  .hero-breadcrumb {
+    margin-bottom: 0.35rem;
+    position: relative;
+    z-index: 1;
   }
 
-  .prose li {
-    margin-bottom: 0.5rem;
-  }
-
-  .prose p:last-child {
-    margin-bottom: 0;
-  }
-
-  .cta-row {
-    margin-top: 2rem;
-  }
-
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+  .hero-breadcrumb-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-  }
-
-  .two-col-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  .grid {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .grid--4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .category-card {
-    background: #ffffff;
-    display: flex;
-    text-decoration: none;
-    color: inherit;
-    flex-direction: column;
-    border: 1px solid var(--rule);
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .category-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(8, 44, 34, 0.06);
-  }
-
-  .category-card-image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: contain;
-  }
-
-  .category-card-body {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    padding: 1.25rem 1.25rem 1.5rem;
-  }
-
-  .category-card-title {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.25;
-    color: var(--primary);
-    margin: 0 0 0.625rem;
-  }
-
-  .category-card-text {
+    gap: 0.65rem;
     font-family: var(--font-sans);
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--grey);
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .hero-breadcrumb-link {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .hero-breadcrumb-link:hover {
+    color: var(--champagne-gold);
+  }
+
+  .hero-breadcrumb-sep {
+    color: #C8C3BA;
+    font-size: 0.75rem;
+    user-select: none;
+  }
+
+  .hero-breadcrumb-current {
+    color: var(--deep-navy);
+    font-weight: 700;
+  }
+
+  /* Grace Hero Grid */
+  .grace-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .grace-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .grace-hero-kicker-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .grace-hero-kicker {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--champagne-gold);
+    text-transform: uppercase;
+  }
+
+  .hero-count-badge {
+    background: rgba(11, 28, 54, 0.92);
+    backdrop-filter: blur(8px);
+    color: var(--warm-white);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 9999px;
+    border: 1px solid var(--gold-border);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .badge-num {
+    color: var(--champagne-gold);
+    font-weight: 800;
+  }
+
+  .grace-hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.35rem, 4.2vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--deep-navy);
     margin: 0;
   }
 
-  .category-card-link {
+  .grace-hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    line-height: 1.68;
+    color: var(--ink-body);
+    margin: 0;
+    max-width: 600px;
+  }
+
+  /* Sculpted Image Visual Container */
+  .grace-hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .visual-sculpture-container {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 16px 38px -8px rgba(11, 28, 54, 0.12),
+                0 0 0 1px rgba(217, 164, 65, 0.28);
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-visual-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .visual-sculpture-container:hover .hero-visual-img {
+    transform: scale(1.03);
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     SECOND SECTION: GRACE CATEGORIES CATALOGUE
+     ══════════════════════════════════════════════════════════════════════════ */
+  .categories-section {
+    padding: clamp(2.5rem, 4.5vw, 4.5rem) 0;
+    background: #FAF9F6;
+  }
+
+  .catalogue-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule-border);
+    flex-wrap: wrap;
+  }
+
+  .header-left {
+    max-width: 680px;
+  }
+
+  .catalogue-kicker {
     display: inline-block;
-    margin-top: auto;
-    padding-top: 1rem;
     font-family: var(--font-sans);
     font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--champagne-gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .catalogue-main-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.85rem, 3.2vw, 2.65rem);
+    font-weight: 400;
+    line-height: 1.18;
+    color: var(--deep-navy);
+    margin: 0 0 0.75rem;
+  }
+
+  .catalogue-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-body);
+    margin: 0;
+  }
+
+  .btn-price-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--deep-navy);
+    color: var(--warm-white);
+    padding: 0.85rem 1.45rem;
+    border-radius: 9999px;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
     font-weight: 700;
-    color: var(--primary);
-    letter-spacing: 0.04em;
+    text-decoration: none;
+    border: 1px solid var(--gold-border);
+    transition: all 0.2s ease;
   }
 
-  @media (max-width: 1080px) {
-    .grid--4 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  .btn-price-list:hover {
+    background: var(--royal-navy);
+    transform: translateY(-2px);
   }
 
-  @media (max-width: 880px) {
-    .two-col {
+  /* Categories Grid */
+  /* ══════════════════════════════════════════════════════════════════════════
+     THIRD SECTION: WHOLESALE TRADE BANNER
+     ══════════════════════════════════════════════════════════════════════════ */
+  .trade-banner-section {
+    padding: 0 0 clamp(4rem, 7vw, 7rem);
+    background: #FAF9F6;
+  }
+
+  .trade-banner-card {
+    background: linear-gradient(135deg, var(--deep-navy) 0%, #132747 100%);
+    border-radius: 24px;
+    padding: clamp(2.5rem, 4.5vw, 4rem);
+    color: var(--warm-white);
+    display: grid;
+    grid-template-columns: 1.25fr 0.85fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: center;
+    border: 1px solid rgba(217, 164, 65, 0.25);
+    box-shadow: 0 20px 48px -10px rgba(11, 28, 54, 0.22);
+  }
+
+  .banner-kicker {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--champagne-gold);
+    text-transform: uppercase;
+    margin-bottom: 0.65rem;
+  }
+
+  .banner-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 2.75vw, 2.45rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--warm-white);
+    margin: 0 0 1rem;
+  }
+
+  .banner-text {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: #D1D8E3;
+    margin: 0 0 2rem;
+    max-width: 620px;
+  }
+
+  .banner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .banner-primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: var(--champagne-gold);
+    color: var(--deep-navy);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    padding: 0.95rem 1.85rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(217, 164, 65, 0.3);
+  }
+
+  .banner-primary-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(217, 164, 65, 0.4);
+  }
+
+  .banner-back-link {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #BAC7DA;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .banner-back-link:hover {
+    color: var(--champagne-gold);
+  }
+
+  /* Specs List */
+  .banner-specs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-left: clamp(1rem, 2vw, 2rem);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .spec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .spec-bullet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(217, 164, 65, 0.18);
+    color: var(--champagne-gold);
+    font-weight: 800;
+    font-size: 0.8125rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .spec-item strong {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--warm-white);
+    margin-bottom: 0.25rem;
+  }
+
+  .spec-item p {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #BAC7DA;
+    margin: 0;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     RESPONSIVE BREAKPOINTS
+     ══════════════════════════════════════════════════════════════════════════ */
+  @media (max-width: 960px) {
+    .grace-hero-grid {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
+      text-align: left;
     }
-  }
 
-  @media (max-width: 560px) {
-    .grid--4 {
+    .grace-hero-visual {
+      order: -1;
+      max-width: 440px;
+    }
+
+    .catalogue-section-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .trade-banner-card {
       grid-template-columns: 1fr;
     }
 
-    .section {
-      padding: 3.5rem 0;
+    .banner-specs-list {
+      padding-left: 0;
+      border-left: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 1.75rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .visual-sculpture-container {
+      border-radius: 20px;
     }
 
-    .container {
-      padding: 0 1.25rem;
+    .banner-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .banner-primary-btn {
+      justify-content: center;
+    }
+
+    .banner-back-link {
+      text-align: center;
     }
   }
 </style>
