@@ -16,11 +16,19 @@ const highlightStart = title.indexOf(highlight);
   <div class="editorial-orb editorial-orb--gold" aria-hidden="true"></div>
   <div class="editorial-orb editorial-orb--blue" aria-hidden="true"></div>
   <div class="editorial-container">
-    <nav class="editorial-breadcrumb" aria-label="Breadcrumb navigation">
-      <ol>
-        <li><a href="/">Home</a></li>
-        <li aria-hidden="true">/</li>
-        <li aria-current="page">{breadcrumb}</li>
+    <nav class="hero-breadcrumb editorial-breadcrumb" aria-label="Breadcrumb navigation">
+      <ol class="hero-breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" class="hero-breadcrumb-link" itemprop="item">
+            <span itemprop="name">Home</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li aria-hidden="true" class="hero-breadcrumb-sep">/</li>
+        <li class="hero-breadcrumb-current" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">{breadcrumb}</span>
+          <meta itemprop="position" content="2" />
+        </li>
       </ol>
     </nav>
     <div class="editorial-hero-grid">

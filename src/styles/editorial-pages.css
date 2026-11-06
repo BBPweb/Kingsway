@@ -26,7 +26,7 @@
 .editorial-hero {
   position: relative;
   overflow: hidden;
-  padding: 4.5rem 0 5rem;
+  padding: 2rem 0 clamp(3rem, 4.5vw, 4.5rem);
   background: linear-gradient(135deg, #FAF9F6 0%, #FFFFFF 50%, #F4F1E8 100%);
   border-bottom: 1px solid rgba(229, 229, 229, 0.6);
 }
@@ -54,24 +54,53 @@
   background: radial-gradient(circle, rgba(23, 58, 120, 0.08), transparent 70%);
 }
 
+/* Reference-Style Integrated Breadcrumb */
+.hero-breadcrumb,
 .editorial-breadcrumb {
   position: relative;
   margin-bottom: 2rem;
-  font-size: 0.9375rem;
+  z-index: 5;
 }
 
+.hero-breadcrumb-list,
 .editorial-breadcrumb ol {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.65rem;
   list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.4;
 }
 
-.editorial-breadcrumb a { color: var(--ink-soft); }
-.editorial-breadcrumb a:hover { color: var(--primary-dark); }
-.editorial-breadcrumb [aria-hidden] { color: #87909E; }
-.editorial-breadcrumb [aria-current] { color: var(--primary); font-weight: 600; }
+.hero-breadcrumb-link,
+.editorial-breadcrumb a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.hero-breadcrumb-link:hover,
+.editorial-breadcrumb a:hover {
+  color: var(--primary-dark);
+}
+
+.hero-breadcrumb-sep,
+.editorial-breadcrumb [aria-hidden] {
+  color: rgba(70, 81, 102, 0.45);
+  font-size: 0.9375rem;
+  font-weight: 400;
+}
+
+.hero-breadcrumb-current,
+.editorial-breadcrumb [aria-current] {
+  color: var(--primary);
+  font-weight: 600;
+}
 
 .editorial-hero-grid {
   position: relative;
@@ -232,7 +261,7 @@
 }
 
 @media (max-width: 760px) {
-  .editorial-hero { padding: 2.5rem 0 3.5rem; }
+  .editorial-hero { padding: 2rem 0 3.5rem; }
   .editorial-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
   .editorial-hero-media img { aspect-ratio: 16 / 10; }
   .editorial-page .editorial-container,
