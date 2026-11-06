@@ -50,9 +50,12 @@ function isActive(href: string): boolean {
       </ul>
     </nav>
 
-    <!-- Desktop CTA -->
+    <!-- Desktop CTA (Redesigned Curved Pill) -->
     <a href="/contact" class="header-cta">
-      Start a trade conversation
+      <span>Start a trade conversation</span>
+      <svg class="header-cta-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14m-6-6 6 6-6 6" />
+      </svg>
     </a>
 
     <!-- Mobile hamburger -->
@@ -98,7 +101,12 @@ function isActive(href: string): boolean {
   </nav>
 
   <div class="drawer-cta-wrap">
-    <a href="/contact" class="drawer-cta">Start a trade conversation</a>
+    <a href="/contact" class="drawer-cta">
+      <span>Start a trade conversation</span>
+      <svg class="drawer-cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14m-6-6 6 6-6 6" />
+      </svg>
+    </a>
   </div>
 </div>
 
@@ -264,25 +272,48 @@ function isActive(href: string): boolean {
     border-radius: 1px;
   }
 
-  /* ── Desktop CTA ── */
+  /* ── Desktop CTA (Curved Pill Redesign) ── */
   .header-cta {
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
-    padding: 0.6875rem 1.375rem;
-    background-color: var(--primary);
+    gap: 0.65rem;
+    padding: 0.65rem 1.45rem;
+    background: linear-gradient(135deg, #0B1C36 0%, #173A78 100%);
     color: #ffffff;
     font-family: var(--font-sans);
     font-size: 0.8125rem;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.015em;
     text-decoration: none;
-    border-radius: 2px;
-    transition: background-color 0.2s ease;
+    border-radius: 9999px;
+    border: 1px solid rgba(217, 164, 65, 0.4);
+    box-shadow: 0 4px 14px rgba(11, 28, 54, 0.16);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     white-space: nowrap;
   }
 
+  .header-cta-arrow {
+    flex-shrink: 0;
+    color: var(--accent);
+    transition: transform 0.25s ease;
+  }
+
   .header-cta:hover {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, #173A78 0%, #204896 100%);
+    border-color: rgba(217, 164, 65, 0.7);
+    box-shadow: 0 6px 20px rgba(23, 58, 120, 0.25);
+    transform: translateY(-1px);
+    color: #ffffff;
+  }
+
+  .header-cta:hover .header-cta-arrow {
+    transform: translateX(3px);
+  }
+
+  .header-cta:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(11, 28, 54, 0.2);
   }
 
   /* ── Hamburger ── */
@@ -414,22 +445,33 @@ function isActive(href: string): boolean {
   }
 
   .drawer-cta {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
     width: 100%;
-    padding: 1rem;
-    background-color: var(--primary);
+    padding: 0.95rem 1.5rem;
+    background: linear-gradient(135deg, #0B1C36 0%, #173A78 100%);
     color: #ffffff;
     font-family: var(--font-sans);
     font-size: 0.9375rem;
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
     text-decoration: none;
-    border-radius: 2px;
-    transition: background-color 0.2s ease;
+    border-radius: 9999px;
+    border: 1px solid rgba(217, 164, 65, 0.4);
+    box-shadow: 0 4px 14px rgba(11, 28, 54, 0.16);
+    transition: all 0.2s ease;
+  }
+
+  .drawer-cta-arrow {
+    flex-shrink: 0;
+    color: var(--accent);
   }
 
   .drawer-cta:hover {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, #173A78 0%, #204896 100%);
+    color: #ffffff;
   }
 
   /* ── Responsive ── */
