@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/sections/Hero.astro';
+import Hero from '../components/sections/EditorialHero.astro';
+import '../styles/editorial-pages.css';
 import Eyebrow from '../components/ui/Eyebrow.astro';
 import SectionTitle from '../components/ui/SectionTitle.astro';
 import Lede from '../components/ui/Lede.astro';
 import Callout from '../components/ui/Callout.astro';
-import CTABanner from '../components/ui/CTABanner.astro';
+import CTABanner from '../components/ui/EditorialCTA.astro';
 
 const stages = [
   {
@@ -81,10 +82,13 @@ const certifications = [
 ---
 
 <BaseLayout
+  bodyClass="editorial-page"
   title="Quality Charter | From Source to Shelf | Kingsway International"
   description="How Kingsway International operates quality end-to-end — a five-stage framework covering origin, shipment, intake, fulfilment and customer feedback."
 >
   <Hero
+    breadcrumb="Quality"
+    highlight="at every level"
     eyebrow="Quality charter"
     title="A commitment to quality, at every level"
     subtitle="Five stages, from origin selection to the moment a customer opens the pack."
@@ -224,282 +228,133 @@ const certifications = [
 </BaseLayout>
 
 <style>
-  /* ── Section primitives ── */
-  .section { padding: 5rem 0; }
-  .section--white { background-color: #ffffff; }
-  .section--tint  { background-color: var(--light-tint); }
-  .section--dark  { background-color: var(--primary-dark); color: #ffffff; }
-  .section--narrow { padding: 4rem 0 3rem; }
-.sectionstep{
-      background-image:  linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.6)),url("/images/Qualityparallaxbanner.jpeg");
-background-size: cover;
-}
-  .container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 2rem;
+.sectionstep {
+    background: linear-gradient(110deg, rgba(11, 28, 54, 0.96), rgba(11, 28, 54, 0.88)), url("/images/Qualityparallaxbanner.jpeg") center / cover;
   }
-
-  .container--narrow { max-width: 880px; }
-
-  .section-head {
-    max-width: 880px;
-    margin-bottom: 3rem;
-  }
-
-  .section-head--light :global(.eyebrow) {
-    color: var(--accent-light);
-  }
-
-  .section-title-light {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(32px, 3.6vw, 44px);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    color: var(--cream);
-    margin: 0 0 1.5rem;
-  }
-
-  .prose p {
-    font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--ink-soft);
-    margin: 0 0 1.25rem;
-    max-width: 660px;
-  }
-
-  .prose p:last-child { margin-bottom: 0; }
-
-  .prose-foot {
-    font-size: 15px !important;
-    color: var(--grey) !important;
-    font-style: italic;
-  }
-
-  .inline-link {
-    color: var(--primary);
-    border-bottom: 1px solid var(--accent);
-    text-decoration: none;
-    padding-bottom: 1px;
-  }
-section.section.sectionstep h2 {
-    color: white;
-}
-
-  .inline-link:hover { color: var(--primary-dark); }
-
-  /* ── Two-col ── */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  @media (max-width: 880px) {
-    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
-  }
-
-  /* ── Five-stage framework diagram ── */
+  .sectionstep .section-head { border-color: rgba(255, 255, 255, 0.15); }
+  .sectionstep :global(.eyebrow) { color: var(--accent-light) !important; }
   .framework-diagram {
-    list-style: none;
-    padding: 2rem 0 1rem;
-    margin: 0;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 1.5rem;
-    position: relative;
-  }
-
-  /* Connecting horizontal line behind the circles */
-  .framework-diagram::before {
-    content: '';
-    position: absolute;
-    top: calc(2rem + 34px);
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background-color: var(--accent);
-    z-index: 0;
-  }
-
-  .framework-stage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .framework-stage-circle {
-    width: 68px;
-    height: 68px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    border: 2px solid var(--accent);
-    color: var(--accent);
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-    flex-shrink: 0;
-    box-shadow: 0 0 0 8px var(--light-tint);
-  }
-
-  .framework-stage--filled .framework-stage-circle {
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: var(--accent-light);
-  }
-
-  .framework-stage-title {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.3;
-    color: white;
-    margin: 0 0 0.5rem;
-  }
-
-  .framework-stage-caption {
-    font-family: var(--font-sans);
-    font-size: 12px;
-    line-height: 1.5;
-    color: white;
-    margin: 0;
-    max-width: 180px;
-  }
-
-  @media (max-width: 880px) {
-    .framework-diagram {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .framework-diagram::before {
-      display: none;
-    }
-  }
-
-  /* ── Stage detail row ── */
-  .stage-detail-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-
-  .stage-detail-row {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--rule);
-  }
-
-  .stage-detail-row:first-child {
-    border-top: none;
-    padding-top: 0;
-  }
-
-  .stage-detail-number {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(48px, 5vw, 64px);
-    line-height: 1;
-    color: var(--accent);
-  }
-
-  .stage-detail-title {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 1.25;
-    color: var(--primary);
-    margin: 0 0 1rem;
-  }
-
-  .stage-detail-bullets {
+    gap: 1.25rem;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
   }
-
-  .stage-detail-bullets li {
-    position: relative;
-    padding-left: 1.25rem;
-    font-family: var(--font-sans);
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--ink-soft);
+  .framework-stage {
+    padding: 1.5rem 1.1rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(217, 164, 65, 0.25);
+    border-radius: 16px;
   }
-
+  .framework-stage-circle {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.5rem;
+    color: var(--accent-light);
+    border: 1px solid rgba(217, 164, 65, 0.45);
+    border-radius: 50%;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+  }
+  .framework-stage--filled .framework-stage-circle { background: var(--accent); color: var(--primary); }
+  .framework-stage-title {
+    color: #FAF9F6;
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.35;
+    margin: 0 0 0.75rem;
+  }
+  .framework-stage-caption { font-size: 0.8125rem; line-height: 1.7; color: #D1D8E3; margin: 0; }
+  .stage-detail-list { display: grid; gap: 1.5rem; }
+  .stage-detail-row {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 2rem;
+    padding: 2.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    background: #FFFFFF;
+    box-shadow: 0 8px 24px -4px rgba(11, 28, 54, 0.04);
+  }
+  .stage-detail-number {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(217, 164, 65, 0.12);
+    color: var(--primary-dark);
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-style: italic;
+  }
+  .stage-detail-title {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    color: var(--primary);
+    margin: 0 0 1.25rem;
+  }
+  .stage-detail-bullets { display: grid; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
+  .stage-detail-bullets li { position: relative; padding-left: 1.25rem; font-size: 0.9375rem; line-height: 1.75; color: var(--ink-soft); }
   .stage-detail-bullets li::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0.6rem;
-    width: 7px;
-    height: 7px;
-    background-color: var(--accent);
-    border-radius: 0;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
   }
-
-  @media (max-width: 720px) {
-    .stage-detail-row {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .stage-detail-number {
-      font-size: 40px;
-    }
-
-    .section { padding: 3.5rem 0; }
+  .section--dark { background: #0B1C36; }
+  .section--dark .section-head { border-color: rgba(255, 255, 255, 0.15); }
+  .section--dark :global(.eyebrow) { color: var(--accent-light) !important; }
+  .section--dark .section-title-light { color: #FAF9F6; }
+  .section--dark :global(.callout) {
+    max-width: none;
+    padding: 1rem 0 0;
+    border: 0;
+    background: transparent;
   }
-
-  /* ── Certifications list ── */
-  .cert-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  .section--dark :global(.callout-content) { max-width: 940px; line-height: 1.5; }
+  .two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 4rem;
+    align-items: start;
   }
-
+  .prose-foot { font-size: 0.875rem !important; font-style: italic; }
+  .cert-list { display: grid; gap: 1rem; list-style: none; padding: 0; margin: 0; }
   .cert-item {
-    background: #ffffff;
+    padding: 1.75rem;
+    background: #FFFFFF;
+    border: 1px solid var(--rule);
     border-left: 3px solid var(--accent);
-    padding: 1.25rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px -4px rgba(11, 28, 54, 0.04);
   }
-
-  .cert-name {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 18px;
-    color: var(--primary);
-    margin: 0 0 0.4rem;
-    line-height: 1.3;
+  .cert-name { margin: 0 0 0.65rem; font-family: var(--font-serif); font-size: 1.25rem; line-height: 1.3; color: var(--primary); }
+  .cert-target { margin: 0; font-size: 0.875rem; line-height: 1.7; color: var(--ink-soft); }
+  @media (max-width: 1100px) {
+    .framework-diagram { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
-
-  .cert-target {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    margin: 0;
+  @media (max-width: 880px) {
+    .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    .framework-diagram { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  h2#framework-heading{
-    color:white !important;
+  @media (max-width: 560px) {
+    .framework-diagram { grid-template-columns: 1fr; }
+    .framework-stage { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 0.5rem 1rem; padding: 1.5rem; }
+    .framework-stage-circle { grid-row: span 2; margin: 0; }
+    .framework-stage-title { margin: 0; }
+    .framework-stage-caption { grid-column: 2; }
+    .stage-detail-row { grid-template-columns: 1fr; padding: 1.5rem; gap: 1.25rem; }
+    .stage-detail-number { width: 48px; height: 48px; font-size: 1.35rem; border-radius: 12px; }
   }
 </style>

@@ -1,0 +1,38 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  subtitle: string;
+  backgroundImage: string;
+  breadcrumb: string;
+}
+
+const { eyebrow, title, highlight, subtitle, backgroundImage, breadcrumb } = Astro.props;
+const highlightStart = title.indexOf(highlight);
+---
+
+<header class="editorial-hero" aria-labelledby="hero-title">
+  <div class="editorial-orb editorial-orb--gold" aria-hidden="true"></div>
+  <div class="editorial-orb editorial-orb--blue" aria-hidden="true"></div>
+  <div class="editorial-container">
+    <nav class="editorial-breadcrumb" aria-label="Breadcrumb navigation">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">{breadcrumb}</li>
+      </ol>
+    </nav>
+    <div class="editorial-hero-grid">
+      <div class="editorial-hero-copy">
+        <p class="editorial-kicker">{eyebrow}</p>
+        <h1 id="hero-title">{title.slice(0, highlightStart)}<span>{highlight}</span>{title.slice(highlightStart + highlight.length)}</h1>
+        <p class="editorial-hero-subtitle">{subtitle}</p>
+      </div>
+      <div class="editorial-hero-media">
+        <img src={backgroundImage} alt="" loading="eager" fetchpriority="high" />
+      </div>
+    </div>
+  </div>
+</header>
+
