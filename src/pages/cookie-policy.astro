@@ -1,11 +1,204 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+
+const sections = [
+  { id: 'what-are-cookies', title: 'What Are Cookies & Local Storage?', num: '01' },
+  { id: 'privacy-first', title: 'Our Privacy-First Approach', num: '02' },
+  { id: 'categories', title: 'Categories of Cookies We Use', num: '03' },
+  { id: 'inventory-table', title: 'Comprehensive Cookie Inventory', num: '04' },
+  { id: 'analytics-plausible', title: 'Privacy-Preserving Analytics', num: '05' },
+  { id: 'browser-controls', title: 'Managing Cookies in Your Browser', num: '06' },
+  { id: 'policy-updates', title: 'Updates to This Cookie Policy', num: '07' },
+];
 ---
 
 <LegalLayout
-  title="Cookie Policy | Kingsway International"
-  description="Cookies set by the Kingsway International website and how to manage your preferences. Draft, published before launch."
+  title="Cookie Policy"
+  description="Cookie Policy for Kingsway International — comprehensive transparency regarding cookies, privacy-first analytics, and managing preferences."
   policyType="Cookie Policy"
+  subtitle="We believe in transparency. This Cookie Policy explains how we use cookies, local storage and privacy-first analytics."
+  activeSlug="cookie-policy"
+  sections={sections}
 >
-  <h1>Cookie Policy</h1>
+  <!-- Executive Summary -->
+  <div class="legal-exec-summary">
+    <div class="legal-exec-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+      Executive Summary
+    </div>
+    <p>
+      Kingsway International operates a strict <strong>privacy-first</strong> digital policy. We do not use intrusive third-party advertising cookies, cross-site trackers, or behavioral profiling pixels. We only utilize strictly necessary session tokens essential for website security and privacy-friendly, anonymised analytics that do not store identifiable personal data.
+    </p>
+  </div>
+
+  <!-- Section 01: What Are Cookies -->
+  <section id="what-are-cookies" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">01</span>
+      <h2>What Are Cookies &amp; Local Storage?</h2>
+    </div>
+    <p>
+      A cookie is a small text file placed on your computer, smartphone, or tablet when you visit a website. Cookies are widely utilized by online services to make websites function securely and efficiently, remember user preferences, and provide aggregated reporting.
+    </p>
+    <p>
+      Similar technologies include <strong>Local Storage</strong> and <strong>Session Storage</strong>, which permit web applications to store lightweight configuration data locally inside your web browser. In this policy, references to "cookies" encompass all such standard web storage technologies.
+    </p>
+  </section>
+
+  <!-- Section 02: Our Privacy-First Approach -->
+  <section id="privacy-first" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">02</span>
+      <h2>Our Privacy-First Approach</h2>
+    </div>
+    <p>
+      As a leading UK B2B food distributor, our commercial objective is to provide independent retailers, wholesalers, and caterers with reliable access to our products and service standards.
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Our Core Commitments:</strong>
+      </p>
+      <ul style="margin: 0.5rem 0 0 1.25rem;">
+        <li>We <strong>do not deploy</strong> Meta (Facebook) pixels, TikTok tags, or behavioral advertising cookies.</li>
+        <li>We <strong>do not sell</strong> or share browsing profiles with advertising exchanges or data brokers.</li>
+        <li>We deploy privacy-focused server analytics that respect your privacy without tracking you across the internet.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 03: Cookie Categories -->
+  <section id="categories" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">03</span>
+      <h2>Categories of Cookies We Use</h2>
+    </div>
+    <p>We classify the storage mechanisms deployed across our site into three defined categories:</p>
+
+    <h3>1. Strictly Necessary Cookies (Essential)</h3>
+    <p>
+      These cookies are vital for the core functionality, security, and integrity of the website. Without these technologies, key features — such as secure CSRF form validation, load balancing, and page navigation — cannot operate properly. Because they are strictly necessary, they do not require user consent under the Privacy and Electronic Communications Regulations (PECR).
+    </p>
+
+    <h3>2. Functional &amp; Preference Storage</h3>
+    <p>
+      These storage tokens enable the website to remember choices you make (such as your chosen product category filter, dismissed notice status, or accessibility font preferences) to provide an enhanced, personalised experience.
+    </p>
+
+    <h3>3. Privacy-First Analytics</h3>
+    <p>
+      We use lightweight, aggregated telemetry to understand which product categories and origin stories are most frequently visited. These analytics are privacy-first, fully anonymised, and do not track individual users across different web domains.
+    </p>
+  </section>
+
+  <!-- Section 04: Inventory Table -->
+  <section id="inventory-table" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">04</span>
+      <h2>Comprehensive Cookie Inventory</h2>
+    </div>
+    <p>The table below provides a full inventory of the tokens and cookies utilized on this website:</p>
+
+    <div class="legal-table-wrap">
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Cookie / Token Name</th>
+            <th>Provider</th>
+            <th>Purpose</th>
+            <th>Type</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>__Host-session</strong></td>
+            <td>Kingsway International</td>
+            <td>Maintains encrypted session state and CSRF protection on trade enquiry forms.</td>
+            <td><span class="badge-req">Essential</span></td>
+            <td>Session</td>
+          </tr>
+          <tr>
+            <td><strong>kw_cookie_pref</strong></td>
+            <td>Kingsway International</td>
+            <td>Stores your cookie and privacy preferences for future visits.</td>
+            <td><span class="badge-req">Essential</span></td>
+            <td>12 Months</td>
+          </tr>
+          <tr>
+            <td><strong>plausible_ignore</strong></td>
+            <td>Plausible Analytics</td>
+            <td>Flags if a user or administrator has opted out of aggregated traffic telemetry.</td>
+            <td><span class="badge-opt">Analytics</span></td>
+            <td>12 Months</td>
+          </tr>
+          <tr>
+            <td><strong>kw_cat_filter</strong></td>
+            <td>Kingsway International</td>
+            <td>Remembers your active product catalogue category selection during browsing.</td>
+            <td><span class="badge-opt">Functional</span></td>
+            <td>Session</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 05: Plausible Analytics -->
+  <section id="analytics-plausible" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">05</span>
+      <h2>Privacy-Preserving Analytics</h2>
+    </div>
+    <p>
+      To monitor overall website performance and user engagement, we use <strong>Plausible Analytics</strong>, a lightweight, privacy-focused open-source analytics platform.
+    </p>
+    <ul>
+      <li>Plausible does <strong>not use cookies</strong> and does not collect any personal data.</li>
+      <li>All metric measurement is carried out absolutely anonymously without generating persistent unique identifiers.</li>
+      <li>IP addresses are passed through a one-way mathematical hash that changes daily, ensuring individual visitors can never be identified or tracked across browsing days.</li>
+      <li>All analytics data is hosted within the European Union / United Kingdom, complying fully with UK GDPR, EU GDPR, and PECR standards.</li>
+    </ul>
+  </section>
+
+  <!-- Section 06: Browser Controls -->
+  <section id="browser-controls" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">06</span>
+      <h2>Managing Cookies in Your Browser</h2>
+    </div>
+    <p>
+      You can manage, restrict, or block cookies at any time by configuring the privacy settings of your web browser. Most modern web browsers allow you to view, manage, and delete cookies already stored on your device:
+    </p>
+    <ul>
+      <li><strong>Google Chrome:</strong> Settings &rsaquo; Privacy and security &rsaquo; Third-party cookies.</li>
+      <li><strong>Apple Safari:</strong> Preferences &rsaquo; Privacy &rsaquo; Manage Website Data / Prevent cross-site tracking.</li>
+      <li><strong>Mozilla Firefox:</strong> Settings &rsaquo; Privacy &amp; Security &rsaquo; Enhanced Tracking Protection.</li>
+      <li><strong>Microsoft Edge:</strong> Settings &rsaquo; Cookies and site permissions &rsaquo; Manage and delete cookies and site data.</li>
+    </ul>
+    <p>
+      Please note that if you choose to block all cookies (including essential session tokens), certain interactive features of our wholesale website (such as trade form routing and secure application submissions) may not function as intended.
+    </p>
+  </section>
+
+  <!-- Section 07: Policy Updates -->
+  <section id="policy-updates" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">07</span>
+      <h2>Updates to This Cookie Policy</h2>
+    </div>
+    <p>
+      We may update this Cookie Policy from time to time to reflect operational, legal, or regulatory changes (such as the introduction of new website tools or modifications to UK privacy laws).
+    </p>
+    <p>
+      Any updates will be published directly on this page with an updated "Effective Date" and version stamp. We recommend reviewing this document periodically to stay informed about our continuous commitment to digital privacy.
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Have questions about our cookie policy?</strong><br />
+        Contact our Data Protection desk directly at <a href="mailto:quality@kingswayinternational.co.uk">quality@kingswayinternational.co.uk</a>.
+      </p>
+    </div>
+  </section>
 </LegalLayout>

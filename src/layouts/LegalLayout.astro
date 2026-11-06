@@ -1,207 +1,256 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import EditorialCTA from '../components/ui/EditorialCTA.astro';
+import '../styles/legal.css';
+
+interface SectionItem {
+  id: string;
+  title: string;
+  num?: string;
+}
 
 interface Props {
   title: string;
   description: string;
   policyType: string;
-  lastUpdated?: string;
+  subtitle: string;
+  activeSlug: 'privacy-notice' | 'terms-of-use' | 'cookie-policy' | 'modern-slavery-statement';
+  sections?: SectionItem[];
 }
 
 const {
   title,
   description,
   policyType,
-  lastUpdated = '[to be confirmed]',
+  subtitle,
+  activeSlug,
+  sections = [],
 } = Astro.props;
+
+const relatedPolicies = [
+  { slug: 'privacy-notice', title: 'Privacy Notice', href: '/privacy-notice' },
+  { slug: 'terms-of-use', title: 'Terms of Use', href: '/terms-of-use' },
+  { slug: 'cookie-policy', title: 'Cookie Policy', href: '/cookie-policy' },
+  { slug: 'modern-slavery-statement', title: 'Modern Slavery Statement', href: '/modern-slavery-statement' },
+  { slug: 'policies', title: 'All Policies Index', href: '/policies' },
+];
 ---
 
-<BaseLayout title={title} description={description}>
-  <div class="legal-wrap">
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <ol class="breadcrumb-list" role="list">
-        <li><a href="/">Home</a></li>
-        <li aria-hidden="true" class="breadcrumb-sep">&rsaquo;</li>
-        <li><a href="/policies">Legal</a></li>
-        <li aria-hidden="true" class="breadcrumb-sep">&rsaquo;</li>
-        <li class="breadcrumb-current" aria-current="page">{title.split(' | ')[0]}</li>
-      </ol>
-    </nav>
+<BaseLayout title={title} description={description} bodyClass="legal-page">
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       1. REFERENCE-STYLE LEGAL HERO (Breadcrumb, Bold Title, Subtitle & 3D Security Shield)
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <header class="legal-hero" aria-label={`${policyType} introduction`}>
+    <div class="legal-hero-orb legal-hero-orb--gold" aria-hidden="true"></div>
+    <div class="legal-hero-orb legal-hero-orb--blue" aria-hidden="true"></div>
+    <div class="legal-hero-ambient-wave" aria-hidden="true"></div>
 
-    <!-- DRAFT banner -->
-    <div class="draft-banner" role="note">
-      <span class="draft-banner-tag">[DRAFT]</span>
-      <span class="draft-banner-body">
-        This page is a placeholder. The full {policyType.toLowerCase()} will be
-        published prior to commercial launch.
-      </span>
+    <div class="legal-container">
+      <div class="legal-hero-grid">
+        <!-- Left: Breadcrumb, Bold Title & Subtitle -->
+        <div class="legal-hero-copy">
+          <nav class="hero-breadcrumb" aria-label="Breadcrumb navigation">
+            <ol class="hero-breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+              <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/" class="hero-breadcrumb-link" itemprop="item">
+                  <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+              </li>
+              <li aria-hidden="true" class="hero-breadcrumb-sep">&gt;</li>
+              <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/policies" class="hero-breadcrumb-link" itemprop="item">
+                  <span itemprop="name">Policies</span>
+                </a>
+                <meta itemprop="position" content="2" />
+              </li>
+              <li aria-hidden="true" class="hero-breadcrumb-sep">&gt;</li>
+              <li class="hero-breadcrumb-current" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">{policyType}</span>
+                <meta itemprop="position" content="3" />
+              </li>
+            </ol>
+          </nav>
+
+          <h1 class="legal-hero-title">{policyType}</h1>
+
+          <p class="legal-hero-subtitle">
+            {subtitle}
+          </p>
+        </div>
+
+        <!-- Right: 3D Security Shield & Trust Cards Visual Composition -->
+        <div class="legal-hero-visual" aria-hidden="true">
+          <div class="security-shield-composition">
+            <!-- Warm Glow Backdrop -->
+            <div class="shield-ambient-glow"></div>
+
+            <!-- Orbital Ring with Floating Golden Spheres -->
+            <div class="shield-orbital-track">
+              <span class="shield-orbital-sphere shield-orbital-sphere--1"></span>
+              <span class="shield-orbital-sphere shield-orbital-sphere--2"></span>
+              <span class="shield-orbital-sphere shield-orbital-sphere--3"></span>
+            </div>
+
+            <!-- 3D Security Shield with Padlock -->
+            <div class="shield-graphic-wrap">
+              <svg class="shield-svg" viewBox="0 0 160 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="shield3dGrad" x1="15" y1="10" x2="145" y2="185" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#3B82F6" />
+                    <stop offset="25%" stop-color="#2563EB" />
+                    <stop offset="65%" stop-color="#1D4ED8" />
+                    <stop offset="100%" stop-color="#0F2D6B" />
+                  </linearGradient>
+                  <linearGradient id="shieldHighlight" x1="80" y1="8" x2="80" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6" />
+                    <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.15" />
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0.25" />
+                  </linearGradient>
+                  <filter id="shield3dShadow" x="-20%" y="-15%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#1E3A8A" flood-opacity="0.32" />
+                  </filter>
+                </defs>
+                <!-- Outer 3D Shield Base -->
+                <path d="M80 8 C115 8, 148 24, 150 48 C152 105, 125 152, 80 182 C35 152, 8 105, 10 48 C12 24, 45 8, 80 8 Z" fill="url(#shield3dGrad)" filter="url(#shield3dShadow)" />
+                <!-- Glossy Bevel Border -->
+                <path d="M80 16 C111 16, 139 30, 141 51 C143 99, 120 142, 80 171 C40 142, 17 99, 19 51 C21 30, 49 16, 80 16 Z" stroke="url(#shieldHighlight)" stroke-width="2.5" fill="none" />
+                <!-- 3D Center Highlight Seam -->
+                <path d="M80 16 L80 171" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1.5" />
+                <!-- Padlock: Shackle -->
+                <path d="M64 88 V71 C64 62.16 71.16 55 80 55 C88.84 55 96 62.16 96 71 V88" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" fill="none" />
+                <!-- Padlock: Body -->
+                <rect x="52" y="85" width="56" height="46" rx="10" fill="#FFFFFF" />
+                <!-- Padlock: Keyhole -->
+                <circle cx="80" cy="103" r="4.5" fill="#1D4ED8" />
+                <path d="M78 104 L82 104 L83.5 116 L76.5 116 Z" fill="#1D4ED8" />
+              </svg>
+            </div>
+
+            <!-- Floating White Trust Cards on the Right -->
+            <div class="shield-badge-stack">
+              <!-- Top Card: Verified User -->
+              <div class="shield-badge shield-badge--user" title="Verified User Protection">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+
+              <!-- Bottom Card: Legal Document -->
+              <div class="shield-badge shield-badge--doc" title="Regulatory Policy Document">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </header>
 
-    <article class="legal-article">
-      <slot />
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       2. MAIN CONTENT LAYOUT (Sticky Navigation + Clean Document Body)
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="legal-main-section">
+    <div class="legal-container">
+      <div class="legal-layout-grid">
 
-      <!-- Universal "still drafting" paragraph (per spec) -->
-      <p class="legal-meta">
-        <strong>Last updated:</strong> {lastUpdated}
-      </p>
+        <!-- Sticky Sidebar Navigation -->
+        <aside class="legal-sidebar" aria-label="Policy navigation and contact">
+          {sections.length > 0 && (
+            <div class="legal-toc-card">
+              <h3 class="legal-toc-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="8" y1="6" x2="21" y2="6"></line>
+                  <line x1="8" y1="12" x2="21" y2="12"></line>
+                  <line x1="8" y1="18" x2="21" y2="18"></line>
+                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+                Table of Contents
+              </h3>
+              <nav aria-label="Section links">
+                <ol class="legal-toc-nav">
+                  {sections.map((s) => (
+                    <li>
+                      <a href={`#${s.id}`} class="legal-toc-link">
+                        {s.num && <span>{s.num}. </span>}{s.title}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </div>
+          )}
 
-      <p class="legal-stub-paragraph">
-        This {policyType.toLowerCase()} will be published prior to commercial launch.
-        For immediate enquiries, please contact
-        <a href="mailto:quality@kingswayinternational.co.uk" class="inline-link">
-          quality@kingswayinternational.co.uk</a>.
-      </p>
+          <!-- Direct Compliance Officer Contact -->
+          <div class="legal-sidebar-contact">
+            <h4>Compliance &amp; Governance</h4>
+            <p>
+              Kingsway International Ltd<br />
+              Unit 1, 75 Hastings Road<br />
+              Leicester, LE5 0HL<br />
+              United Kingdom
+            </p>
+            <p>
+              <strong>Direct Enquiries:</strong><br />
+              <a href="mailto:quality@kingswayinternational.co.uk" class="contact-email">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                quality@kingswayinternational.co.uk
+              </a>
+            </p>
+          </div>
 
-      <p class="legal-back">
-        <a href="/policies" class="inline-link">&larr; Back to all policies</a>
-      </p>
-    </article>
-  </div>
+          <!-- Related Governance Documents -->
+          <div class="legal-related-card">
+            <h4>Corporate Governance</h4>
+            <ul class="legal-related-list">
+              {relatedPolicies.map((p) => (
+                <li>
+                  <a
+                    href={p.href}
+                    class={`legal-related-link ${p.slug === activeSlug ? 'current' : ''}`}
+                    aria-current={p.slug === activeSlug ? 'page' : undefined}
+                  >
+                    <span>{p.title}</span>
+                    {p.slug !== activeSlug && (
+                      <svg class="legal-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14m-6-6 6 6-6 6" />
+                      </svg>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Article Body -->
+        <article class="legal-article">
+          <slot />
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       3. EDITORIAL CTA BANNER
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <EditorialCTA
+    heading="Questions regarding our compliance or commercial governance?"
+    caption="Our dedicated compliance desk is available to assist trade buyers, suppliers, auditors and regulatory authorities."
+    buttonLabel="Contact Compliance Desk"
+    buttonHref="/contact?subject=quality"
+  />
 </BaseLayout>
-
-<style>
-  .legal-wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 4rem 2rem 5rem;
-  }
-
-  /* ── Breadcrumb ── */
-  .breadcrumb {
-    margin: 0 0 2rem;
-  }
-
-  .breadcrumb-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
-    font-family: var(--font-sans);
-    font-size: 12px;
-    letter-spacing: 0.05em;
-  }
-
-  .breadcrumb-list a {
-    color: var(--grey);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 1px;
-  }
-
-  .breadcrumb-list a:hover {
-    color: var(--primary);
-    border-bottom-color: var(--accent);
-  }
-
-  .breadcrumb-sep {
-    color: var(--rule);
-  }
-
-  .breadcrumb-current {
-    color: var(--ink);
-    font-weight: 600;
-  }
-
-  /* ── DRAFT banner ── */
-  .draft-banner {
-    background-color: rgba(197, 135, 60, 0.08);
-    border-left: 4px solid var(--accent);
-    padding: 1rem 1.25rem;
-    margin: 0 0 2.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.75rem;
-  }
-
-  .draft-banner-tag {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: var(--cream);
-    padding: 0.3rem 0.6rem;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  .draft-banner-body {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-  }
-
-  /* ── Article ── */
-  .legal-article :global(h1) {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(32px, 4.5vw, 44px);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    color: var(--primary);
-    margin: 0 0 1.5rem;
-  }
-
-  .legal-article :global(h2) {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 1.25;
-    color: var(--primary);
-    margin: 2.5rem 0 1rem;
-  }
-
-  .legal-article :global(p) {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--ink);
-    margin: 0 0 1.25rem;
-  }
-
-  .legal-meta {
-    margin-top: 2.5rem !important;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--rule);
-    font-size: 14px !important;
-    color: var(--grey) !important;
-  }
-
-  .legal-meta strong {
-    color: var(--ink);
-    font-weight: 600;
-  }
-
-  .legal-stub-paragraph {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--ink-soft);
-    margin: 1.5rem 0 2.5rem !important;
-    padding: 1.25rem 1.5rem;
-    background: var(--light-tint);
-    border-left: 3px solid var(--primary);
-  }
-
-  .legal-back {
-    margin-top: 2rem !important;
-  }
-
-  .inline-link {
-    color: var(--primary);
-    border-bottom: 1px solid var(--accent);
-    text-decoration: none;
-    padding-bottom: 1px;
-  }
-
-  .inline-link:hover {
-    color: var(--primary-dark);
-  }
-</style>

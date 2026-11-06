@@ -1,11 +1,220 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+
+const sections = [
+  { id: 'agreement', title: 'Agreement to Terms & Eligibility', num: '01' },
+  { id: 'company-identity', title: 'Company Information & Scope', num: '02' },
+  { id: 'b2b-portal', title: 'Wholesale B2B Trading Platform', num: '03' },
+  { id: 'product-specs', title: 'Product Details & Specifications', num: '04' },
+  { id: 'trade-accounts', title: 'Trade Accounts & Commercial Pricing', num: '05' },
+  { id: 'intellectual-property', title: 'Intellectual Property Rights', num: '06' },
+  { id: 'acceptable-use', title: 'Acceptable Use & Site Security', num: '07' },
+  { id: 'third-party-links', title: 'External Links & Brand Assets', num: '08' },
+  { id: 'liability-disclaimer', title: 'Warranties & Limitation of Liability', num: '09' },
+  { id: 'governing-law', title: 'Governing Law & Legal Jurisdiction', num: '10' },
+];
 ---
 
 <LegalLayout
-  title="Terms of Use | Kingsway International"
-  description="Terms of Use governing access to and use of the Kingsway International website. (Draft — full terms published before launch.)"
+  title="Terms of Use"
+  description="Terms of Use governing access to and use of the Kingsway International wholesale trading website, digital catalogue, and B2B trade enquiry services."
   policyType="Terms of Use"
+  subtitle="These Terms of Use explain how you may access and use our wholesale website, product catalogue, and trade enquiry services."
+  activeSlug="terms-of-use"
+  sections={sections}
 >
-  <h1>Terms of Use</h1>
+  <!-- Executive Summary -->
+  <div class="legal-exec-summary">
+    <div class="legal-exec-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+      Executive Summary
+    </div>
+    <p>
+      These Terms of Use govern all visits to and interactions with the Kingsway International website. Our platform is designed specifically for commercial B2B food trade buyers, retail proprietors, cash-and-carry operators, foodservice professionals, suppliers, and institutional partners. By accessing or using our website, you agree to comply with these terms in full.
+    </p>
+  </div>
+
+  <!-- Section 01: Agreement -->
+  <section id="agreement" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">01</span>
+      <h2>Agreement to Terms &amp; Eligibility</h2>
+    </div>
+    <p>
+      Please review these Terms of Use carefully before using our website. By navigating, reading, or submitting information through <strong>kingswayinternational.co.uk</strong>, you confirm your acceptance of these Terms of Use and agree to abide by them.
+    </p>
+    <p>
+      If you are accessing this site on behalf of a company, partnership, or commercial trading entity, you represent and warrant that you possess full legal authority to bind that organisation to these terms. If you do not agree to these terms, you must refrain from using our website.
+    </p>
+  </section>
+
+  <!-- Section 02: Company Information -->
+  <section id="company-identity" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">02</span>
+      <h2>Company Information &amp; Scope</h2>
+    </div>
+    <p>
+      This website is operated by <strong>Kingsway International Ltd</strong>:
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Kingsway International Ltd</strong><br />
+        Registered in England and Wales under Company Registration Number: [Registered in UK]<br />
+        Registered Office: Unit 1, 75 Hastings Road, Leicester, LE5 0HL, United Kingdom<br />
+        VAT Registration: [UK VAT Registered]<br />
+        Contact Email: <a href="mailto:info@kingswayinternational.co.uk">info@kingswayinternational.co.uk</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 03: Nature of Platform -->
+  <section id="b2b-portal" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">03</span>
+      <h2>Wholesale B2B Trading Platform</h2>
+    </div>
+    <p>
+      Kingsway International is an ethnic food importer and national wholesale distributor. This website functions as:
+    </p>
+    <ul>
+      <li>A commercial product catalogue and brand showcase for commercial retail grocers, cash &amp; carry operators, and foodservice kitchens.</li>
+      <li>A digital portal for trade buyers to submit commercial account applications and sample requests.</li>
+      <li>An informational resource detailing our five-stage Quality Charter, origin sourcing narratives, and governance frameworks.</li>
+    </ul>
+    <p>
+      This website does not operate as a direct-to-consumer transactional retail webstore. Product listings, catalogue descriptions, and enquiry forms do not constitute binding contractual offers of sale. Binding wholesale supply contracts are formed exclusively through verified trade account onboarding, formal credit agreements, and written purchase order confirmations.
+    </p>
+  </section>
+
+  <!-- Section 04: Product Specs -->
+  <section id="product-specs" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">04</span>
+      <h2>Product Details &amp; Specifications</h2>
+    </div>
+    <p>
+      We make every reasonable effort to ensure that product details, technical specifications, origin provenance, pack configurations, and imagery displayed on our website are accurate and up-to-date.
+    </p>
+    <p>
+      However, because agricultural commodities (such as pulses, rice, spices, flours, and oils) are subject to natural harvest variations, seasonal yields, and international shipping lead-times:
+    </p>
+    <ul>
+      <li>All product weights, pack counts, case dimensions, and shelf-life metrics are provided as guidance figures.</li>
+      <li>Manufacturers and packaging suppliers may periodically modify packaging graphics, inner pack seals, or outer carton layouts without prior website notice.</li>
+      <li>Allergens, dietary declarations (Halal, Kosher, Vegetarian, Gluten-Free), and nutritional panels must always be verified against the physical product batch packaging and our formal signed Technical Product Specifications prior to commercial use or resale.</li>
+    </ul>
+  </section>
+
+  <!-- Section 05: Trade Accounts -->
+  <section id="trade-accounts" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">05</span>
+      <h2>Trade Accounts &amp; Commercial Pricing</h2>
+    </div>
+    <p>
+      Wholesale trade accounts are made available exclusively to legitimate businesses, caterers, institutions, and verified resellers. When submitting a trade enquiry or credit account request:
+    </p>
+    <ul>
+      <li>You warrant that all corporate registration, trading history, and contact details provided are accurate and complete.</li>
+      <li>We reserve the right to conduct commercial credit checks via reputable rating agencies before approving credit facilities.</li>
+      <li>Minimum order quantities (MOQ), case minimums, pallet drops, and payment terms (e.g., 30-day settlement) are governed by our separate <strong>Standard Wholesale Terms of Sale</strong> issued upon account approval.</li>
+      <li>We reserve the right to decline or suspend trade account applications at our sole commercial discretion.</li>
+    </ul>
+  </section>
+
+  <!-- Section 06: Intellectual Property -->
+  <section id="intellectual-property" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">06</span>
+      <h2>Intellectual Property Rights</h2>
+    </div>
+    <p>
+      All intellectual property rights in and to this website, including its visual design, brand logos, code, editorial copy, product narratives, and corporate photography, are owned by or licensed to Kingsway International Ltd and protected by UK and international copyright, trademark, and database laws.
+    </p>
+    <p>
+      <strong>Permitted Use:</strong> You may view, download, and print individual pages for your organisation's internal purchasing evaluation and commercial enquiries with Kingsway International.
+    </p>
+    <p>
+      <strong>Restrictions:</strong> You must not systematically copy, scrape, extract, republish, resell, or exploit any product descriptions, pricing models, or technical specifications from this website for any commercial purpose without our express prior written permission. Third-party brand marks (including Grace, Encona, and Dunns River) remain the exclusive property of their respective trademark proprietors.
+    </p>
+  </section>
+
+  <!-- Section 07: Acceptable Use -->
+  <section id="acceptable-use" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">07</span>
+      <h2>Acceptable Use &amp; Site Security</h2>
+    </div>
+    <p>When accessing or using our website, you agree not to:</p>
+    <ul>
+      <li>Introduce viruses, trojans, worms, logic bombs, or other technologically harmful materials.</li>
+      <li>Attempt to gain unauthorized access to our server, databases, or cloud infrastructure.</li>
+      <li>Deploy automated bots, spiders, or scrapers to extract catalogue listings or contact directories.</li>
+      <li>Submit fraudulent, defamatory, misleading, or abusive enquiries via our contact forms.</li>
+      <li>Conduct denial-of-service (DoS or DDoS) attacks against our web properties.</li>
+    </ul>
+    <p>
+      Breaching these provisions constitutes a criminal offence under the Computer Misuse Act 1990. We will report any such breach to relevant law enforcement authorities and disclose your identity to them.
+    </p>
+  </section>
+
+  <!-- Section 08: Third-Party Links -->
+  <section id="third-party-links" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">08</span>
+      <h2>External Links &amp; Brand Assets</h2>
+    </div>
+    <p>
+      Where our website contains links to other websites and resources provided by third parties (such as origin certification boards, shipping ports, or manufacturer portals), these links are provided for informational convenience only.
+    </p>
+    <p>
+      We have no control over the contents of those external websites and accept no liability for any loss or damage arising from your use of them.
+    </p>
+  </section>
+
+  <!-- Section 09: Limitation of Liability -->
+  <section id="liability-disclaimer" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">09</span>
+      <h2>Warranties &amp; Limitation of Liability</h2>
+    </div>
+    <p>
+      The material displayed on this website is provided on an "as is" and "as available" basis without any guarantees, conditions, or warranties as to its completeness or timeliness.
+    </p>
+    <p>
+      To the maximum extent permitted by English law, Kingsway International Ltd expressly excludes:
+    </p>
+    <ul>
+      <li>All statutory conditions, warranties, and other terms that might otherwise be implied by statute or common law.</li>
+      <li>Any liability for direct, indirect, or consequential loss or damage incurred by any user in connection with the use, inability to use, or results of the use of our website.</li>
+      <li>Loss of income, loss of revenue, loss of business, loss of profits, loss of contracts, or loss of anticipated savings.</li>
+    </ul>
+    <p>
+      Nothing in these Terms of Use limits or excludes our liability for death or personal injury arising from our negligence, fraudulent misrepresentation, or any other liability that cannot be excluded or limited under English law.
+    </p>
+  </section>
+
+  <!-- Section 10: Governing Law -->
+  <section id="governing-law" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">10</span>
+      <h2>Governing Law &amp; Legal Jurisdiction</h2>
+    </div>
+    <p>
+      These Terms of Use, their subject matter, and their formation (and any non-contractual disputes or claims) are governed by and construed in accordance with the laws of <strong>England and Wales</strong>.
+    </p>
+    <p>
+      The courts of England and Wales shall have exclusive jurisdiction to resolve any dispute or claim arising out of or in connection with these Terms of Use or your use of the Kingsway International website.
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Legal &amp; Commercial Enquiries:</strong><br />
+        Kingsway International Ltd, Unit 1, 75 Hastings Road, Leicester, LE5 0HL<br />
+        Email: <a href="mailto:info@kingswayinternational.co.uk">info@kingswayinternational.co.uk</a>
+      </p>
+    </div>
+  </section>
 </LegalLayout>

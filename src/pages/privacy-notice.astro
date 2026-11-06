@@ -1,11 +1,247 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+
+const sections = [
+  { id: 'controller', title: 'Who We Are & Data Controller Details', num: '01' },
+  { id: 'data-collected', title: 'The Personal Data We Collect', num: '02' },
+  { id: 'collection-methods', title: 'How We Collect Your Data', num: '03' },
+  { id: 'lawful-basis', title: 'Lawful Bases for Processing', num: '04' },
+  { id: 'data-use', title: 'How We Use Your Information', num: '05' },
+  { id: 'data-sharing', title: 'Data Sharing & Third Parties', num: '06' },
+  { id: 'international-transfers', title: 'International Transfers', num: '07' },
+  { id: 'data-retention', title: 'Data Retention Periods', num: '08' },
+  { id: 'statutory-rights', title: 'Your Statutory Data Rights', num: '09' },
+  { id: 'security-measures', title: 'Information Security & Storage', num: '10' },
+  { id: 'contact-ico', title: 'Contact Details & Supervisory Authority', num: '11' },
+];
 ---
 
 <LegalLayout
-  title="Privacy Notice | Kingsway International"
-  description="Privacy Notice for Kingsway International — how we handle personal data under UK GDPR and the Data Protection Act 2018. Draft, published before launch."
+  title="Privacy Notice"
+  description="Privacy Notice for Kingsway International Ltd — how we collect, process, safeguard and retain personal data in accordance with the UK GDPR and the Data Protection Act 2018."
   policyType="Privacy Notice"
+  subtitle="Your privacy is important to us. This Privacy Notice explains how we collect, use and protect your information."
+  activeSlug="privacy-notice"
+  sections={sections}
 >
-  <h1>Privacy Notice</h1>
+  <!-- Executive Summary -->
+  <div class="legal-exec-summary">
+    <div class="legal-exec-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+      Executive Summary
+    </div>
+    <p>
+      Kingsway International Ltd respects your personal privacy and is committed to protecting all data entrusted to us. This Privacy Notice explains how we manage personal data collected through website visits, wholesale trade enquiries, customer and supplier onboarding, order fulfillment, and operational interactions under the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. We strictly do not sell, rent, or monetise your personal data.
+    </p>
+  </div>
+
+  <!-- Section 01: Who We Are -->
+  <section id="controller" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">01</span>
+      <h2>Who We Are &amp; Data Controller Details</h2>
+    </div>
+    <p>
+      In this Privacy Notice, references to <strong>"Kingsway International"</strong>, <strong>"we"</strong>, <strong>"us"</strong>, or <strong>"our"</strong> refer to:
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Kingsway International Ltd</strong><br />
+        Registered Company in England and Wales<br />
+        Registered Office: Unit 1, 75 Hastings Road, Leicester, LE5 0HL, United Kingdom<br />
+        Primary Business: Importation, wholesale trading, and nationwide distribution of authentic ethnic foods and world food brands.
+      </p>
+    </div>
+    <p>
+      For the purposes of applicable data protection legislation (including the UK GDPR and the Data Protection Act 2018), Kingsway International Ltd is the <strong>Data Controller</strong> responsible for determining the purposes and means of processing personal data.
+    </p>
+  </section>
+
+  <!-- Section 02: Data We Collect -->
+  <section id="data-collected" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">02</span>
+      <h2>The Personal Data We Collect</h2>
+    </div>
+    <p>
+      We collect and process various categories of data to operate our wholesale business and maintain our commercial partnerships:
+    </p>
+    <ul>
+      <li><strong>Identity Data:</strong> First name, surname, job title, company name, business registration number, and director or authorised signatory details for trade accounts.</li>
+      <li><strong>Contact Data:</strong> Business delivery address, registered office address, billing address, commercial email address, and telephone contact numbers.</li>
+      <li><strong>Financial &amp; Transactional Data:</strong> Bank account payment details, VAT registration number, credit check records, order history, invoice records, and delivery manifests.</li>
+      <li><strong>Enquiry &amp; Communication Data:</strong> Information submitted via contact forms, sample requests, trade account questionnaires, email correspondence, and telephone records.</li>
+      <li><strong>Technical &amp; Usage Data:</strong> Internet protocol (IP) address, browser type and version, time zone setting, browser plug-in types, operating system, and anonymised usage metrics gathered via privacy-first analytics.</li>
+    </ul>
+    <p>
+      We do not routinely collect any Special Category Data (such as biometric data, health data, or political opinions) or criminal conviction records, except where strictly required to comply with statutory anti-money laundering (AML) or customs compliance laws.
+    </p>
+  </section>
+
+  <!-- Section 03: Collection Methods -->
+  <section id="collection-methods" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">03</span>
+      <h2>How We Collect Your Data</h2>
+    </div>
+    <p>We collect data through several direct and automated touchpoints:</p>
+    <ul>
+      <li><strong>Direct Interactions:</strong> When you complete our trade enquiry form, apply for a commercial account, request product samples, subscribe to our food stories or market bulletins, or contact our sales and procurement desks.</li>
+      <li><strong>Commercial Contract Execution:</strong> When concluding wholesale supply agreements, private label contracts, distributor arrangements, or logistics service agreements.</li>
+      <li><strong>Automated Technologies:</strong> As you navigate our website, essential session tokens and privacy-preserving analytics automatically collect technical telemetry regarding your browsing journey.</li>
+      <li><strong>Third Parties &amp; Public Sources:</strong> We may verify corporate and creditworthiness data through Companies House, credit reference agencies (e.g., Creditsafe or Experian), and publicly accessible trade directories.</li>
+    </ul>
+  </section>
+
+  <!-- Section 04: Lawful Basis -->
+  <section id="lawful-basis" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">04</span>
+      <h2>Lawful Bases for Processing</h2>
+    </div>
+    <p>
+      Under Article 6 of the UK GDPR, we must establish a valid lawful basis for every processing activity. We rely on the following bases:
+    </p>
+    <ul>
+      <li><strong>Contractual Performance (Article 6(1)(b)):</strong> Necessary to evaluate trade credit applications, execute commercial sale agreements, pick and deliver palletized orders, and issue VAT invoices.</li>
+      <li><strong>Legitimate Interests (Article 6(1)(f)):</strong> Necessary for our legitimate business interests, provided your fundamental rights do not override them — including fraud prevention, website security, supplier quality audits, and B2B communication with existing corporate clients.</li>
+      <li><strong>Legal &amp; Regulatory Obligation (Article 6(1)(c)):</strong> Necessary to satisfy statutory accounting, HMRC tax compliance, customs clearances, product recall tracking, and food safety statutory requirements.</li>
+      <li><strong>Consent (Article 6(1)(a)):</strong> Where you have provided clear, affirmative consent for specific non-essential communications (e.g., marketing newsletters), which may be withdrawn at any time.</li>
+    </ul>
+  </section>
+
+  <!-- Section 05: How We Use Your Information -->
+  <section id="data-use" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">05</span>
+      <h2>How We Use Your Information</h2>
+    </div>
+    <p>We process personal and corporate data strictly for clear commercial and regulatory purposes:</p>
+    <ul>
+      <li>To verify and onboard independent retailers, wholesalers, foodservice operators, and export partners onto our trading system.</li>
+      <li>To process wholesale food orders, coordinate nationwide warehouse dispatches, and track proof-of-delivery signatures.</li>
+      <li>To conduct credit assessments, establish credit terms, and process B2B payments and statements.</li>
+      <li>To maintain end-to-end batch traceability from origin farm or port intake through to final delivery under our Quality Charter.</li>
+      <li>To respond efficiently to trade enquiries, technical specifications queries, and customer feedback.</li>
+      <li>To safeguard the security, reliability, and integrity of our IT networks and commercial warehouse facilities.</li>
+    </ul>
+  </section>
+
+  <!-- Section 06: Data Sharing & Third Parties -->
+  <section id="data-sharing" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">06</span>
+      <h2>Data Sharing &amp; Third Parties</h2>
+    </div>
+    <p>
+      Kingsway International does not sell, lease, or trade personal data to third parties for marketing purposes. We only share data with trusted service providers who are bound by written data processing agreements:
+    </p>
+    <ul>
+      <li><strong>Logistics &amp; Haulage Partners:</strong> Direct delivery fleet contractors, pallet networks, and freight forwarders who require delivery addresses and contact names to fulfill dispatches.</li>
+      <li><strong>IT &amp; Cloud Infrastructure:</strong> ISO-certified UK and European cloud hosting, enterprise database management, and cybersecurity providers.</li>
+      <li><strong>Financial &amp; Professional Advisors:</strong> Commercial banks, credit insurers, accountants, and legal advisers who operate under strict professional confidentiality duties.</li>
+      <li><strong>Governmental &amp; Regulatory Bodies:</strong> HM Revenue &amp; Customs (HMRC), the Food Standards Agency (FSA), Environmental Health, Trading Standards, or law enforcement authorities when legally mandated.</li>
+    </ul>
+  </section>
+
+  <!-- Section 07: International Transfers -->
+  <section id="international-transfers" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">07</span>
+      <h2>International Transfers</h2>
+    </div>
+    <p>
+      As an international ethnic food trader, our supply relationships span India, Southeast Asia, the Caribbean, and Africa. However, our primary corporate IT infrastructure and data storage remain within the United Kingdom and the European Economic Area (EEA).
+    </p>
+    <p>
+      Where commercial correspondence (e.g., pre-shipment quality inspection reports or phytosanitary documents) involves international suppliers, transfers are conducted in accordance with UK International Data Transfer Agreements (IDTAs) or European Commission Standard Contractual Clauses (SCCs) to ensure equivalent protection.
+    </p>
+  </section>
+
+  <!-- Section 08: Data Retention Periods -->
+  <section id="data-retention" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">08</span>
+      <h2>Data Retention Periods</h2>
+    </div>
+    <p>
+      We retain personal data only for as long as necessary to fulfill the purposes for which it was gathered, including satisfying legal, accounting, tax, or regulatory reporting requirements:
+    </p>
+    <ul>
+      <li><strong>Trade Account &amp; Financial Records:</strong> Retained for a minimum of <strong>6 years</strong> plus the current financial year in compliance with UK HMRC company accounting regulations.</li>
+      <li><strong>Food Safety &amp; Batch Traceability Records:</strong> Retained in alignment with the shelf-life of relevant product categories plus 2 years to facilitate comprehensive quality audits.</li>
+      <li><strong>General Enquiries:</strong> Retained for up to <strong>24 months</strong> from the date of resolution to maintain customer service records.</li>
+      <li><strong>Marketing Preferences:</strong> Retained until you opt out or withdraw consent, after which we keep a suppression record to ensure your preference is respected.</li>
+    </ul>
+  </section>
+
+  <!-- Section 09: Statutory Rights -->
+  <section id="statutory-rights" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">09</span>
+      <h2>Your Statutory Data Rights</h2>
+    </div>
+    <p>Under the UK GDPR, you possess significant rights regarding your personal information:</p>
+    <ul>
+      <li><strong>Right to be Informed:</strong> Transparent information about how we process your personal data (the primary purpose of this Notice).</li>
+      <li><strong>Right of Access (Subject Access Request):</strong> The right to obtain confirmation that we process your data and receive a copy of that data.</li>
+      <li><strong>Right to Rectification:</strong> The right to request the correction of inaccurate or incomplete personal records.</li>
+      <li><strong>Right to Erasure ("Right to be Forgotten"):</strong> The right to request deletion of personal data where there is no ongoing legal or regulatory justification for its retention.</li>
+      <li><strong>Right to Restrict Processing:</strong> The right to request the temporary suspension of processing while a dispute is investigated.</li>
+      <li><strong>Right to Data Portability:</strong> The right to receive your personal data in a structured, commonly used, machine-readable format.</li>
+      <li><strong>Right to Object:</strong> The right to object to processing grounded in legitimate interests or direct marketing.</li>
+    </ul>
+    <p>
+      To exercise any of these rights, please contact our compliance desk at <a href="mailto:quality@kingswayinternational.co.uk" class="legal-toc-link" style="display:inline; padding:0; border:none; text-decoration:underline;">quality@kingswayinternational.co.uk</a>. We respond to all verified requests within one calendar month without charge.
+    </p>
+  </section>
+
+  <!-- Section 10: Security Measures -->
+  <section id="security-measures" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">10</span>
+      <h2>Information Security &amp; Storage</h2>
+    </div>
+    <p>
+      We maintain rigorous technical and organisational measures to safeguard personal data against unauthorised access, alteration, loss, or disclosure:
+    </p>
+    <ul>
+      <li>Strict role-based permissions ensuring only authorized personnel have access to commercial account data.</li>
+      <li>Enterprise SSL/TLS 256-bit cryptographic encryption across all website communications and form transmissions.</li>
+      <li>Firewall-protected server environments with regular automated security patching, backups, and vulnerability assessments.</li>
+      <li>Physical security controls at our Leicester headquarters and distribution depot, including CCTV, electronic access fobs, and visitor sign-in registers.</li>
+    </ul>
+  </section>
+
+  <!-- Section 11: Contact & ICO -->
+  <section id="contact-ico" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">11</span>
+      <h2>Contact Details &amp; Supervisory Authority</h2>
+    </div>
+    <p>
+      If you have questions, feedback, or concerns regarding our data governance, or wish to exercise your legal rights, please contact:
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Compliance &amp; Data Protection Desk</strong><br />
+        Kingsway International Ltd<br />
+        Unit 1, 75 Hastings Road, Leicester, LE5 0HL, United Kingdom<br />
+        Email: <a href="mailto:quality@kingswayinternational.co.uk">quality@kingswayinternational.co.uk</a><br />
+        Telephone: +44 (0) 116 276 6555
+      </p>
+    </div>
+    <p>
+      You also have the right to submit a complaint at any time to the UK supervisory authority for data protection:
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Information Commissioner's Office (ICO)</strong><br />
+        Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF<br />
+        Helpline: 0303 123 1113 | Website: <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a>
+      </p>
+    </div>
+  </section>
 </LegalLayout>

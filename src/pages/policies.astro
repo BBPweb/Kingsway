@@ -19,13 +19,13 @@ const policies: Policy[] = [
     number: '01',
     title: 'Food Safety & Quality Management',
     summary: "A documented food safety and quality management system aligned with UK regulatory requirements and internationally recognised standards. Covers scope, controls, roles and corrective-action procedures.",
-    href: '#',
+    href: '/quality',
   },
   {
     number: '02',
     title: 'Ethical Sourcing & Modern Slavery Statement',
-    summary: "A commitment to sourcing from suppliers who respect human rights, fair labour practices and safe working conditions. A Modern Slavery Statement will be prepared in line with UK legislation when applicable to the company's turnover.",
-    href: '#',
+    summary: "A commitment to sourcing from suppliers who respect human rights, fair labour practices and safe working conditions under the Modern Slavery Act 2015.",
+    href: '/modern-slavery-statement',
   },
   {
     number: '03',
@@ -43,7 +43,7 @@ const policies: Policy[] = [
     number: '05',
     title: 'Data Protection & Privacy Notice',
     summary: 'Full compliance with UK GDPR and the Data Protection Act 2018. Our Privacy Notice sets out what personal data we collect, why we collect it, how long we keep it, and your rights in relation to it.',
-    href: '#',
+    href: '/privacy-notice',
   },
   {
     number: '06',
@@ -56,6 +56,18 @@ const policies: Policy[] = [
     title: 'Diversity, Equity & Inclusion',
     summary: 'A commitment to building a workforce and supplier base that reflects the diversity of the markets we serve, and to treating every stakeholder with equal dignity and respect.',
     href: '#',
+  },
+  {
+    number: '08',
+    title: 'Terms of Use',
+    summary: 'Terms and conditions governing access to and use of Kingsway International\'s commercial digital catalogue and trade enquiry portals.',
+    href: '/terms-of-use',
+  },
+  {
+    number: '09',
+    title: 'Cookie Policy',
+    summary: 'Transparent disclosures regarding cookies, local storage, and our privacy-first, tracking-free website architecture.',
+    href: '/cookie-policy',
   },
 ];
 ---
@@ -104,7 +116,9 @@ const policies: Policy[] = [
             </div>
             <a href={p.href} class="policy-row-download" aria-label={`Download ${p.title} PDF`}>
               <span>Download PDF</span>
-              <span aria-hidden="true">&darr;</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14m-6-6 6 6 6-6" />
+              </svg>
             </a>
           </li>
         ))}

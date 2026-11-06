@@ -1,11 +1,186 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+
+const sections = [
+  { id: 'structure', title: 'Our Business & Global Supply Chain', num: '01' },
+  { id: 'zero-tolerance', title: 'Zero-Tolerance Policy & Principles', num: '02' },
+  { id: 'quality-framework', title: 'Due Diligence & Five-Stage Quality', num: '03' },
+  { id: 'risk-assessment', title: 'Risk Assessment in Agricultural Origins', num: '04' },
+  { id: 'supplier-code', title: 'Supplier Code of Conduct & ETI Standards', num: '05' },
+  { id: 'whistleblowing', title: 'Whistleblowing & Grievance Mechanisms', num: '06' },
+  { id: 'training-kpis', title: 'Training & Continuous Key Indicators', num: '07' },
+  { id: 'board-signoff', title: 'Board Approval & Executive Sign-Off', num: '08' },
+];
 ---
 
 <LegalLayout
-  title="Modern Slavery Statement | Kingsway International"
-  description="Kingsway International's commitment to combating modern slavery and human trafficking across our supply chain. Draft, published before launch."
+  title="Modern Slavery Statement"
+  description="Kingsway International's Modern Slavery Statement — our zero-tolerance stance, ethical sourcing policies, and supply chain due diligence under the Modern Slavery Act 2015."
   policyType="Modern Slavery Statement"
+  subtitle="Our commitment to ethical trading and human rights across our operations and global food supply chains."
+  activeSlug="modern-slavery-statement"
+  sections={sections}
 >
-  <h1>Modern Slavery Statement</h1>
+  <!-- Executive Summary -->
+  <div class="legal-exec-summary">
+    <div class="legal-exec-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+      Executive Summary
+    </div>
+    <p>
+      Kingsway International Ltd maintains a zero-tolerance policy towards modern slavery, human trafficking, forced labour, and child exploitation in any part of our commercial operations or international supply networks. Published pursuant to Section 54 of the Modern Slavery Act 2015, this statement sets out the governance frameworks, supplier audits, and operational protocols we enforce to ensure transparency, dignity, and fair labour across all tiers of our supply chain.
+    </p>
+  </div>
+
+  <!-- Section 01: Structure -->
+  <section id="structure" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">01</span>
+      <h2>Our Business &amp; Global Supply Chain</h2>
+    </div>
+    <p>
+      Kingsway International Ltd is a premier UK trading and distribution specialist dedicated to supplying authentic ethnic foods, pulses, rice, spices, flours, oils, canned products, and world-renowned grocery brands across the United Kingdom.
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Operational Scope:</strong><br />
+        Headquartered in Leicester, our operational footprint encompasses multi-temperature warehousing, commercial inventory logistics, and nationwide fleet fulfillment serving independent retail grocers, regional cash &amp; carry wholesalers, commercial foodservice operators, and export partners.
+      </p>
+    </div>
+    <p>
+      Our supply chain is global and diverse. We source premium agricultural commodities directly from agricultural producers, farming cooperatives, millers, and processing facilities in South Asia (including India and Pakistan), Southeast Asia, East Africa, and the Caribbean, as well as established European and UK food manufacturers.
+    </p>
+  </section>
+
+  <!-- Section 02: Zero-Tolerance -->
+  <section id="zero-tolerance" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">02</span>
+      <h2>Zero-Tolerance Policy &amp; Principles</h2>
+    </div>
+    <p>
+      We recognize that modern slavery is a grave crime and a gross violation of fundamental human rights. It manifests in various forms, including slavery, servitude, forced or compulsory labour, bonded labour, and human trafficking.
+    </p>
+    <p>
+      Kingsway International strictly adheres to the core conventions of the International Labour Organisation (ILO) and the Universal Declaration of Human Rights. We are fundamentally committed to:
+    </p>
+    <ul>
+      <li>Acting ethically, transparently, and with unyielding integrity in all business relationships and contracts.</li>
+      <li>Refusing to initiate or maintain commercial relationships with any supplier, contractor, or logistics partner found to be complicit in human rights abuses or exploitative labour conditions.</li>
+      <li>Empowering employees, contractors, and supply chain workers to voice concerns without fear of retaliation or detriment.</li>
+    </ul>
+  </section>
+
+  <!-- Section 03: Due Diligence & Quality Framework -->
+  <section id="quality-framework" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">03</span>
+      <h2>Due Diligence &amp; Five-Stage Quality</h2>
+    </div>
+    <p>
+      Modern slavery risks cannot be separated from product quality and operational discipline. Our due diligence is fully integrated into our signature <strong>Five-Stage Quality Framework</strong>:
+    </p>
+    <ul>
+      <li><strong>Stage 01 — Origin Selection:</strong> Prior to entering into any commercial supply contract, prospective partners are vetted against written standards covering food safety certification, traceability, worker welfare, fair compensation, and statutory labour adherence. Origin visits and physical audits are conducted before the first order is confirmed.</li>
+      <li><strong>Stage 02 — Pre-Shipment Control:</strong> Independent inspection agencies audit goods at origin facilities. Audits include monitoring factory working conditions, checking age verification protocols, and ensuring employment records are compliant.</li>
+      <li><strong>Stage 03 — UK Intake &amp; Physical Verification:</strong> Sealed container intakes at our Leicester depot verify that transport and logistics contractors adhere strictly to modern UK road haulage working time directives and welfare standards.</li>
+      <li><strong>Stage 04 — Warehousing &amp; Fulfillment:</strong> All domestic warehouse and logistics personnel — whether permanent or temporary agency workers — are engaged under transparent, written contracts paying at or above the UK Real Living Wage.</li>
+      <li><strong>Stage 05 — Customer Feedback Loop:</strong> Transparent reporting mechanisms enable trade customers, retailers, and end-consumers to flag provenance or ethical concerns for immediate investigation.</li>
+    </ul>
+  </section>
+
+  <!-- Section 04: Risk Assessment -->
+  <section id="risk-assessment" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">04</span>
+      <h2>Risk Assessment in Agricultural Origins</h2>
+    </div>
+    <p>
+      We recognize that modern slavery risks are disproportionately concentrated in upstream agricultural environments, particularly during labor-intensive harvesting periods (such as spice picking, rice milling, and pulse harvesting).
+    </p>
+    <p>To proactively address these geographical and sector-specific risks, we apply heightened scrutiny to:</p>
+    <ul>
+      <li><strong>Seasonal Agricultural Labour:</strong> Monitoring reliance on third-party labour recruiters, migrant workers, and day labourers to prevent recruitment fees and debt bondage.</li>
+      <li><strong>Document Retention &amp; Freedom of Movement:</strong> Verifying that origin processing plants and mills never retain workers' identity passports, travel documents, or bank cards.</li>
+      <li><strong>Working Hours &amp; Fair Compensation:</strong> Ensuring accurate record-keeping of working hours, voluntary overtime, and timely payment directly into workers' individual bank accounts or transparent cash payment envelopes.</li>
+    </ul>
+  </section>
+
+  <!-- Section 05: Supplier Code of Conduct -->
+  <section id="supplier-code" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">05</span>
+      <h2>Supplier Code of Conduct &amp; ETI Standards</h2>
+    </div>
+    <p>
+      All direct tier-1 suppliers, millers, and processing partners must formally endorse and comply with our <strong>Supplier Code of Conduct</strong>, which is aligned with the internationally recognized <strong>Ethical Trading Initiative (ETI) Base Code</strong>:
+    </p>
+    <ol>
+      <li><strong>Employment is Freely Chosen:</strong> There is no forced, bonded, or involuntary prison labour. Workers are free to leave their employer after reasonable notice.</li>
+      <li><strong>Freedom of Association:</strong> Workers, without distinction, have the right to join or form trade unions of their own choosing and bargain collectively where legal.</li>
+      <li><strong>Working Conditions Are Safe and Hygienic:</strong> Adequate clean drinking water, sanitary amenities, fire safety equipment, and personal protective gear (PPE) must be provided.</li>
+      <li><strong>Child Labour Shall Not Be Used:</strong> No child under the statutory minimum legal working age (and in no scenario under the age of 15) shall be recruited or employed.</li>
+      <li><strong>Living Wages Are Paid:</strong> Wages and benefits paid for a standard working week must meet, at a minimum, national legal standards or industry benchmark standards. Deductions from wages as a disciplinary measure are strictly forbidden.</li>
+      <li><strong>Working Hours Are Not Excessive:</strong> Working hours must comply with national laws and benchmark industry standards, with overtime being voluntary and compensated at a premium rate.</li>
+      <li><strong>No Discrimination Is Practised:</strong> Equal opportunity is afforded regardless of race, caste, national origin, religion, age, disability, gender, marital status, or sexual orientation.</li>
+      <li><strong>Regular Employment Is Provided:</strong> To every extent possible work performed must be on the basis of recognized employment relationships established through national law.</li>
+      <li><strong>No Harsh or Inhumane Treatment Is Allowed:</strong> Physical abuse or discipline, the threat of physical abuse, sexual or other harassment, and verbal abuse are categorically prohibited.</li>
+    </ol>
+  </section>
+
+  <!-- Section 06: Whistleblowing -->
+  <section id="whistleblowing" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">06</span>
+      <h2>Whistleblowing &amp; Grievance Mechanisms</h2>
+    </div>
+    <p>
+      Kingsway International provides confidential, secure whistleblowing channels for our employees, temporary staff, trade partners, and supply chain workers to report any suspected human rights violation or malpractice.
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Confidential Reporting Contact:</strong><br />
+        Grievance &amp; Compliance Officer<br />
+        Email: <a href="mailto:quality@kingswayinternational.co.uk">quality@kingswayinternational.co.uk</a><br />
+        Postal: Unit 1, 75 Hastings Road, Leicester, LE5 0HL (Marked: "Confidential — For Attention of Compliance Desk")
+      </p>
+    </div>
+    <p>
+      We guarantee that any individual who raises a genuine concern in good faith will be protected from any form of commercial retaliation, victimisation, or disciplinary action, even if an investigation confirms no wrongdoing.
+    </p>
+  </section>
+
+  <!-- Section 07: Training & KPIs -->
+  <section id="training-kpis" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">07</span>
+      <h2>Training &amp; Continuous Key Indicators</h2>
+    </div>
+    <p>To ensure effective understanding and vigilance throughout our team:</p>
+    <ul>
+      <li>All commercial procurement managers, warehouse supervisors, and quality auditors receive dedicated annual training on identifying indicators of modern slavery and human trafficking.</li>
+      <li>We track key operational metrics, including: the percentage of tier-1 suppliers with signed Codes of Conduct on file; the number of origin supplier audits conducted; and resolution timeframes for any reported ethical grievances.</li>
+    </ul>
+  </section>
+
+  <!-- Section 08: Board Approval -->
+  <section id="board-signoff" class="legal-section">
+    <div class="legal-section-header">
+      <span class="legal-section-num">08</span>
+      <h2>Board Approval &amp; Executive Sign-Off</h2>
+    </div>
+    <p>
+      This Modern Slavery Statement constitutes Kingsway International Ltd's annual slavery and human trafficking statement for the current financial year. It has been reviewed and formally approved by the Board of Directors.
+    </p>
+    <div class="legal-callout">
+      <p>
+        <strong>Signed on behalf of Kingsway International Ltd:</strong><br /><br />
+        <strong>Board of Directors</strong><br />
+        Kingsway International Ltd<br />
+        Date of Endorsement: 1 November 2026
+      </p>
+    </div>
+  </section>
 </LegalLayout>
