@@ -58,7 +58,7 @@
   display: grid;
   grid-template-rows: 1fr auto;
   min-height: clamp(560px, 43vw, 700px);
-  margin-top: 96px;
+  margin-top: 0;
   overflow: hidden;
   background: var(--about-paper);
   color: var(--about-blue);
@@ -1086,9 +1086,6 @@
   outline-offset: 4px;
 }
 
-@media (min-width: 768px) and (max-width: 1199px) {
-  .about-hero { margin-top: 88px; }
-}
 
 @media (max-width: 1050px) {
   .about-container { width: min(100% - 72px, 1320px); }
@@ -1127,7 +1124,6 @@
   .about-container { width: calc(100% - 44px); }
   .about-section { padding-block: 72px; }
   .about-heading { font-size: clamp(34px, 9vw, 46px); }
-  .about-hero { margin-top: 80px; }
   .about-hero-picture { aspect-ratio: 1.8; }
   .about-story { scroll-margin-top: 90px; }
   .about-split-heading,

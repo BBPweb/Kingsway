@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HomeHeader from '../components/home/HomeHeader.astro';
 import AboutHero from '../components/about/AboutHero.astro';
 import OurStory from '../components/about/OurStory.astro';
 import OurMission from '../components/about/OurMission.astro';
@@ -17,7 +16,6 @@ import '../styles/about.css';
 ---
 <BaseLayout title={about.seo.title} description={about.seo.description} ogImage={about.seo.image} bodyClass="about-page">
   <Fragment slot="head"><link rel="preload" as="image" type="image/webp" href={about.hero.image} imagesrcset={about.hero.imageSrcSet} imagesizes="(max-width: 900px) 180vw, (max-width: 1050px) 220vw, 150vw" fetchpriority="high" /></Fragment>
-  <HomeHeader slot="header" solid />
   <AboutHero /><OurStory /><OurMission /><Values /><SourceToShelf /><AboutPortfolio /><GlobalReach /><QualityPromise /><Partnership /><AboutCTA />
 </BaseLayout>
 <script>
