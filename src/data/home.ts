@@ -150,7 +150,7 @@ export const home = {
   },
   channels: {
     eyebrow: "Who we serve",
-    title: "Built for every corner of the British trade.",
+    title: "Built for every corner of the British trade",
     description:
       "Each channel has its own rhythm, price expectation and service requirement. Each is served by a dedicated commercial approach.",
     link: { label: "Find your trade channel", href: "/who-we-serve" },

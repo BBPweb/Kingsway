@@ -22,11 +22,11 @@ export const about = {
     intro: 'The United Kingdom is home to one of the world’s most diverse food cultures. Behind every kitchen is a simple expectation: food that tastes the way it should.',
     body: 'Kingsway International was founded to meet that expectation. Our name reflects our ambition: a trusted King’s way, a reliable, principled route by which authentic ingredients travel from their source to the British consumer.',
     stages: [
-      { title: 'Origin', subtitle: 'It starts with authenticity.', body: 'From South Asian and African kitchens to Caribbean, Middle Eastern and South-East Asian traditions, we believe ingredients should stay true to their origin and character.', image: 'pepper-origin', alt: 'Green peppercorns growing on a vine', label: 'Rooted in the places flavour begins' },
-      { title: 'Sourcing', subtitle: 'Relationships make the difference.', body: 'A sack of rice is the work of a farmer, a miller, a shipper and many more. We build direct, durable relationships with the people behind what we trade.', image: 'rice-story', alt: 'Rice fields and the landscape behind an everyday staple', label: 'People and origins, connected' },
-      { title: 'Quality', subtitle: 'Care, at every stage.', body: 'Quality is a framework we follow: origin selection, pre-shipment control, UK intake, warehousing and customer feedback. Every case is a promise made in our name.', image: 'whole-spices', alt: 'A selection of whole spices in wooden bowls', label: 'The details are the difference' },
-      { title: 'Distribution', subtitle: 'The promise travels with us.', body: 'Dates, documents, storage and dispatch: distribution is a business of details. Operational discipline protects the freshness, accuracy and honest value of what we deliver.', image: 'wholesale', alt: 'Pallets of packaged goods ready for distribution', label: 'From the warehouse to your business' },
-      { title: 'British trade', subtitle: 'Made for the kitchens we serve.', body: 'We serve the authentic ethnic food needs of British retail, wholesale and  food service buyers, with a portfolio that reflects the real diversity of British kitchens.', image: 'foodservice', alt: 'Food preparation in a professional kitchen', label: 'A place in Britain’s food story' },
+      { title: 'Origin', subtitle: 'It starts with authenticity', body: 'From South Asian and African kitchens to Caribbean, Middle Eastern and South-East Asian traditions, we believe ingredients should stay true to their origin and character.', image: 'pepper-origin', alt: 'Green peppercorns growing on a vine', label: 'Rooted in the places flavour begins' },
+      { title: 'Sourcing', subtitle: 'Relationships make the difference', body: 'A sack of rice is the work of a farmer, a miller, a shipper and many more. We build direct, durable relationships with the people behind what we trade.', image: 'rice-story', alt: 'Rice fields and the landscape behind an everyday staple', label: 'People and origins, connected' },
+      { title: 'Quality', subtitle: 'Care, at every stage', body: 'Quality is a framework we follow: origin selection, pre-shipment control, UK intake, warehousing and customer feedback. Every case is a promise made in our name.', image: 'whole-spices', alt: 'A selection of whole spices in wooden bowls', label: 'The details are the difference' },
+      { title: 'Distribution', subtitle: 'The promise travels with us', body: 'Dates, documents, storage and dispatch: distribution is a business of details. Operational discipline protects the freshness, accuracy and honest value of what we deliver.', image: 'wholesale', alt: 'Pallets of packaged goods ready for distribution', label: 'From the warehouse to your business' },
+      { title: 'British trade', subtitle: 'Made for the kitchens we serve', body: 'We serve the authentic ethnic food needs of British retail, wholesale and  food service buyers, with a portfolio that reflects the real diversity of British kitchens.', image: 'foodservice', alt: 'Food preparation in a professional kitchen', label: 'A place in Britain’s food story' },
     ],
   },
   mission: {
@@ -54,7 +54,7 @@ export const about = {
   },
   source: {
     eyebrow: '04 / The care behind the ingredient',
-    title: 'From source to shelf.',
+    title: 'From source to shelf',
     description: 'Follow a small ingredient through a bigger story. Our five-stage quality framework connects the care at origin with confidence at the counter.',
     stages: [
       { title: 'Source', body: 'Origin partners assessed against written criteria before the first order.', detail: 'Origin selection' },
@@ -66,7 +66,7 @@ export const about = {
   },
   portfolio: {
     eyebrow: '05 / A range with purpose',
-    title: 'Familiar ingredients.\nExtraordinary possibilities.',
+    title: 'Familiar ingredients\nExtraordinary possibilities',
     description: 'From the everyday staple to the distinctive finishing touch, our range reflects the way Britain really cooks.',
     items: [
       { title: 'Spices', detail: 'Whole, ground & full of character', image: 'whole-spices', alt: 'Whole spices in wooden bowls', slug: 'spices' },
@@ -83,19 +83,19 @@ export const about = {
   },
   quality: {
     eyebrow: '07 / Our quality promise',
-    title: 'A commitment,\nnot a slogan.',
+    title: 'A commitment,\nnot a slogan',
     quote: 'If a product does not match the quality we have promised, we will replace it, refund it, or make it right, without debate.',
     detail: 'Our five-stage quality framework is how we keep that promise.',
   },
   partnership: {
     eyebrow: '08 / People & partnership',
-    title: 'People behind\nthe supply.',
+    title: 'People behind\nthe supply',
     body: 'A farmer. A miller. A warehouse team. A shopkeeper. Good food reaches the right place because people care about the next link in the chain.',
     detail: 'Our founding team brings an understanding of origin markets, international trade and UK retail distribution. We believe lasting relationships are how quality and reliability are maintained.',
   },
   cta: {
     eyebrow: 'The next chapter starts with a conversation',
-    title: 'Let’s build a better\nsupply together.',
+    title: 'Let’s build a better\nsupply together',
     body: 'Start a conversation with Kingsway International.',
     label: 'Start a trade conversation', href: '/contact',
   },
