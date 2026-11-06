@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/EditorialHero.astro';
 import '../styles/editorial-pages.css';
-import Lede from '../components/ui/Lede.astro';
 import Eyebrow from '../components/ui/Eyebrow.astro';
 import LocalBusinessSchema from '../components/schema/LocalBusinessSchema.astro';
 
@@ -46,19 +45,6 @@ const directContacts = [
     subtitle="Trade buyer, supplier, journalist or candidate, tell us what you need and we'll route you correctly."
     backgroundImage="/images/contact.jpeg" 
   />
-
-  <!-- Intro -->
-  <section class="section section--white section--narrow" aria-label="Contact introduction">
-    <div class="container container--narrow">
-      <Lede>
-        There are different conversations to have, and Kingsway is set up to
-        have each of them well. Use the form below, the routing dropdown
-        will get your enquiry to the right inbox, or contact the relevant
-        function directly. We acknowledge every enquiry within one business day,
-        and we send a substantive response within three.
-      </Lede>
-    </div>
-  </section>
 
   <!-- Form + sidebar -->
   <section class="section section--white" aria-labelledby="form-heading">
@@ -191,7 +177,7 @@ const directContacts = [
             <Eyebrow>Our response commitment</Eyebrow>
             <p class="sidebar-callout-body">
               Every enquiry is acknowledged within one business day. A substantive
-              response follows within three business days &mdash; and if a matter
+              response follows within three business days, and if a matter
               is going to take longer than that to resolve, we tell you so, with
               a clear expected timescale.
             </p>
@@ -228,7 +214,11 @@ const directContacts = [
             A dedicated path for origin producers, primary processors and
             service providers.
           </p>
-          <span class="cta-tile-arrow" aria-hidden="true">&rarr;</span>
+          <span class="cta-tile-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
           </div>
         </a>
         <a href="/contact/trade-enquiries" class="cta-tile cta-tile--primary">
@@ -238,7 +228,11 @@ const directContacts = [
           <p class="cta-tile-body">
             A dedicated path for retail, wholesale and foodservice buyers.
           </p>
-          <span class="cta-tile-arrow" aria-hidden="true">&rarr;</span>
+          <span class="cta-tile-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
           </div>
         </a>
       </div>
