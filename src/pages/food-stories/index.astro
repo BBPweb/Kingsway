@@ -171,7 +171,12 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
           <div class="stream-content">
             <h3 class="stream-name">Recipes</h3>
             <p class="stream-desc">Ingredient-anchored recipes showcasing our entire pantry range, from aromatic biryanis and lentil dhal to traditional breads, curries, and regional favorites.</p>
-            <a href="#articles" class="stream-link" data-story-category-target="Recipe">Browse recipes →</a>
+            <a href="#articles" class="stream-link" data-story-category-target="Recipe">
+              Browse recipes
+              <svg class="stream-link-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
           </div>
         </div>
 
@@ -179,8 +184,13 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
           <span class="stream-letter" aria-hidden="true">O</span>
           <div class="stream-content">
             <h3 class="stream-name">Origin &amp; sourcing</h3>
-            <p class="stream-desc">How our pulses, grains, nuts, and spices are grown and processed—told from the perspective of the dedicated growers behind every ingredient.</p>
-            <a href="#articles" class="stream-link" data-story-category-target="Origin story">Read origin stories →</a>
+            <p class="stream-desc">How our pulses, grains, nuts, and spices are grown and processed, told from the perspective of the dedicated growers behind every ingredient.</p>
+            <a href="#articles" class="stream-link" data-story-category-target="Origin story">
+              Read origin stories
+              <svg class="stream-link-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
           </div>
         </div>
 
@@ -188,8 +198,13 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
           <span class="stream-letter" aria-hidden="true">T</span>
           <div class="stream-content">
             <h3 class="stream-name">Cooking &amp; pantry tips</h3>
-            <p class="stream-desc">Practical kitchen advice—from cooking fluffy basmati rice and tempering spices in ghee to choosing the right flours and lentils for every dish.</p>
-            <a href="#articles" class="stream-link" data-story-category-target="Cooking tip">See cooking tips →</a>
+            <p class="stream-desc">Practical kitchen advice, from cooking fluffy basmati rice and tempering spices in ghee to choosing the right flours and lentils for every dish.</p>
+            <a href="#articles" class="stream-link" data-story-category-target="Cooking tip">
+              See cooking tips
+              <svg class="stream-link-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -978,6 +993,9 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
   }
 
   .stream-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     align-self: flex-start;
     margin-top: 0.5rem;
     color: var(--royal-navy);
@@ -987,8 +1005,17 @@ const newsletterEndpoint = import.meta.env.PUBLIC_FORMSPREE_NEWSLETTER ?? '';
     text-decoration: none;
   }
 
+  .stream-link-arrow {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
   .stream-link:hover {
     color: var(--champagne-gold);
+  }
+
+  .stream-link:hover .stream-link-arrow {
+    transform: translateX(3px);
   }
 
   /* ══════════════════════════════════════════════════════════════════════════
