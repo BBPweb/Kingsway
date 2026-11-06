@@ -46,42 +46,40 @@ const isCurrent = (href: string) => href === "/" ? currentPath === "/" : current
     >
       <span></span>
       <span></span>
+      <span></span>
     </button>
   </div>
 </header>
 <dialog id="home-menu" class="home-menu" aria-label="Navigation menu">
-  <div class="home-menu-top">
-    <span class="home-kicker">Kingsway International</span>
-    <button
-      type="button"
-      class="home-menu-close"
-      aria-label="Close navigation menu"
-      data-menu-close
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-        <path
-          d="m5 5 14 14M5 19 19 5"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-        />
-      </svg>
-    </button>
-  </div>
+  <button
+    type="button"
+    class="home-menu-close"
+    aria-label="Close navigation menu"
+    data-menu-close
+  >
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M2 2L18 18M18 2L2 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
   <nav aria-label="Mobile navigation">
-    {navigation.map((link, i) => (
-      <a href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
-        <span>{String(i + 1).padStart(2, "0")}</span>
-        {link.label}
-        <Arrow />
-      </a>
-    ))}
+    <ul class="home-menu-list">
+      {navigation.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={["home-menu-link", { "home-menu-link--active": isCurrent(link.href) }]}
+            aria-current={isCurrent(link.href) ? "page" : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
   </nav>
-  <a class="home-button" href={home.tradeLink.href}>
+  <a class="home-menu-cta" href={home.tradeLink.href}>
     {home.tradeLink.label}
     <Arrow />
   </a>
-  <p class="home-menu-caption">{home.brand.descriptor}</p>
 </dialog>
 <noscript>
   <nav class="home-nojs-nav" aria-label="Mobile navigation">
