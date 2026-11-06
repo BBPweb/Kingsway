@@ -6,9 +6,10 @@ interface Props {
   subtitle: string;
   backgroundImage: string;
   breadcrumb: string;
+  showEyebrow?: boolean;
 }
 
-const { eyebrow, title, highlight, subtitle, backgroundImage, breadcrumb } = Astro.props;
+const { eyebrow, title, highlight, subtitle, backgroundImage, breadcrumb, showEyebrow = true } = Astro.props;
 const highlightStart = title.indexOf(highlight);
 ---
 
@@ -33,7 +34,7 @@ const highlightStart = title.indexOf(highlight);
     </nav>
     <div class="editorial-hero-grid">
       <div class="editorial-hero-copy">
-        <p class="editorial-kicker">{eyebrow}</p>
+        {showEyebrow && <p class="editorial-kicker">{eyebrow}</p>}
         <h1 id="hero-title">{title.slice(0, highlightStart)}<span>{highlight}</span>{title.slice(highlightStart + highlight.length)}</h1>
         <p class="editorial-hero-subtitle">{subtitle}</p>
       </div>
@@ -43,4 +44,3 @@ const highlightStart = title.indexOf(highlight);
     </div>
   </div>
 </header>
-
