@@ -1,0 +1,117 @@
+---
+const catalogueUrl = 'https://kingswayuk.com/catalogues/kingsway-product-catalogue-2026.pdf';
+---
+
+<a
+  class="floating-catalogue-button"
+  href={catalogueUrl}
+  download="Kingsway-Product-Catalogue-2026.pdf"
+  aria-label="Download the Kingsway International product catalogue (PDF)"
+>
+  <svg
+    class="floating-catalogue-button__icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M5 17v3h14v-3" />
+  </svg>
+  <span>Catalogue</span>
+</a>
+
+<style>
+  .floating-catalogue-button {
+    position: fixed;
+    right: calc(24px + env(safe-area-inset-right, 0px));
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    min-height: 56px;
+    max-width: calc(100vw - 32px);
+    padding: 0.85rem 1.25rem;
+    border: 1px solid rgba(217, 164, 65, 0.4);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #0B1C36 0%, #173A78 100%);
+    box-shadow: 0 4px 14px rgba(11, 28, 54, 0.16);
+    color: #ffffff;
+    font-family: var(--font-sans, system-ui, sans-serif);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .floating-catalogue-button:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #173A78 0%, #204896 100%);
+    border-color: rgba(217, 164, 65, 0.7);
+    box-shadow: 0 6px 20px rgba(23, 58, 120, 0.25);
+  }
+
+  .floating-catalogue-button:focus-visible {
+    outline: 3px solid var(--accent, #f9c66a);
+    outline-offset: 4px;
+  }
+
+  .floating-catalogue-button__icon {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (max-width: 900px) {
+    .floating-catalogue-button {
+      right: calc(20px + env(safe-area-inset-right, 0px));
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      min-height: 52px;
+      gap: 0.55rem;
+      padding: 0.75rem 1.1rem;
+      font-size: 0.875rem;
+    }
+
+    .floating-catalogue-button__icon {
+      width: 19px;
+      height: 19px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .floating-catalogue-button {
+      right: calc(16px + env(safe-area-inset-right, 0px));
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      min-height: 48px;
+      gap: 0.5rem;
+      padding: 0.7rem 0.95rem;
+      font-size: 0.8125rem;
+    }
+
+    .floating-catalogue-button__icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-catalogue-button {
+      transition: none;
+    }
+
+    .floating-catalogue-button:hover {
+      transform: none;
+    }
+  }
+</style>
